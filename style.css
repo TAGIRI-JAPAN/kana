@@ -1,0 +1,424 @@
+/* ==========================================================================
+   TAKANE-SHIKI KANA DRILL — stylesheet
+   Identity: maroon + gold, shared with the printed materials.
+   Fonts: BIZ UDPGothic (body) / Zen Kaku Gothic New (kana display).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Colour: one accent family + a shared neutral base. Switching theme swaps
+   four variables; switching brightness swaps the base. Everything else in the
+   sheet reads from these, so no rule needs to know which theme is active.
+   -------------------------------------------------------------------------- */
+:root{
+  /* default family — えんじ */
+  --accent:#7A1B2E; --accent-deep:#4E0E1C; --accent-dk:#B8536A;
+  --gold:#C7A247; --gold-lt:#E9D9A9; --gold-dp:#A8842E;
+
+  --maroon:var(--accent); --maroon-deep:var(--accent-deep); --maroon-ink:var(--accent-deep);
+  --paper:#FAF5EC; --card:#FFFEFA; --field:#FFFFFF;
+  --ink:#22181A; --ink-soft:#6E5C5E;
+  --rule:rgba(34,24,26,.12); --rule-2:rgba(34,24,26,.07);
+  --ok:#2F6E4E; --ok-bg:#EEF6F1; --ok-tag:#DFF0E7;
+  --ng:#A3283C; --ng-bg:#FCF0F2; --ng-tag:#F7DFE4;
+  --glow:rgba(199,162,71,.16);
+  --shadow:0 1px 2px rgba(20,10,14,.05),0 6px 18px rgba(20,10,14,.06);
+
+  --jp-disp:"Zen Kaku Gothic New","BIZ UDPGothic","Hiragino Sans",sans-serif;
+  --ui:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI",system-ui,-apple-system,sans-serif;
+  --si:"Noto Sans Sinhala","Iskoola Pota",sans-serif;
+
+  --s1:6px; --s2:10px; --s3:16px; --s4:22px; --s5:30px;
+  --tap:46px;
+  --gs:1;            /* glyph scale, driven by the text-size setting */
+}
+
+html[data-theme="ai"]{
+  --accent:#1F3B63; --accent-deep:#101F36; --accent-dk:#6E96C9;
+  --gold:#C7A247; --gold-lt:#E6D5A4; --gold-dp:#9E7C29;
+  --glow:rgba(110,150,201,.16);
+}
+html[data-theme="matcha"]{
+  --accent:#2F5D46; --accent-deep:#16301F; --accent-dk:#6FB58F;
+  --gold:#C79B3E; --gold-lt:#E7D6A6; --gold-dp:#9A7526;
+  --glow:rgba(111,181,143,.15);
+}
+html[data-theme="sumi"]{
+  --accent:#2A2A2C; --accent-deep:#141416; --accent-dk:#B9B9BE;
+  --gold:#B08635; --gold-lt:#E0CFA4; --gold-dp:#8A6A25;
+  --glow:rgba(0,0,0,.07);
+}
+
+/* Dark base — one neutral shell, whichever family is on. */
+html[data-scheme="dark"]{
+  --maroon:var(--accent-dk); --maroon-deep:#0F0C0E; --maroon-ink:#F2E9E6;
+  --paper:#161215; --card:#1E191C; --field:#241E22;
+  --ink:#F2E9E6; --ink-soft:#AC9EA2;
+  --rule:rgba(242,233,230,.14); --rule-2:rgba(242,233,230,.07);
+  --ok:#6FC79A; --ok-bg:#16281F; --ok-tag:#1D3A2B;
+  --ng:#E88497; --ng-bg:#2C171C; --ng-tag:#3D1F26;
+  --glow:rgba(199,162,71,.09);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.28);
+}
+@media (prefers-color-scheme:dark){
+  html[data-scheme="auto"]{
+    --maroon:var(--accent-dk); --maroon-deep:#0F0C0E; --maroon-ink:#F2E9E6;
+    --paper:#161215; --card:#1E191C; --field:#241E22;
+    --ink:#F2E9E6; --ink-soft:#AC9EA2;
+    --rule:rgba(242,233,230,.14); --rule-2:rgba(242,233,230,.07);
+    --ok:#6FC79A; --ok-bg:#16281F; --ok-tag:#1D3A2B;
+    --ng:#E88497; --ng-bg:#2C171C; --ng-tag:#3D1F26;
+    --glow:rgba(199,162,71,.09);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.28);
+  }
+}
+
+/* Text size. Glyphs use clamp(), which ignores root font-size, so they get
+   an explicit multiplier instead. */
+html[data-size="l"]{font-size:110%; --gs:1.06;}
+html[data-size="xl"]{font-size:122%; --gs:1.12;}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:radial-gradient(1100px 460px at 50% -160px,var(--glow),transparent 70%),var(--paper);
+  color:var(--ink);font-family:var(--ui);line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+button{font:inherit;color:inherit}
+/* Sinhala inline inside an English or Japanese page */
+.si{font-family:var(--si);font-size:1.04em;line-height:1.7}
+/* Whole page in Sinhala: set it once at the root so no element can be missed.
+   Kana keeps its own font because every kana rule names --jp-disp explicitly. */
+html[lang="si"]{--ui:"Noto Sans Sinhala","Iskoola Pota","BIZ UDPGothic","Hiragino Sans",system-ui,sans-serif}
+html[lang="si"] body{line-height:1.8}
+html[lang="si"] .flabel,html[lang="si"] .l,html[lang="si"] .mrow,
+html[lang="si"] .csec h2,html[lang="si"] .mapset h3{letter-spacing:.04em}
+.wrap{max-width:800px;margin:0 auto;padding:0 var(--s3) 72px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- header ---------- */
+header{background:linear-gradient(168deg,var(--accent) 0%,var(--accent-deep) 100%);color:#FAF5EC}
+.hbar{max-width:800px;margin:0 auto;padding:15px var(--s3) 13px;display:flex;align-items:center;
+  gap:12px;flex-wrap:wrap}
+.mark{font-family:var(--jp-disp);font-weight:700;font-size:1.18rem;line-height:1.2}
+.mark small{display:block;font-family:var(--ui);font-weight:400;font-size:.6rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold-lt);margin-top:3px;opacity:.85}
+.tools{display:flex;gap:6px;align-items:center;margin-left:auto}
+.langs{display:flex;gap:4px}
+@media (max-width:430px){.mark small{display:none}}
+.langs button{font-size:.78rem;padding:6px 12px;border-radius:999px;cursor:pointer;
+  background:transparent;color:var(--gold-lt);border:1px solid rgba(233,217,169,.4)}
+.langs button[aria-pressed="true"]{background:var(--gold);color:var(--accent-deep);border-color:var(--gold);font-weight:700}
+
+.mastery{max-width:800px;margin:0 auto;padding:0 var(--s3) 14px;display:flex;align-items:flex-end;gap:0}
+.mastery > div:first-child{flex:1;min-width:0}
+.mbarwrap{flex:1;min-width:0}
+.mrow{display:flex;align-items:baseline;gap:10px;font-size:.62rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold-lt);opacity:.92}
+.mrow .days{margin-left:auto;letter-spacing:.06em;text-transform:none;font-size:.72rem;color:#fff;opacity:.75}
+.mrow b{font-family:var(--jp-disp);font-size:.95rem;letter-spacing:0;color:#fff;
+  font-variant-numeric:tabular-nums}
+.mbar{height:6px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;margin-top:5px}
+.mbar i{display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--gold-dp),var(--gold),var(--gold-lt))}
+
+/* ---------- controls ---------- */
+.setup{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:8px 0 10px;
+  margin-top:18px;box-shadow:var(--shadow);overflow:hidden}
+.field{display:flex;align-items:center;gap:var(--s1);padding:8px var(--s3)}
+.field + .field{border-top:1px dashed var(--rule)}
+.flabel{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);
+  min-width:88px;font-weight:700;flex:none}
+/* one horizontal lane per row — 10 modes should not stack three deep on a phone */
+.lane{display:flex;gap:var(--s1);overflow-x:auto;scrollbar-width:none;padding:2px 0;
+  -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+.lane::-webkit-scrollbar{display:none}
+.chip{font-size:.82rem;padding:8px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;
+  border:1px solid var(--rule);background:var(--field);color:var(--ink);flex:none;scroll-snap-align:start}
+.chip[aria-pressed="true"]{background:var(--maroon);color:#fff;border-color:var(--maroon);
+  box-shadow:0 2px 8px rgba(122,27,46,.22)}
+.chip:disabled{opacity:.3;cursor:not-allowed}
+.chip.learn[aria-pressed="true"]{background:var(--gold);color:var(--accent-deep);border-color:var(--gold-dp)}
+.chip:active{transform:translateY(1px)}
+.chip:focus-visible,.langs button:focus-visible,.opt:focus-visible,.ghost:focus-visible,
+.tile:focus-visible,.btile:focus-visible,.slot:focus-visible,#typed:focus-visible{
+  outline:2px solid var(--gold-dp);outline-offset:2px}
+
+/* ---------- question card ---------- */
+.card{background:var(--card);border:1px solid var(--rule);border-radius:16px;margin-top:var(--s3);
+  padding:var(--s4) var(--s3);position:relative;box-shadow:var(--shadow);overflow:hidden;min-height:240px}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;
+  background:linear-gradient(90deg,var(--maroon),var(--gold),var(--gold-lt))}
+.corner{position:absolute;top:13px;right:15px;font-size:.6rem;letter-spacing:.14em;color:var(--ink-soft);
+  text-transform:uppercase;font-variant-numeric:tabular-nums}
+.bar{height:3px;background:var(--rule);border-radius:2px;margin:2px 0 14px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gold)}
+.ask{font-size:.84rem;color:var(--ink-soft);margin:0 0 var(--s2);max-width:86%}
+/* the Japanese on this site is 分かち書き — break at the spaces, not inside a word */
+.ask,.hint,.sub,.expl .nt,.gsec p,.hero p,.pagehead p,.hcard p,.nowbar .val,.map p.note,footer p{
+  word-break:keep-all;overflow-wrap:break-word}
+.hint,.ask{text-wrap:balance}
+.stage{text-align:center;padding:12px 4px var(--s4);border-bottom:1px solid var(--rule);margin-bottom:var(--s3)}
+.glyph{font-family:var(--jp-disp);font-weight:500;line-height:1;font-size:calc(clamp(4.2rem,20vw,6.6rem)*var(--gs));
+  color:var(--maroon-ink);letter-spacing:.02em}
+.glyph.small{font-size:calc(clamp(2.4rem,10vw,3.2rem)*var(--gs))}
+.reading{font-family:var(--jp-disp);font-size:calc(clamp(1.9rem,8vw,2.6rem)*var(--gs));color:var(--maroon-ink);letter-spacing:.04em}
+.romacue{font-size:calc(clamp(1.6rem,7vw,2.2rem)*var(--gs));color:var(--maroon-ink);letter-spacing:.22em;font-weight:700}
+.sub{margin-top:8px;font-size:1rem;color:var(--ink-soft)}
+
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2)}
+.opt{cursor:pointer;background:var(--field);border:1px solid var(--rule);border-radius:12px;
+  padding:15px 8px;text-align:center;position:relative;min-height:var(--tap);
+  box-shadow:0 1px 2px rgba(78,14,28,.04)}
+.opt:active{transform:translateY(1px)}
+.opt .num{position:absolute;top:6px;left:9px;font-size:.6rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.opt .main{font-size:1.4rem;line-height:1.25;display:block}
+.opt .main.kana{font-family:var(--jp-disp);font-size:2rem}
+.opt .main.word{font-family:var(--jp-disp);font-size:1.45rem}
+.opt .si{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:2px;min-height:1.1em}
+.opt[data-state="ok"]{border-color:var(--ok);background:var(--ok-bg);box-shadow:inset 0 0 0 1px var(--ok)}
+.opt[data-state="ng"]{border-color:var(--ng);background:var(--ng-bg)}
+.opt:disabled{cursor:default}
+
+/* ---------- gojuon fill ---------- */
+.seq{display:flex;flex-wrap:wrap;gap:var(--s1);justify-content:center}
+.cell{width:clamp(42px,11vw,58px);height:clamp(42px,11vw,58px);border-radius:10px;
+  border:1px solid var(--rule);background:var(--field);display:flex;align-items:center;
+  justify-content:center;font-family:var(--jp-disp);font-size:clamp(1.3rem,5vw,1.8rem)}
+.cell.gap{border:none;background:transparent}
+.cell.blank{border:2px dashed var(--maroon);background:var(--ng-bg);color:var(--maroon)}
+
+/* ---------- spell ---------- */
+.slots{display:flex;flex-wrap:wrap;gap:var(--s1);justify-content:center;min-height:62px}
+.slot{width:clamp(44px,11.5vw,58px);height:clamp(44px,11.5vw,58px);border-radius:10px;
+  border:2px dashed var(--rule);background:var(--field);display:flex;align-items:center;
+  justify-content:center;font-family:var(--jp-disp);font-size:clamp(1.4rem,5.5vw,1.9rem);
+  color:var(--maroon-ink)}
+.slot.on{border-style:solid;border-color:var(--gold-dp);cursor:pointer}
+.slot.ok{border-style:solid;border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+.slot.ng{border-style:solid;border-color:var(--ng);background:var(--ng-bg);color:var(--ng)}
+.bank{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:var(--s3)}
+.btile{width:clamp(46px,12vw,60px);height:clamp(46px,12vw,60px);border-radius:12px;cursor:pointer;
+  border:1px solid var(--rule);background:var(--field);font-family:var(--jp-disp);
+  font-size:clamp(1.4rem,5.5vw,1.9rem);box-shadow:0 1px 2px rgba(78,14,28,.05)}
+.btile:active{transform:translateY(1px)}
+.btile[data-used="1"]{opacity:.22;pointer-events:none}
+.hint{font-size:.75rem;color:var(--ink-soft);text-align:center;margin:12px 0 0}
+
+/* ---------- explanation ---------- */
+.expl{margin-top:var(--s3);border:1px solid var(--rule);border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;background:var(--field);padding:14px var(--s3)}
+.expl .hw{font-family:var(--jp-disp);font-size:1.7rem;color:var(--maroon-ink);line-height:1.2}
+.expl .rm{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dp);font-weight:700}
+.expl .mn{margin:4px 0 8px;font-size:.95rem}
+.expl .nt{font-size:.88rem;color:var(--ink-soft);margin:0}
+
+#typeBox{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+#typed{font-size:1.5rem;text-align:center;width:190px;padding:11px 12px;border-radius:12px;
+  border:1px solid var(--rule);background:var(--field);color:var(--ink);letter-spacing:.05em}
+#typed[data-state="ok"]{border-color:var(--ok);background:var(--ok-bg)}
+#typed[data-state="ng"]{border-color:var(--ng);background:var(--ng-bg)}
+
+.verdict{margin-top:14px;min-height:3.1em;font-size:.92rem}
+.verdict b{color:var(--maroon-ink)}
+.verdict .tag{display:inline-block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;margin-right:8px;vertical-align:2px;font-weight:700}
+.verdict.ok .tag{background:var(--ok-tag);color:var(--ok)}
+.verdict.ng .tag{background:var(--ng-tag);color:var(--ng)}
+.rowbtns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.ghost{font-size:.86rem;padding:11px 18px;border-radius:999px;cursor:pointer;min-height:var(--tap);
+  background:var(--maroon);color:#fff;border:1px solid var(--maroon);box-shadow:0 2px 8px rgba(122,27,46,.2)}
+.ghost:active{transform:translateY(1px)}
+.ghost.alt{background:var(--field);color:var(--maroon-ink);border-color:var(--rule);box-shadow:none}
+.ghost:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+
+/* ---------- score ---------- */
+.score{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:14px;overflow:hidden;margin-top:14px;box-shadow:var(--shadow)}
+.score div{background:var(--card);padding:11px 4px;text-align:center}
+.score .n{font-family:var(--jp-disp);font-size:1.35rem;line-height:1.1;color:var(--maroon-ink);
+  font-variant-numeric:tabular-nums}
+.score .n.hot{color:var(--gold-dp)}
+.score .l{font-size:.55rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ---------- result ---------- */
+.result{text-align:center}
+.result h2{font-family:var(--jp-disp);font-size:1.45rem;margin:2px 0 14px;color:var(--maroon-ink)}
+.gauge{width:170px;height:170px;border-radius:50%;margin:0 auto;display:flex;align-items:center;
+  justify-content:center;position:relative}
+.gauge::after{content:"";position:absolute;inset:13px;border-radius:50%;background:var(--card)}
+.gauge span{position:relative;z-index:1;font-family:var(--jp-disp);font-size:2.7rem;line-height:1;
+  color:var(--maroon-ink);font-variant-numeric:tabular-nums}
+.gauge span i{font-size:1.1rem;font-style:normal}
+.weaklist{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;justify-content:center}
+
+/* ---------- kana map: laid out as the real gojuon chart ---------- */
+.map{margin-top:var(--s5)}
+.map h2{font-family:var(--jp-disp);font-size:1.02rem;margin:0 0 3px;color:var(--maroon-ink)}
+.map p.note{font-size:.78rem;color:var(--ink-soft);margin:0 0 12px}
+.mapset{margin-bottom:var(--s4)}
+.mapset h3{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);
+  margin:0 0 8px;padding-bottom:4px;border-bottom:1px solid var(--rule);font-weight:700}
+.chart{display:grid;gap:5px;justify-content:start}
+.chart.c5{grid-template-columns:repeat(5,auto)}
+.chart.c3{grid-template-columns:repeat(3,auto)}
+.tiles{display:flex;flex-wrap:wrap;gap:5px}
+.tile{width:38px;height:38px;border-radius:9px;border:1px solid var(--rule);background:var(--field);
+  display:flex;align-items:center;justify-content:center;font-family:var(--jp-disp);font-size:1.15rem;
+  color:var(--ink);position:relative;padding:0;cursor:default;font-weight:500}
+.tile.act{cursor:pointer;min-width:38px}
+.tile.hole{border:none;background:transparent}
+.tile[data-weak="1"]{border-color:var(--ng);color:var(--ng)}
+.tile[data-rare="1"]{opacity:.4}
+.tile i{position:absolute;inset:0;border-radius:8px;
+  background:linear-gradient(160deg,var(--gold-lt),var(--gold));z-index:0}
+.tile span{position:relative;z-index:1}
+.tiles.big .tile{width:56px;height:56px;font-size:1.5rem}
+/* The learn chart must fit five columns inside the card on a 360px phone,
+   so the cells share the row rather than carrying a fixed width. */
+.chart.c5.big{grid-template-columns:repeat(5,minmax(0,1fr));max-width:330px}
+.chart.c3.big{grid-template-columns:repeat(3,minmax(0,1fr));max-width:200px}
+.chart.big .tile{width:auto;height:auto;aspect-ratio:1;font-size:calc(clamp(1.15rem,4.4vw,1.5rem)*var(--gs))}
+
+footer{margin-top:var(--s5);padding-top:14px;border-top:1px solid var(--rule);
+  font-size:.75rem;color:var(--ink-soft)}
+footer p{margin:.5em 0}
+
+@media (min-width:560px){.opts{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (prefers-reduced-motion:no-preference){
+  .stage,.expl{animation:rise .2s ease-out}
+  @keyframes rise{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+  .bar i,.mbar i{transition:width .35s ease}
+  .chip,.opt,.ghost,.btile,.tile{transition:transform .08s ease,background .12s ease,border-color .12s ease}
+  .opt[data-state="ok"]{animation:pop .3s ease}
+  @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.045)}100%{transform:scale(1)}}
+}
+
+/* ==========================================================================
+   Site chrome — nav, home, rules page, printable chart
+   ========================================================================== */
+
+.nav{display:flex;gap:2px;flex:1 1 100%;order:3;overflow-x:auto;scrollbar-width:none;margin:2px -4px -2px}
+.nav::-webkit-scrollbar{display:none}
+.nav a{color:var(--gold-lt);text-decoration:none;font-size:.8rem;padding:7px 12px;border-radius:999px;
+  white-space:nowrap;opacity:.8}
+.nav a[aria-current="page"]{background:rgba(255,255,255,.13);color:#fff;opacity:1;font-weight:700}
+a.mark{color:inherit;text-decoration:none}
+@media (min-width:640px){.nav{flex:0 1 auto;order:0;margin:0}}
+
+/* ---------- home ---------- */
+.hero{padding:var(--s5) 0 var(--s4)}
+.hero h1{font-family:var(--jp-disp);font-size:clamp(1.5rem,6vw,2.1rem);line-height:1.35;
+  margin:0 0 var(--s2);color:var(--maroon-ink)}
+.hero p{margin:0;color:var(--ink-soft);max-width:48ch}
+.cards{display:grid;gap:var(--s2)}
+@media (min-width:660px){.cards{grid-template-columns:repeat(3,1fr)}}
+.hcard{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:var(--s4) var(--s3);text-decoration:none;color:inherit;
+  box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hcard::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;
+  background:linear-gradient(90deg,var(--maroon),var(--gold))}
+.hcard .n{font-family:var(--jp-disp);font-size:2.4rem;line-height:1;color:var(--gold-dp);margin-bottom:var(--s2)}
+.hcard h2{font-family:var(--jp-disp);font-size:1.05rem;margin:0 0 6px;color:var(--maroon-ink)}
+.hcard p{margin:0 0 var(--s3);font-size:.85rem;color:var(--ink-soft);flex:1}
+.hcard .go{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon-ink);font-weight:700}
+.hcard:active{transform:translateY(1px)}
+
+/* ---------- rules page ---------- */
+.pagehead{padding:var(--s5) 0 var(--s3)}
+.pagehead h1{font-family:var(--jp-disp);font-size:clamp(1.4rem,5.5vw,1.9rem);margin:0 0 8px;color:var(--maroon-ink)}
+.pagehead p{margin:0;color:var(--ink-soft);max-width:52ch}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 var(--s5)}
+.toc a{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;text-decoration:none;
+  padding:7px 13px;border-radius:999px;border:1px solid var(--rule);background:var(--card);color:var(--ink)}
+.toc a b{color:var(--gold-dp);font-variant-numeric:tabular-nums}
+.gsec{margin-bottom:var(--s5);scroll-margin-top:16px}
+.gsec h2{font-family:var(--jp-disp);font-size:1.12rem;color:var(--maroon-ink);margin:0 0 var(--s2);
+  display:flex;align-items:baseline;gap:10px;padding-bottom:8px;border-bottom:2px solid var(--gold)}
+.gsec h2 b{font-size:.8rem;color:var(--gold-dp);font-variant-numeric:tabular-nums}
+.gsec p{margin:0 0 .8em;max-width:62ch}
+.exbox{border-left:4px solid var(--gold);background:var(--card);border:1px solid var(--rule);
+  border-left-width:4px;border-radius:0 12px 12px 0;padding:12px var(--s3);margin-top:var(--s3)}
+.exlabel{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+  font-weight:700;margin-bottom:8px}
+.exrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:5px 0}
+.exrow + .exrow{border-top:1px dashed var(--rule)}
+.exk{font-family:var(--jp-disp);font-size:1.3rem;color:var(--maroon-ink);min-width:7em}
+.exr{font-size:.85rem;color:var(--gold-dp);font-weight:700;min-width:7em}
+.exg{font-size:.82rem;color:var(--ink-soft)}
+.lookwrap{display:grid;gap:var(--s3);margin-top:var(--s3)}
+@media (min-width:620px){.lookwrap{grid-template-columns:1fr 1fr}}
+.lookcol{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:12px var(--s3)}
+.lookcol h3{font-family:var(--jp-disp);font-size:.9rem;margin:0 0 8px;color:var(--maroon-ink);
+  padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.lookrow{display:flex;flex-wrap:wrap;align-items:center;gap:3px;padding:5px 0;font-family:var(--jp-disp)}
+.lookrow i{color:var(--rule);font-style:normal;font-size:.8rem}
+.lk{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;
+  border-radius:8px;background:var(--field);border:1px solid var(--rule);font-size:1.15rem}
+.gcta{margin:var(--s5) 0 0}
+.gcta .ghost{display:inline-block;text-decoration:none}
+
+/* ---------- printable chart ---------- */
+.csec{margin-bottom:var(--s4);break-inside:avoid}
+.csec h2{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+  font-weight:700;margin:0 0 8px;padding-bottom:5px;border-bottom:1px solid var(--rule)}
+.cgrid{display:grid;gap:5px;justify-content:start}
+.cgrid.c5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.cgrid.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ccell{border:1px solid var(--rule);border-radius:10px;background:var(--card);padding:7px 4px;
+  text-align:center;min-width:0}
+.ccell.hole{border:none;background:transparent}
+.ccell.rare{opacity:.45}
+.ckana{font-family:var(--jp-disp);font-size:1.5rem;line-height:1.15;color:var(--maroon-ink)}
+.ckana em{font-style:normal;font-size:1.05rem;color:var(--ink-soft);margin-left:5px}
+.crom{font-size:.7rem;color:var(--gold-dp);font-weight:700;letter-spacing:.04em}
+.csi{font-size:.78rem;color:var(--ink-soft);line-height:1.4}
+
+.printhint{font-size:.75rem;color:var(--ink-soft);align-self:center}
+.printonly{display:none}
+
+/* --------------------------------------------------------------------------
+   Print / save as PDF. Only the reference material prints: the chart, the kana
+   rules and the number rules. The practice is interactive and has no meaning
+   on paper, so it is left out entirely.
+   -------------------------------------------------------------------------- */
+@media print{
+  header,.mastery,.goal,.nav,.langs,.tools,footer,
+  .rowbtns,.printhint,.sheet,.setup,.nowbar,.modebar,
+  .numsec,#card,.score,.map,.hero,.cards,.toc,.gcta{display:none!important}
+  .printonly{display:block}
+  body{background:#fff;color:#000;font-size:10.5pt;line-height:1.6}
+  .wrap{max-width:none;padding:0}
+  .pagehead{padding:0 0 6mm}
+  .pagehead h1{color:#000;font-size:16pt;margin:0 0 2mm}
+  .pagehead p{color:#333;font-size:9.5pt;max-width:none}
+  .printfoot{position:running(foot)}
+  /* kana chart — a CSS grid will not split across printed pages in Chromium,
+     so for print the cells are laid out inline and the table flows normally */
+  .cgrid{display:block!important;font-size:0;margin:0 -1.5mm}
+  .ccell{display:inline-block;vertical-align:top;width:calc(20% - 3.2mm);
+    margin:0 1.5mm 3mm;font-size:10.5pt;border-color:#bbb;background:#fff;break-inside:avoid}
+  .cgrid.c3 .ccell{width:calc(33.33% - 3.2mm)}
+  .ccell.hole{visibility:hidden}
+  .ckana,.crom{color:#000}
+  .csi{color:#333}
+  .csec{margin-bottom:6mm;break-inside:auto}
+  .cgrid{break-inside:auto}
+  .csec h2{color:#000;border-color:#999;font-size:8pt}
+  /* rules pages */
+  .gsec{margin-bottom:7mm}
+  .gsec h2{color:#000;border-bottom:1.5pt solid #999;font-size:12pt;padding-bottom:2mm;
+    break-after:avoid}
+  .gsec h2 b{color:#666}
+  .gsec p{color:#000;max-width:none;margin:0 0 2mm}
+  .exbox{background:#fafafa;border:1pt solid #ccc;border-left:3pt solid #999;
+    break-inside:avoid;padding:3mm 4mm}
+  .exk,.exr{color:#000}
+  .exg{color:#444}
+  .lookwrap{display:block}
+  .lookcol{border:1pt solid #ccc;background:#fff;break-inside:avoid;margin-bottom:4mm}
+  .lookcol h3{color:#000}
+  .lk{border-color:#999;background:#fff}
+  .looktip{color:#333}
+  @page{margin:14mm 12mm}
+}

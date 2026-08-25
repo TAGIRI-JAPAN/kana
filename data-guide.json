@@ -1,0 +1,214 @@
+{
+ "sections": [
+  {
+   "id": "two-scripts",
+   "title": {
+    "en": "Two kana, one sound system",
+    "si": "කනා දෙකක්, ශබ්ද පද්ධතියක්",
+    "ja": "ひらがなと カタカナ"
+   },
+   "body": {
+    "en": [
+     "Hiragana and katakana are two ways of writing exactly the same sounds. あ and ア are both a. There is no difference in pronunciation at all — only in when each is used.",
+     "Hiragana is the default: ordinary Japanese words, and the small grammar pieces between them.",
+     "Katakana is for words that came from another language, country and place names, and sounds. Your own name and country will be written in katakana in Japan, so katakana is not something to leave for later."
+    ],
+    "si": [
+     "හිරගනා සහ කටකනා යනු එකම ශබ්ද ලියන ක්‍රම දෙකක්. あ සහ ア දෙකම a. උච්චාරණයේ කිසිම වෙනසක් නැහැ — වෙනස තියෙන්නේ කවදා පාවිච්චි කරනවාද කියන එකේ පමණයි.",
+     "හිරගනා තමයි සාමාන්‍ය ක්‍රමය: සාමාන්‍ය ජපන් වචන සහ ඒවා අතර එන කුඩා ව්‍යාකරණ කොටස්.",
+     "කටකනා පාවිච්චි කරන්නේ වෙනත් භාෂාවකින් ආපු වචන, රටවල් සහ ස්ථානවල නම්, සහ ශබ්ද වලට. ඔබේ නමයි රටයි ජපානයේදී ලියන්නේ කටකනා වලින්, ඒ නිසා කටකනා පස්සට දාන්න එපා."
+    ],
+    "ja": [
+     "ひらがなと カタカナは、おなじ おとを かく 2つの ほうほうです。「あ」も「ア」も a です。はつおんは まったく おなじで、つかう ばめんだけが ちがいます。",
+     "ひらがなが きほんです。ふつうの 日本語の ことばと、あいだに 入る みじかい ぶぶんに つかいます。",
+     "カタカナは、がいこくから きた ことば、くにや ばしょの なまえ、おとに つかいます。あなたの なまえも くにの なまえも 日本では カタカナで かかれます。あとまわしに できません。"
+    ]
+   },
+   "examples": [
+    { "kana": "みず", "romaji": "mizu", "gloss": "water — an ordinary word" },
+    { "kana": "パン", "romaji": "pan", "gloss": "bread — came from Portuguese" },
+    { "kana": "スリランカ", "romaji": "SURIRANKA", "gloss": "Sri Lanka — a country name" }
+   ]
+  },
+  {
+   "id": "beats",
+   "title": {
+    "en": "One kana, one beat",
+    "si": "එක කනා අකුරක් = එක බීට් එකක්",
+    "ja": "1つの かな＝1はく"
+   },
+   "body": {
+    "en": [
+     "Japanese is counted in beats, not syllables. Each full-size kana is exactly one beat, and every beat takes the same length of time.",
+     "This is the single most useful idea on this page. If you keep the beats even, you will be understood even when your pronunciation is not perfect. If you rush some and stretch others, you will not.",
+     "Try clapping once per kana as you read. にほん is three claps: に・ほ・ん."
+    ],
+    "si": [
+     "ජපන් භාෂාව ගණන් කරන්නේ අක්ෂර වලින් නෙවෙයි, බීට් වලින්. සම්පූර්ණ ප්‍රමාණයේ එක කනා අකුරක් හරියටම බීට් එකයි, හැම බීට් එකක්ම එකම කාලයක් ගන්නවා.",
+     "මේ පිටුවේ වැදගත්ම අදහස මෙයයි. බීට් සමානව තියාගත්තොත්, උච්චාරණය පරිපූර්ණ නැතත් ඔබව තේරුම් ගන්නවා. සමහර ඒවා ඉක්මන් කරලා අනිත් ඒවා දිග ඇරියොත් තේරෙන්නේ නැහැ.",
+     "කියවනකොට එක කනා අකුරකට එක අත්පොළසනක් ගහන්න. にほん කියන්නේ අත්පොළසන් තුනයි: に・ほ・ん."
+    ],
+    "ja": [
+     "日本語は はくで かぞえます。大きい かな 1つが ちょうど 1はくで、どの はくも おなじ ながさです。",
+     "このページで いちばん だいじな かんがえかたです。はくを そろえれば、はつおんが かんぺきでなくても つうじます。はやくしたり のばしたり すると つうじません。",
+     "よみながら かな 1つに 1かい てを たたいて みてください。「にほん」は 3かいです。に・ほ・ん。"
+    ]
+   },
+   "examples": [
+    { "kana": "に・ほ・ん", "romaji": "nihon", "gloss": "3 beats" },
+    { "kana": "た・ま・ご", "romaji": "tamago", "gloss": "3 beats" },
+    { "kana": "と・う・きょ・う", "romaji": "toukyou", "gloss": "4 beats — きょ is one" }
+   ]
+  },
+  {
+   "id": "dakuten",
+   "title": {
+    "en": "The two marks: ゛and ゜",
+    "si": "සලකුණු දෙක: ゛සහ ゜",
+    "ja": "だくおん・はんだくおん"
+   },
+   "body": {
+    "en": [
+     "Two small marks in the top right corner change the consonant. Nothing else about the kana changes.",
+     "The two-stroke mark ゛turns k→g, s→z, t→d, h→b. The circle ゜only goes on the は row and turns h→p.",
+     "So は ば ぱ are the same shape three times over. Reading them apart quickly is a matter of practice, not of learning new characters."
+    ],
+    "si": [
+     "දකුණු ඉහළ කොනේ කුඩා සලකුණු දෙකක් ව්‍යඤ්ජනය වෙනස් කරනවා. කනා අකුරේ අනිත් කිසිවක් වෙනස් වෙන්නේ නැහැ.",
+     "ඉරි දෙකේ සලකුණ ゛මගින් k→g, s→z, t→d, h→b බවට පත් වෙනවා. රවුම ゜යන්නේ は පේළියට විතරයි, h→p බවට හරවනවා.",
+     "එහෙනම් は ば ぱ කියන්නේ එකම හැඩය තුන් වතාවක්. ඒවා ඉක්මනින් වෙන් කරගන්න පුරුද්ද ඕනේ, අලුත් අකුරු ඉගෙන ගන්න ඕනේ නැහැ."
+    ],
+    "ja": [
+     "右うえの 小さい しるしで、しいんが かわります。かなの ほかの ぶぶんは かわりません。",
+     "「゛」は k→g、s→z、t→d、h→b に します。「゜」は は行だけに つき、h→p に します。",
+     "「は」「ば」「ぱ」は おなじ かたちが 3かい でてくる ということです。あたらしい 字を おぼえるのでは なく、みわける れんしゅうです。"
+    ]
+   },
+   "examples": [
+    { "kana": "か → が", "romaji": "ka → ga", "gloss": "" },
+    { "kana": "し → じ", "romaji": "shi → ji", "gloss": "" },
+    { "kana": "は → ば → ぱ", "romaji": "ha → ba → pa", "gloss": "only は-row takes ゜" }
+   ]
+  },
+  {
+   "id": "youon",
+   "title": {
+    "en": "Small ゃ ゅ ょ — still one beat",
+    "si": "කුඩා ゃ ゅ ょ — තවමත් බීට් එකයි",
+    "ja": "ようおん（小さい ゃ ゅ ょ）"
+   },
+   "body": {
+    "en": [
+     "A small ゃ ゅ ょ attaches to the i-column kana before it, and the two together make a single beat.",
+     "Size is the whole difference, and it changes the word. びょういん (byouin) is a hospital. びよういん (biyouin), with a full-size よ, is a hair salon.",
+     "When you write by hand, make the small kana clearly smaller — about half height."
+    ],
+    "si": [
+     "කුඩා ゃ ゅ ょ එකක් ඊට කලින් එන i තීරුවේ කනා අකුරට එකතු වෙනවා, දෙකම එකට බීට් එකක් හදනවා.",
+     "ප්‍රමාණය තමයි මුළු වෙනස, ඒක වචනයේ අර්ථය වෙනස් කරනවා. びょういん (byouin) කියන්නේ රෝහල. ලොකු よ එක්ක びよういん (biyouin) කියන්නේ කොණ්ඩා සැලූන් එකට.",
+     "අතින් ලියනකොට කුඩා අකුර පැහැදිලිවම කුඩාවට ලියන්න — උසෙන් බාගයක් පමණ."
+    ],
+    "ja": [
+     "小さい「ゃ ゅ ょ」は、まえの い だんの かなに くっついて、2つで 1はくに なります。",
+     "ちがいは 大きさ だけですが、いみが かわります。「びょういん」は hospital、大きい「よ」の「びよういん」は hair salon です。",
+     "てで かく ときは、小さい かなを はっきり 小さく（たかさ 半分ぐらい）かいて ください。"
+    ]
+   },
+   "examples": [
+    { "kana": "きゃ", "romaji": "kya", "gloss": "1 beat" },
+    { "kana": "びょういん", "romaji": "byouin", "gloss": "hospital — 4 beats" },
+    { "kana": "びよういん", "romaji": "biyouin", "gloss": "hair salon — 5 beats" }
+   ]
+  },
+  {
+   "id": "sokuon",
+   "title": {
+    "en": "Small っ — a beat of silence",
+    "si": "කුඩා っ — නිශ්ශබ්ද බීට් එකක්",
+    "ja": "そくおん（小さい っ）"
+   },
+   "body": {
+    "en": [
+     "A small っ is a beat where you say nothing. You stop, hold the stop for the length of one beat, then release into the next sound.",
+     "In romaji it appears as a doubled consonant: きっぷ is kippu. But do not think of it as two p sounds — think of it as a pause.",
+     "Dropping it changes the word, and it is the mistake most learners keep making longest. きて (kite) is come. きって (kitte) is a stamp."
+    ],
+    "si": [
+     "කුඩා っ කියන්නේ ඔබ කිසිවක් නොකියන බීට් එකක්. නවතිනවා, බීට් එකක කාලයට නැවතීම තියාගන්නවා, ඊට පස්සේ ඊළඟ ශබ්දයට යනවා.",
+     "රෝමජි වල එය දෙගුණ වූ ව්‍යඤ්ජනයක් ලෙස පෙනෙනවා: きっぷ කියන්නේ kippu. ඒත් p ශබ්ද දෙකක් කියලා හිතන්න එපා — නැවතීමක් කියලා හිතන්න.",
+     "එය අත්හැරියොත් වචනය වෙනස් වෙනවා, ඒක බොහෝ ශිෂ්‍යයන් වැඩිම කාලයක් කරන වැරැද්ද. きて (kite) කියන්නේ එන්න. きって (kitte) කියන්නේ මුද්දරය."
+    ],
+    "ja": [
+     "小さい「っ」は、なにも いわない 1はくです。とめて、1はくぶん とめたまま にして、つぎの おとに いきます。",
+     "ローマ字では しいんが 2つに なります。「きっぷ」＝kippu。でも p が 2つ あるのでは なく、「まが ある」と かんがえて ください。",
+     "ぬかすと いみが かわります。がくしゅうしゃが いちばん ながく まちがえる ところです。「きて」＝come、「きって」＝stamp。"
+    ]
+   },
+   "examples": [
+    { "kana": "き・っ・て", "romaji": "kitte", "gloss": "stamp — 3 beats" },
+    { "kana": "き・て", "romaji": "kite", "gloss": "come — 2 beats" },
+    { "kana": "が・っ・こ・う", "romaji": "gakkou", "gloss": "school — 4 beats" }
+   ]
+  },
+  {
+   "id": "chouon",
+   "title": {
+    "en": "Long vowels — and why katakana uses ー",
+    "si": "දිගු ස්වර — කටකනා ー භාවිතා කරන්නේ ඇයි",
+    "ja": "ちょうおん（ながい おと）"
+   },
+   "body": {
+    "en": [
+     "A long vowel is two beats of the same vowel, not one loud one. Hold it.",
+     "Katakana writes it with a bar: コーヒー. Hiragana writes it with a vowel kana instead: おおきい, せんせい, とうきょう. Katakana never uses おお or えい for this, and hiragana never uses ー.",
+     "This is purely a spelling rule, so it is worth learning as a rule rather than by ear — the sound gives you no clue about which to write."
+    ],
+    "si": [
+     "දිගු ස්වරයක් කියන්නේ එකම ස්වරයේ බීට් දෙකක්, එක ශබ්ද නඟන එකක් නෙවෙයි. දිග අදින්න.",
+     "කටකනා එය ලියන්නේ ඉරකින්: コーヒー. හිරගනා ඒ වෙනුවට ස්වර අකුරක් යොදනවා: おおきい, せんせい, とうきょう. කටකනා මේකට おお හෝ えい කවදාවත් යොදන්නේ නැහැ, හිරගනා ー කවදාවත් යොදන්නේ නැහැ.",
+     "මේක සම්පූර්ණයෙන්ම ලිවීමේ නීතියක්, ඒ නිසා කනට අහගෙන නෙවෙයි නීතියක් විදිහට ඉගෙන ගන්න — ශබ්දයෙන් කුමක් ලියන්නද කියලා දැනගන්න බැහැ."
+    ],
+    "ja": [
+     "ながい おとは、おなじ ぼいんの 2はくです。大きく いうのでは なく、のばします。",
+     "カタカナは ぼうで かきます（コーヒー）。ひらがなは ぼいんの かなで かきます（おおきい・せんせい・とうきょう）。カタカナで「おお」「えい」は つかわず、ひらがなで「ー」は つかいません。",
+     "これは かきかたの ルールです。おとでは どちらか わからないので、ルールとして おぼえて ください。"
+    ]
+   },
+   "examples": [
+    { "kana": "コーヒー", "romaji": "koohii", "gloss": "katakana → ー" },
+    { "kana": "おおきい", "romaji": "ookii", "gloss": "hiragana → おお" },
+    { "kana": "せんせい", "romaji": "sensei", "gloss": "hiragana → えい" }
+   ]
+  },
+  {
+   "id": "romaji",
+   "title": {
+    "en": "Why you see shi and si",
+    "si": "shi සහ si දෙකම පෙනෙන්නේ ඇයි",
+    "ja": "ローマ字が 2しゅるい ある りゆう"
+   },
+   "body": {
+    "en": [
+     "There are two romaji systems in use. Hepburn writes shi, chi, tsu, fu, ji. Kunrei writes si, ti, tu, hu, zi. They describe the same kana.",
+     "Signs, stations and passports use Hepburn, so that is the one to read fluently. Japanese keyboards accept both, so type whichever is faster for you.",
+     "This drill accepts both spellings in the typing questions."
+    ],
+    "si": [
+     "රෝමජි ක්‍රම දෙකක් භාවිතයේ තියෙනවා. හෙප්බර්න් ලියන්නේ shi, chi, tsu, fu, ji. කුන්රේ ලියන්නේ si, ti, tu, hu, zi. දෙකම විස්තර කරන්නේ එකම කනා අකුරු.",
+     "සලකුණු, දුම්රියපොළවල් සහ විදේශ ගමන් බලපත්‍ර භාවිතා කරන්නේ හෙප්බර්න්, ඒ නිසා නිතැතින් කියවන්න ඕනේ ඒක. ජපන් යතුරුපුවරු දෙකම පිළිගන්නවා, ඒ නිසා ඔබට ඉක්මන් එක ලියන්න.",
+     "මේ ඩ්‍රිල් එකේ ලිවීමේ ප්‍රශ්න වලදී දෙකම පිළිගන්නවා."
+    ],
+    "ja": [
+     "ローマ字には 2つの しきが あります。ヘボンしきは shi・chi・tsu・fu・ji、くんれいしきは si・ti・tu・hu・zi。おなじ かなを あらわして います。",
+     "かんばん・えき・パスポートは ヘボンしきです。すらすら よめるように するのは こちらです。日本語の キーボードは どちらでも 入力できます。",
+     "この ドリルの 入力もんだいは、どちらでも せいかいに なります。"
+    ]
+   },
+   "examples": [
+    { "kana": "し", "romaji": "shi / si", "gloss": "" },
+    { "kana": "つ", "romaji": "tsu / tu", "gloss": "" },
+    { "kana": "ふ", "romaji": "fu / hu", "gloss": "" }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,764 @@
+{
+ "spell": [
+  {
+   "w": "ふじさん",
+   "r": "FUJISAN",
+   "en": "Mt. Fuji",
+   "si": "ෆුජි කන්ද",
+   "note": {
+    "en": "Japan's highest mountain, 3,776 m, on the border of Shizuoka and Yamanashi. A World Heritage site since 2013. The climbing season is only July to early September.",
+    "ja": "日本で いちばん たかい 山です。3,776メートル。しずおかけんと やまなしけんの あいだに あります。2013年に 世界遺産に なりました。のぼれるのは 7月から 9月はじめだけです。",
+    "si": "ජපානයේ උසම කන්ද — මීටර් 3,776. ෂිසුඕකා සහ යමනාෂි අතර. 2013 සිට ලෝක උරුමයක්. නැගීමට හැක්කේ ජූලි සිට සැප්තැම්බර් මුල දක්වා පමණයි."
+   }
+  },
+  {
+   "w": "とうきょう",
+   "r": "TOUKYOU",
+   "en": "Tokyo",
+   "si": "ටෝකියෝ",
+   "note": {
+    "en": "The capital of Japan. English writes it Tokyo, but the kana needs both う: to-u-kyo-u, four beats. Writing ときょ is a common mistake.",
+    "ja": "日本の しゅとです。えいごでは Tokyo ですが、かなでは 「う」が 2つ 入ります。「と・う・きょ・う」で 4はく。「ときょ」は まちがいです。",
+    "si": "ජපානයේ අගනුවර. ඉංග්‍රීසියෙන් Tokyo ලෙස ලියුවත්, කනා වලට う දෙකම ඕනේ: to-u-kyo-u, බීට් හතරයි. ときょ ලෙස ලිවීම බහුල වැරැද්දක්."
+   }
+  },
+  {
+   "w": "さくら",
+   "r": "SAKURA",
+   "en": "cherry blossom",
+   "si": "සකුරා මල",
+   "note": {
+    "en": "Cherry blossom. It blooms for about a week between late March and April. People sit under the trees for hanami — flower viewing.",
+    "ja": "さくらの 花です。3月の おわりから 4月に 1しゅうかんぐらい さきます。木の したで 「はなみ」を します。",
+    "si": "සකුරා මල. මාර්තු අගදී සිට අප්‍රේල් දක්වා සතියක් පමණ පිපෙනවා. මිනිස්සු ගස් යට වාඩිවෙලා 'හනාමි' කරනවා."
+   }
+  },
+  {
+   "w": "おんせん",
+   "r": "ONSEN",
+   "en": "hot spring",
+   "si": "උණු දිය උල්පත",
+   "note": {
+    "en": "A natural hot spring bath. You wash your body fully before getting in, and you do not put your towel in the water. Some onsen still refuse guests with tattoos.",
+    "ja": "しぜんの おふろです。入る まえに からだを ぜんぶ あらいます。タオルは おゆに 入れません。いれずみが ある人は 入れない ところも あります。",
+    "si": "ස්වාභාවික උණු දිය නාන තැනක්. ඇතුළු වීමට පෙර සිරුර සම්පූර්ණයෙන් සෝදනවා. තුවාය වතුරට දමන්නේ නැහැ. පච්ච තියෙන අයට ඇතුළු වීම තහනම් තැන් තිබෙනවා."
+   }
+  },
+  {
+   "w": "しんかんせん",
+   "r": "SHINKANSEN",
+   "en": "bullet train",
+   "si": "අධිවේගී දුම්රිය",
+   "note": {
+    "en": "The high-speed train. Tokyo to Osaka takes about two and a half hours. Reserved and non-reserved cars are separate, so check your ticket.",
+    "ja": "はやい でんしゃです。とうきょうから おおさかまで 2じかん半ぐらいです。していせきと じゆうせきが あるので きっぷを よく みてください。",
+    "si": "අධිවේගී දුම්රිය. ටෝකියෝ සිට ඕසාකා දක්වා පැය දෙකහමාරක් පමණ. වෙන් කළ සහ නොවෙන් කළ මැදිරි වෙන් වෙන් නිසා ටිකට් එක බලන්න."
+   }
+  },
+  {
+   "w": "コンビニ",
+   "r": "KONBINI",
+   "en": "convenience store",
+   "si": "පහසු වෙළඳසැල",
+   "note": {
+    "en": "A 24-hour convenience store. You can pay bills, print documents, send parcels and withdraw cash there, not just buy food.",
+    "ja": "24じかん あいている みせです。ものを かうだけでなく、りょうきんの しはらい、いんさつ、たくはい、ATMも つかえます。",
+    "si": "පැය 24ම විවෘත වෙළඳසැලක්. කෑම ගන්නවා විතරක් නෙවෙයි - බිල් ගෙවීම, මුද්‍රණය, පාර්සල් යැවීම, ATM එකත් තියෙනවා."
+   }
+  },
+  {
+   "w": "ヘルメット",
+   "r": "HERUMETTO",
+   "en": "helmet",
+   "si": "හිස්වැසුම",
+   "note": {
+    "en": "Helmet. On a Japanese construction or factory site it is required, not optional. Note the small ッ — the sound stops for one beat.",
+    "ja": "ヘルメットです。こうじげんばや こうじょうでは かならず かぶります。小さい「ッ」に ちゅういしてください。1はく とまります。",
+    "si": "හිස්වැසුම. ජපානයේ ඉදිකිරීම් හෝ කර්මාන්තශාලා බිමක එය අනිවාර්යයි. කුඩා ッ එකට සැලකිලිමත් වන්න - බීට් එකක් නවතිනවා."
+   }
+  },
+  {
+   "w": "あんぜん",
+   "r": "ANZEN",
+   "en": "safety",
+   "si": "ආරක්ෂාව",
+   "note": {
+    "en": "Safety. You will hear it every day at work: 安全第一 (anzen dai-ichi) means safety first. Learn it before your first shift.",
+    "ja": "「あんぜん」です。しょくばで まいにち ききます。「安全第一（あんぜんだいいち）」＝ safety first。はたらく まえに おぼえましょう。",
+    "si": "ආරක්ෂාව. රැකියා ස්ථානයේ දිනපතා අහන්න ලැබෙනවා. 安全第一 (anzen dai-ichi) = ආරක්ෂාව පළමුව. වැඩට යන්න කලින් මතක තියාගන්න."
+   }
+  },
+  {
+   "w": "きゅうけい",
+   "r": "KYUUKEI",
+   "en": "break / rest",
+   "si": "විවේකය",
+   "note": {
+    "en": "A work break. Ask 休憩してもいいですか (kyuukei shite mo ii desu ka). きゅ is one beat and きゅう is two — four beats in total: kyu-u-ke-i.",
+    "ja": "やすみ じかんです。「きゅうけい しても いいですか」と ききます。「きゅ」は 1はく、「きゅう」は 2はくです。",
+    "si": "වැඩ විවේකය. 休憩してもいいですか කියලා අහන්න පුළුවන්. きゅ එක බීට් එකයි; きゅう බීට් දෙකයි."
+   }
+  },
+  {
+   "w": "ざんぎょう",
+   "r": "ZANGYOU",
+   "en": "overtime",
+   "si": "අතිකාල",
+   "note": {
+    "en": "Overtime work. By law it must be paid at a higher rate. If you are asked to do it often without extra pay, that is a problem worth raising.",
+    "ja": "じかんがいの しごとです。ほうりつで わりましの きゅうりょうが ひつようです。はらわれない ばあいは そうだんして ください。",
+    "si": "අතිකාල වැඩ. නීතියෙන් වැඩි ගෙවීමක් ලැබිය යුතුයි. නොගෙවා නිතර කරන්න කියනවා නම්, ඒක කතා කළ යුතු කරුණක්."
+   }
+  },
+  {
+   "w": "せんぱい",
+   "r": "SENPAI",
+   "en": "senior colleague",
+   "si": "ජ්‍යෙෂ්ඨ සගයා",
+   "note": {
+    "en": "Someone who joined before you. In a Japanese workplace the senpai teaches you the job, so asking them questions early is expected, not rude.",
+    "ja": "じぶんより さきに 入った 人です。しごとを おしえて くれます。はやく しつもん するのは しつれいでは ありません。",
+    "si": "ඔබට කලින් ආපු කෙනා. ජපන් රැකියා ස්ථානයක සෙන්පායි වැඩ උගන්වනවා. ඉක්මනින් ප්‍රශ්න ඇහීම අගෞරවයක් නෙවෙයි."
+   }
+  },
+  {
+   "w": "すみません",
+   "r": "SUMIMASEN",
+   "en": "excuse me / sorry / thank you",
+   "si": "සමාවෙන්න",
+   "note": {
+    "en": "The most useful word in Japan. It works as sorry, excuse me, and thank you depending on the situation. When unsure, this is a safe choice.",
+    "ja": "日本で いちばん つかう ことばです。あやまる とき、よびかける とき、おれいを いう ときに つかえます。",
+    "si": "ජපානයේ වැඩිම ප්‍රයෝජනවත් වචනය. සමාව, 'මට අහන්න පුළුවන්ද', ස්තූතියි - තුනටම වැඩ කරනවා."
+   }
+  },
+  {
+   "w": "おつかれさま",
+   "r": "OTSUKARESAMA",
+   "en": "thanks for your work",
+   "si": "මහන්සි වුණාට ස්තූතියි",
+   "note": {
+    "en": "Said when someone finishes work or leaves for the day. There is no English equivalent — treat it as the standard goodbye at work.",
+    "ja": "しごとが おわった 人に いいます。えいごに ぴったりの ことばは ありません。しょくばの 「さようなら」だと おもって ください。",
+    "si": "වැඩ ඉවර වුණාම හෝ යනකොට කියනවා. ඉංග්‍රීසියේ හරියටම වචනයක් නැහැ. රැකියා ස්ථානයේ 'ගිහින් එන්නම්' කියලා හිතන්න."
+   }
+  },
+  {
+   "w": "べんとう",
+   "r": "BENTOU",
+   "en": "boxed lunch",
+   "si": "දිවා ආහාර පෙට්ටිය",
+   "note": {
+    "en": "A packed lunch box. Convenience stores and station shops sell them, and many workplaces have a microwave to heat them.",
+    "ja": "おべんとうです。コンビニや えきで かえます。しょくばに でんしレンジが ある ところも おおいです。",
+    "si": "දිවා ආහාර පෙට්ටිය. පහසු වෙළඳසැල් සහ දුම්රියපොළවල විකුණනවා. බොහෝ රැකියා ස්ථානවල රත් කරන්න මයික්‍රෝවේව් තියෙනවා."
+   }
+  },
+  {
+   "w": "スリランカ",
+   "r": "SURIRANKA",
+   "en": "Sri Lanka",
+   "si": "ශ්‍රී ලංකාව",
+   "note": {
+    "en": "Your own country, written in katakana. Country names always use katakana, so this is a good first katakana word to master.",
+    "ja": "あなたの くにです。くにの なまえは カタカナで かきます。さいしょに おぼえると べんりです。",
+    "si": "ඔබේ රට, කටකනා වලින්. රටවල නම් හැම විටම කටකනා වලින් ලියනවා. පළමුව මතක තියාගන්න හොඳ වචනයක්."
+   }
+  },
+  {
+   "w": "コロンボ",
+   "r": "KORONBO",
+   "en": "Colombo",
+   "si": "කොළඹ",
+   "note": {
+    "en": "Colombo in katakana. The l becomes ロ — Japanese has no l, so every l turns into the ら-row. The mb becomes ンボ.",
+    "ja": "コロンボです。「l」は「ロ」に なります。日本語に「l」の おとが ないので、ぜんぶ ら行に なります。「mb」は「ンボ」です。",
+    "si": "කොළඹ, කටකනා වලින්. l ශබ්දය ロ බවට - ජපන් භාෂාවේ l නැති නිසා හැම l එකක්ම ら පේළියට යනවා. mb ශබ්දය ンボ බවට."
+   }
+  },
+  {
+   "w": "こうじょう",
+   "r": "KOUJOU",
+   "en": "factory",
+   "si": "කර්මාන්තශාලාව",
+   "note": {
+    "en": "Factory. Many specified-skilled-worker jobs are in one. Both halves end in a long o written with う: ko-u, jo-u.",
+    "ja": "こうじょうです。とくていぎのうの しごとが おおい ばしょです。「こう」も「じょう」も ながい おとです。",
+    "si": "කර්මාන්තශාලාව. විශේෂිත නිපුණතා රැකියා බොහොමයක් තියෙන්නේ එහෙයි. ශබ්ද දෙකම දිගුයි: ko-u-jo-u."
+   }
+  },
+  {
+   "w": "でんしゃ",
+   "r": "DENSHA",
+   "en": "train",
+   "si": "දුම්රිය",
+   "note": {
+    "en": "Train. しゃ is one beat, not two — でんしゃ has three beats: de-n-sha. Getting this wrong is a common listening mistake.",
+    "ja": "でんしゃです。「しゃ」は 1はくです。「で・ん・しゃ」で 3はく。ここを まちがえる人が おおいです。",
+    "si": "දුම්රිය. しゃ බීට් එකයි, දෙකක් නෙවෙයි. でんしゃ බීට් තුනයි: de-n-sha. ශ්‍රවණයේදී බහුලව වැරදෙන තැනක්."
+   }
+  },
+  {
+   "w": "びょういん",
+   "r": "BYOUIN",
+   "en": "hospital",
+   "si": "රෝහල",
+   "note": {
+    "en": "Hospital. Careful: びよういん with a big よ means hair salon. The small ょ changes the meaning completely.",
+    "ja": "びょういんです。大きい「よ」の 「びよういん」は hair salon です。小さい「ょ」で いみが かわります。",
+    "si": "රෝහල. පරෙස්සම් - ලොකු よ එක්ක びよういん කියන්නේ කොණ්ඩා සැලූන් එකට. කුඩා ょ අර්ථය සම්පූර්ණයෙන් වෙනස් කරනවා."
+   }
+  },
+  {
+   "w": "きっぷ",
+   "r": "KIPPU",
+   "en": "ticket",
+   "si": "ටිකට් එක",
+   "note": {
+    "en": "Ticket. The small っ makes you stop for one beat before p. Say ki-(stop)-pu, not kipu.",
+    "ja": "きっぷです。小さい「っ」で 1はく とまります。「き・っ・ぷ」で 3はくです。",
+    "si": "ටිකට් එක. කුඩා っ නිසා p කලින් බීට් එකක් නවතිනවා. ki-(නවතී)-pu, kipu නෙවෙයි."
+   }
+  },
+  {
+   "w": "みず",
+   "r": "MIZU",
+   "en": "water",
+   "si": "වතුර",
+   "note": {
+    "en": "Water. In a Japanese restaurant water is free and served automatically, often with ice even in winter.",
+    "ja": "みずです。日本の レストランでは むりょうです。ふゆでも こおりが 入って います。",
+    "si": "වතුර. ජපන් අවන්හලක වතුර නොමිලේ, ඉබේම ගෙනත් දෙනවා - සීතලේ වුණත් අයිස් එක්ක."
+   }
+  },
+  {
+   "w": "ゴミ",
+   "r": "GOMI",
+   "en": "rubbish",
+   "si": "කසළ",
+   "note": {
+    "en": "Rubbish. Japan separates it strictly — burnable, plastic, cans, bottles — and each type has its own collection day. Getting it wrong annoys neighbours fast.",
+    "ja": "ゴミです。日本では もえるゴミ、プラスチック、かん、びんに わけます。出す 日も きまって います。",
+    "si": "කසළ. ජපානයේ දැඩි ලෙස වර්ග කරනවා - දැවෙන, ප්ලාස්ටික්, ටින්, බෝතල් - එකිනෙකට එකතු කරන දවසත් වෙනස්."
+   }
+  },
+  {
+   "w": "やすみ",
+   "r": "YASUMI",
+   "en": "day off / holiday",
+   "si": "නිවාඩුව",
+   "note": {
+    "en": "A day off. To ask for one: 休みをとってもいいですか. Ask early — in Japan sudden requests are harder to grant.",
+    "ja": "やすみです。「やすみを とっても いいですか」と ききます。はやめに いうと いいです。",
+    "si": "නිවාඩුව. 休みをとってもいいですか කියලා අහන්න. කලින්ම කියන්න - හදිසි ඉල්ලීම් ජපානයේ අපහසුයි."
+   }
+  },
+  {
+   "w": "ありがとう",
+   "r": "ARIGATOU",
+   "en": "thank you",
+   "si": "ස්තූතියි",
+   "note": {
+    "en": "Thank you. The polite form adds ございます. Note the long vowel at the end: to-u, not just to.",
+    "ja": "ありがとうです。ていねいには 「ありがとう ございます」。さいごは ながい おと「とう」です。",
+    "si": "ස්තූතියි. ආචාරශීලී ආකාරය ございます එකතු කරනවා. අගට දිගු ස්වරය: to-u, to විතරක් නෙවෙයි."
+   }
+  }
+ ],
+ "quick": [
+  {
+   "w": "いぬ",
+   "r": "inu",
+   "en": "dog",
+   "si": "බල්ලා"
+  },
+  {
+   "w": "ねこ",
+   "r": "neko",
+   "en": "cat",
+   "si": "පූසා"
+  },
+  {
+   "w": "さかな",
+   "r": "sakana",
+   "en": "fish",
+   "si": "මාළු"
+  },
+  {
+   "w": "みず",
+   "r": "mizu",
+   "en": "water",
+   "si": "වතුර"
+  },
+  {
+   "w": "ほん",
+   "r": "hon",
+   "en": "book",
+   "si": "පොත"
+  },
+  {
+   "w": "やま",
+   "r": "yama",
+   "en": "mountain",
+   "si": "කන්ද"
+  },
+  {
+   "w": "かわ",
+   "r": "kawa",
+   "en": "river",
+   "si": "ගඟ"
+  },
+  {
+   "w": "うみ",
+   "r": "umi",
+   "en": "sea",
+   "si": "මුහුද"
+  },
+  {
+   "w": "そら",
+   "r": "sora",
+   "en": "sky",
+   "si": "අහස"
+  },
+  {
+   "w": "はな",
+   "r": "hana",
+   "en": "flower",
+   "si": "මල"
+  },
+  {
+   "w": "くるま",
+   "r": "kuruma",
+   "en": "car",
+   "si": "කාර් එක"
+  },
+  {
+   "w": "ともだち",
+   "r": "tomodachi",
+   "en": "friend",
+   "si": "යාළුවා"
+  },
+  {
+   "w": "かぞく",
+   "r": "kazoku",
+   "en": "family",
+   "si": "පවුල"
+  },
+  {
+   "w": "あさ",
+   "r": "asa",
+   "en": "morning",
+   "si": "උදේ"
+  },
+  {
+   "w": "よる",
+   "r": "yoru",
+   "en": "night",
+   "si": "රාත්‍රිය"
+  },
+  {
+   "w": "たべる",
+   "r": "taberu",
+   "en": "to eat",
+   "si": "කනවා"
+  },
+  {
+   "w": "のむ",
+   "r": "nomu",
+   "en": "to drink",
+   "si": "බොනවා"
+  },
+  {
+   "w": "みる",
+   "r": "miru",
+   "en": "to see",
+   "si": "බලනවා"
+  },
+  {
+   "w": "きく",
+   "r": "kiku",
+   "en": "to listen",
+   "si": "අහනවා"
+  },
+  {
+   "w": "ちいさい",
+   "r": "chiisai",
+   "en": "small",
+   "si": "පොඩි"
+  },
+  {
+   "w": "しごと",
+   "r": "shigoto",
+   "en": "work",
+   "si": "වැඩ"
+  },
+  {
+   "w": "てがみ",
+   "r": "tegami",
+   "en": "letter",
+   "si": "ලිපිය"
+  },
+  {
+   "w": "くすり",
+   "r": "kusuri",
+   "en": "medicine",
+   "si": "බෙහෙත"
+  },
+  {
+   "w": "たまご",
+   "r": "tamago",
+   "en": "egg",
+   "si": "බිත්තරය"
+  },
+  {
+   "w": "パン",
+   "r": "pan",
+   "en": "bread",
+   "si": "පාන්"
+  },
+  {
+   "w": "テレビ",
+   "r": "terebi",
+   "en": "TV",
+   "si": "රූපවාහිනිය"
+  },
+  {
+   "w": "ラジオ",
+   "r": "rajio",
+   "en": "radio",
+   "si": "රේඩියෝ"
+  },
+  {
+   "w": "バス",
+   "r": "basu",
+   "en": "bus",
+   "si": "බස් එක"
+  },
+  {
+   "w": "ホテル",
+   "r": "hoteru",
+   "en": "hotel",
+   "si": "හෝටලය"
+  },
+  {
+   "w": "カメラ",
+   "r": "kamera",
+   "en": "camera",
+   "si": "කැමරාව"
+  },
+  {
+   "w": "ペン",
+   "r": "pen",
+   "en": "pen",
+   "si": "පෑන"
+  },
+  {
+   "w": "ドア",
+   "r": "doa",
+   "en": "door",
+   "si": "දොර"
+  },
+  {
+   "w": "シャツ",
+   "r": "shatsu",
+   "en": "shirt",
+   "si": "කමිසය"
+  },
+  {
+   "w": "ズボン",
+   "r": "zubon",
+   "en": "trousers",
+   "si": "කලිසම"
+  },
+  {
+   "w": "カレー",
+   "r": "karee",
+   "en": "curry",
+   "si": "කරි"
+  },
+  {
+   "w": "ミルク",
+   "r": "miruku",
+   "en": "milk",
+   "si": "කිරි"
+  }
+ ],
+ "special": [
+  {
+   "w": "がっこう",
+   "r": "gakkou",
+   "en": "school",
+   "si": "පාසල",
+   "kind": "t",
+   "bad": [
+    "がこう",
+    "がっこ",
+    "がこお"
+   ]
+  },
+  {
+   "w": "きって",
+   "r": "kitte",
+   "en": "stamp",
+   "si": "මුද්දරය",
+   "kind": "t",
+   "bad": [
+    "きて",
+    "きっつて",
+    "きてて"
+   ]
+  },
+  {
+   "w": "ざっし",
+   "r": "zasshi",
+   "en": "magazine",
+   "si": "සඟරාව",
+   "kind": "t",
+   "bad": [
+    "ざし",
+    "ざっしい",
+    "ざつし"
+   ]
+  },
+  {
+   "w": "いっしょ",
+   "r": "issho",
+   "en": "together",
+   "si": "එකට",
+   "kind": "t",
+   "bad": [
+    "いしょ",
+    "いっしょう",
+    "いつしょ"
+   ]
+  },
+  {
+   "w": "きっぷ",
+   "r": "kippu",
+   "en": "ticket",
+   "si": "ටිකට් එක",
+   "kind": "t",
+   "bad": [
+    "きぷ",
+    "きっぷう",
+    "きつぷ"
+   ]
+  },
+  {
+   "w": "さっき",
+   "r": "sakki",
+   "en": "a moment ago",
+   "si": "ටික වෙලාවකට කලින්",
+   "kind": "t",
+   "bad": [
+    "さき",
+    "さっきい",
+    "さつき"
+   ]
+  },
+  {
+   "w": "にっき",
+   "r": "nikki",
+   "en": "diary",
+   "si": "දිනපොත",
+   "kind": "t",
+   "bad": [
+    "にき",
+    "につき",
+    "にっきい"
+   ]
+  },
+  {
+   "w": "しゅっしん",
+   "r": "shusshin",
+   "en": "hometown",
+   "si": "උපන් ගම",
+   "kind": "t",
+   "bad": [
+    "しゅしん",
+    "しゅっしいん",
+    "しゆっしん"
+   ]
+  },
+  {
+   "w": "コーヒー",
+   "r": "koohii",
+   "en": "coffee",
+   "si": "කෝපි",
+   "kind": "c",
+   "bad": [
+    "コヒー",
+    "コーヒ",
+    "コオヒイ"
+   ]
+  },
+  {
+   "w": "タクシー",
+   "r": "takushii",
+   "en": "taxi",
+   "si": "ටැක්සි",
+   "kind": "c",
+   "bad": [
+    "タクシ",
+    "タークシー",
+    "タクシイ"
+   ]
+  },
+  {
+   "w": "ノート",
+   "r": "nooto",
+   "en": "notebook",
+   "si": "නෝට්බුක්",
+   "kind": "c",
+   "bad": [
+    "ノト",
+    "ノオト",
+    "ノートー"
+   ]
+  },
+  {
+   "w": "スプーン",
+   "r": "supuun",
+   "en": "spoon",
+   "si": "හැන්ද",
+   "kind": "c",
+   "bad": [
+    "スプン",
+    "スープン",
+    "スプウン"
+   ]
+  },
+  {
+   "w": "テーブル",
+   "r": "teeburu",
+   "en": "table",
+   "si": "මේසය",
+   "kind": "c",
+   "bad": [
+    "テブル",
+    "テエブル",
+    "テーブール"
+   ]
+  },
+  {
+   "w": "サッカー",
+   "r": "sakkaa",
+   "en": "football",
+   "si": "පාපන්දු",
+   "kind": "c",
+   "bad": [
+    "サカー",
+    "サッカ",
+    "サッカア"
+   ]
+  },
+  {
+   "w": "おおきい",
+   "r": "ookii",
+   "en": "big",
+   "si": "ලොකු",
+   "kind": "c",
+   "bad": [
+    "おきい",
+    "おおき",
+    "おうきい"
+   ]
+  },
+  {
+   "w": "せんせい",
+   "r": "sensei",
+   "en": "teacher",
+   "si": "ගුරුවරයා",
+   "kind": "c",
+   "bad": [
+    "せんせ",
+    "せせい",
+    "せんせえ"
+   ]
+  },
+  {
+   "w": "でんわ",
+   "r": "denwa",
+   "en": "telephone",
+   "si": "දුරකථනය",
+   "kind": "n",
+   "bad": [
+    "でわ",
+    "でんんわ",
+    "でぬわ"
+   ]
+  },
+  {
+   "w": "しんぶん",
+   "r": "shinbun",
+   "en": "newspaper",
+   "si": "පත්තරය",
+   "kind": "n",
+   "bad": [
+    "しぶん",
+    "しんぶ",
+    "しんふん"
+   ]
+  },
+  {
+   "w": "げんき",
+   "r": "genki",
+   "en": "well / healthy",
+   "si": "සනීපෙන්",
+   "kind": "n",
+   "bad": [
+    "げき",
+    "げんぎ",
+    "げんきい"
+   ]
+  },
+  {
+   "w": "かんじ",
+   "r": "kanji",
+   "en": "kanji",
+   "si": "කන්ජි",
+   "kind": "n",
+   "bad": [
+    "かじ",
+    "かんち",
+    "かんじい"
+   ]
+  },
+  {
+   "w": "あんぜん",
+   "r": "anzen",
+   "en": "safety",
+   "si": "ආරක්ෂාව",
+   "kind": "n",
+   "bad": [
+    "あぜん",
+    "あんせん",
+    "あんぜ"
+   ]
+  },
+  {
+   "w": "うんてん",
+   "r": "unten",
+   "en": "driving",
+   "si": "රිය පැදවීම",
+   "kind": "n",
+   "bad": [
+    "うてん",
+    "うんて",
+    "うんでん"
+   ]
+  },
+  {
+   "w": "ばんごう",
+   "r": "bangou",
+   "en": "number",
+   "si": "අංකය",
+   "kind": "n",
+   "bad": [
+    "ばごう",
+    "ばんご",
+    "ばんごお"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Hiragana and katakana study site for Sinhala- and English-speaking learners of Japanese.">
+<meta name="theme-color" content="#7A1B2E">
+<title>すうじと 時こく — TAKANE-SHIKI KANA STUDY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Sans+Sinhala:wght@400;600&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="hbar">
+    <a class="mark" href="index.html">かな<small>Takane-shiki Kana Study</small></a>
+    <nav class="nav">
+      <a href="index.html" data-nav data-t="navHome" class="si-swap">Home</a>
+      <a href="guide.html" data-nav data-t="navGuide" class="si-swap">Rules</a>
+      <a href="chart.html" data-nav data-t="navChart" class="si-swap">Chart</a>
+      <a href="numbers.html" data-nav data-t="navNumbers" class="si-swap">Numbers</a>
+      <a href="drill.html" data-nav data-t="navDrill" class="si-swap">Practice</a>
+    </nav>
+    <div class="langs" id="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="si" class="si" aria-pressed="false">සිං</button>
+      <button type="button" data-lang="ja" aria-pressed="false">日本語</button>
+    </div>
+  </div>
+  <div class="mastery">
+    <div class="mbarwrap">
+      <div class="mrow">
+        <span id="mLabel" data-t="mastery" class="si-swap">Mastered</span>
+        <b id="mCount">0 / 102</b>
+        <span class="days" id="mDays"></span>
+      </div>
+      <div class="mbar"><i id="mFill" style="width:0"></i></div>
+    </div>
+    <div class="goal" id="goal"><span class="ring"></span><span class="txt"></span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="printonly printfoot" style="font-size:8pt;color:#666;margin:0 0 4mm;letter-spacing:.1em" data-t="printFoot"></p>
+  <div class="pagehead">
+    <h1 data-t="cNumT" class="si-swap"></h1>
+    <p data-t="numLead" class="si-swap"></p>
+    <p class="rowbtns"><button class="ghost" id="printBtn" data-t="pdfBtn"></button>
+      <span class="printhint" data-t="printHint"></span></p>
+  </div>
+
+  <div id="numGuide"></div>
+
+  <div class="numsec">
+    <h2 data-t="navDrill" class="si-swap"></h2>
+
+    <div class="nowbar">
+      <div class="grow">
+        <span class="lbl si-swap" data-t="nowPlaying"></span>
+        <div class="val" id="numNow"></div>
+      </div>
+      <button class="ghost alt" id="numSettings" data-t="change"></button>
+    </div>
+    <div class="modebar"><div class="lane" id="numModes"></div></div>
+
+    <div class="card" id="numCard"><p style="padding:20px 4px" data-t="loading">Loading…</p></div>
+
+    <div class="score">
+      <div><div class="n" id="nAsked">0</div><div class="l" data-t="sAsked">Answered</div></div>
+      <div><div class="n" id="nRate">-</div><div class="l" data-t="sRate">Correct</div></div>
+      <div><div class="n" id="nStreak">0</div><div class="l" data-t="sStreak">Streak</div></div>
+      <div><div class="n" id="nSpeed">-</div><div class="l" data-t="sSpeed">Avg sec</div></div>
+    </div>
+  </div>
+
+  <footer>
+    <p id="f1" data-t="footKeys" class="si-swap"></p>
+    <p id="f2" data-t="footSinhala" class="si-swap"></p>
+  </footer>
+</div>
+
+<script>
+window.__i18nFallback={
+  en:"Could not load the site data. If you opened this file directly from disk, run a local server (python3 -m http.server) or use offline.html.",
+  ja:"サイトデータを よみこめませんでした。ファイルを ちょくせつ ひらいた ばあいは ローカルサーバー（python3 -m http.server）を つかうか、offline.html を ひらいて ください。",
+  si:"අඩවි දත්ත පූරණය කළ නොහැක. ගොනුව කෙලින්ම විවෘත කළා නම්, local server එකක් (python3 -m http.server) හෝ offline.html භාවිතා කරන්න."
+};
+</script>
+<script src="site.js"></script>
+<script src="numbers.js"></script>
+</body>
+</html>

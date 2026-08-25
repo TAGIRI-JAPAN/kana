@@ -1,0 +1,588 @@
+{
+ "kana": [
+  {
+   "chars": [
+    "シ",
+    "ツ",
+    "ジ",
+    "ヅ"
+   ],
+   "tip": {
+    "ja": "シは 左から 右へ、ツは 上から 下へ 書きます。てんの ならびで 見わけます。シは たてに 2つ、ツは よこに 2つ。",
+    "en": "シ is written left to right, ツ from top to bottom. Look at the two dots: シ stacks them vertically, ツ lines them up across the top.",
+    "si": "シ ලියන්නේ වමේ සිට දකුණට, ツ ලියන්නේ උඩ සිට යටට. තිත් දෙක බලන්න: シ සිරස්ව, ツ තිරස්ව."
+   }
+  },
+  {
+   "chars": [
+    "ソ",
+    "ン",
+    "リ"
+   ],
+   "tip": {
+    "ja": "ソは 上から 下へ おろし、ンは 下から 上へ はねます。リは たて線が 2本で、右が ながい 形です。",
+    "en": "ソ comes down from the top, ン sweeps up from the bottom left, and リ is two uprights with the right one longer.",
+    "si": "ソ උඩ සිට පහළට, ン පහළ වමේ සිට උඩට, リ සිරස් ඉරි දෙකක් — දකුණ දිගයි."
+   }
+  },
+  {
+   "chars": [
+    "ク",
+    "ワ",
+    "ケ",
+    "タ",
+    "ヲ"
+   ],
+   "tip": {
+    "ja": "クは 2かく、ワは 2かくで 下が まるい、ケは 3かく、タは 3かくで 中に てんが あります。かくすうで 見わけます。",
+    "en": "Count the strokes: ク has two, ワ has two with a rounded base, ケ has three, タ has three plus a stroke inside.",
+    "si": "ඉරි ගණන බලන්න: ク දෙකයි, ワ දෙකයි පහළ වටයි, ケ තුනයි, タ තුනයි ඇතුළේ ඉරක් එක්ක."
+   }
+  },
+  {
+   "chars": [
+    "ノ",
+    "メ",
+    "ヌ",
+    "ス",
+    "ム"
+   ],
+   "tip": {
+    "ja": "ノは 1かく。メと ヌは ノに 1本 くわえた 形で、ヌだけ 上に よこ線が あります。スは 上が よこ線、ムは 中に てんが あります。",
+    "en": "ノ is one stroke. メ and ヌ add one stroke to it — only ヌ has a bar across the top. ス starts with a bar, ム has a dot inside.",
+    "si": "ノ එක ඉරයි. メ සහ ヌ ඊට එකක් එකතු කරනවා — ヌ වලට විතරයි උඩ තිරස් ඉරක්. ス උඩ ඉරකින් පටන් ගන්නවා, ム ඇතුළේ තිතක්."
+   }
+  },
+  {
+   "chars": [
+    "ハ",
+    "ヘ"
+   ],
+   "tip": {
+    "ja": "ハは 2本の 線が はなれて います。ヘは 1本 つながって います。",
+    "en": "ハ is two separate strokes. ヘ is a single connected line.",
+    "si": "ハ වෙන් වූ ඉරි දෙකක්. ヘ එකට සම්බන්ධ එක ඉරක්."
+   }
+  },
+  {
+   "chars": [
+    "コ",
+    "ユ",
+    "ヨ",
+    "ロ"
+   ],
+   "tip": {
+    "ja": "コは よこ線 1本、ヨは よこ線 3本、ロは しかくに とじます。ユは たて線が 下から 出ます。",
+    "en": "コ has one crossbar, ヨ has three, ロ closes into a box. ユ has an upright rising from the bottom line.",
+    "si": "コ තිරස් ඉරක්, ヨ තුනක්, ロ හතරැස්සක් ලෙස වැසෙනවා. ユ පහළ ඉරෙන් උඩට සිරස් ඉරක්."
+   }
+  },
+  {
+   "chars": [
+    "チ",
+    "テ",
+    "ナ",
+    "キ"
+   ],
+   "tip": {
+    "ja": "上の 線が 1本なら チと ナ、2本なら テと キ。下が はねたら チ・キ、まっすぐなら ナ・テ。",
+    "en": "One bar on top means チ or ナ; two bars mean テ or キ. A hooked tail means チ or キ; a straight one means ナ or テ.",
+    "si": "උඩ ඉරක් නම් チ හෝ ナ; දෙකක් නම් テ හෝ キ. පහළ කොක්කක් නම් チ හෝ キ; කෙළින් නම් ナ හෝ テ."
+   }
+  },
+  {
+   "chars": [
+    "サ",
+    "セ"
+   ],
+   "tip": {
+    "ja": "サは たて線が 下に つきぬけます。セは 下で とまり、右に まがります。",
+    "en": "サ has an upright that runs through and below. セ stops at the bottom line and turns right.",
+    "si": "サ වල සිරස් ඉර පහළට කැපෙනවා. セ පහළ ඉරේ නැවතී දකුණට හැරෙනවා."
+   }
+  },
+  {
+   "chars": [
+    "レ",
+    "ル",
+    "ヒ"
+   ],
+   "tip": {
+    "ja": "レは 1かく。ルは レに 左の 1本を たします。ヒは よこ線が 先に きます。",
+    "en": "レ is one stroke. ル is レ with one stroke added on the left. ヒ starts with a horizontal line.",
+    "si": "レ එක ඉරයි. ル කියන්නේ レ ට වමෙන් එකක් එකතු කළ එක. ヒ තිරස් ඉරකින් පටන් ගන්නවා."
+   }
+  },
+  {
+   "chars": [
+    "ウ",
+    "ワ",
+    "ラ"
+   ],
+   "tip": {
+    "ja": "上に てんが あれば ウ。てんが なくて 上が よこ線なら ラ。上が ひらいて いれば ワ。",
+    "en": "A dot on top means ウ. No dot but a bar on top means ラ. An open top means ワ.",
+    "si": "උඩ තිතක් නම් ウ. තිත නැතුව උඩ ඉරක් නම් ラ. උඩ විවෘත නම් ワ."
+   }
+  },
+  {
+   "chars": [
+    "ア",
+    "マ",
+    "ム",
+    "ヤ"
+   ],
+   "tip": {
+    "ja": "アは 上の よこ線から。マは 上が ひらいて います。ムは 中に てんが 1つ。ヤは 右上に てんが 出ます。",
+    "en": "ア starts from a bar on top. マ has an open top. ム has a dot inside. ヤ has a stroke rising to the upper right.",
+    "si": "ア උඩ ඉරකින්. マ උඩ විවෘතයි. ム ඇතුළේ තිතක්. ヤ උඩ දකුණට ඉරක්."
+   }
+  },
+  {
+   "chars": [
+    "ネ",
+    "ホ",
+    "オ"
+   ],
+   "tip": {
+    "ja": "ネは 上に てんが あります。ホと オは よこ線から。ホは 下に てんが 2つ、オは ありません。",
+    "en": "ネ has a dot on top. ホ and オ start from a bar; ホ has two dots at the bottom, オ has none.",
+    "si": "ネ උඩ තිතක්. ホ සහ オ ඉරකින් පටන් ගන්නවා; ホ පහළ තිත් දෙකක්, オ නැහැ."
+   }
+  },
+  {
+   "chars": [
+    "あ",
+    "お",
+    "む"
+   ],
+   "tip": {
+    "ja": "あは 中が むすばれて います。おは 右上に てんが あります。むは 下に てんが 1つ、右に つきます。",
+    "en": "あ has a loop in the middle. お has a dot at the upper right. む has a dot at the lower right.",
+    "si": "あ මැද වළල්ලක්. お උඩ දකුණේ තිතක්. む පහළ දකුණේ තිතක්."
+   }
+  },
+  {
+   "chars": [
+    "い",
+    "り",
+    "こ"
+   ],
+   "tip": {
+    "ja": "いは 2本が はなれ、左が ながい。りは 2本が ちかく、右が ながい。こは よこに 2本です。",
+    "en": "い has two separate strokes with the left one longer. り has two close strokes with the right one longer. こ is two horizontal strokes.",
+    "si": "い ඉරි දෙකක් වෙන් වී, වම දිගයි. り ඉරි දෙක ළඟින්, දකුණ දිගයි. こ තිරස් ඉරි දෙකක්."
+   }
+  },
+  {
+   "chars": [
+    "き",
+    "さ",
+    "ち",
+    "ら"
+   ],
+   "tip": {
+    "ja": "きは よこ線 2本、さは 1本。ちは さを 左右 ぎゃくに した 形です。らは 上に 小さい てんが あります。",
+    "en": "き has two crossbars, さ has one. ち is さ mirrored left to right. ら has a small stroke on top.",
+    "si": "き තිරස් ඉරි දෙකක්, さ එකක්. ち කියන්නේ さ පෙරළූ එක. ら උඩ කුඩා ඉරක්."
+   }
+  },
+  {
+   "chars": [
+    "け",
+    "は",
+    "ほ",
+    "ま",
+    "ば",
+    "ぱ"
+   ],
+   "tip": {
+    "ja": "けは よこ線 1本、はは 2本、ほは 3本です。まは たて線が 下に つきぬけます。",
+    "en": "け has one crossbar, は has two, ほ has three. ま is the one whose upright runs through to the bottom.",
+    "si": "け තිරස් ඉරක්, は දෙකක්, ほ තුනක්. ま වල සිරස් ඉර පහළට කැපෙනවා."
+   }
+  },
+  {
+   "chars": [
+    "ぬ",
+    "め",
+    "ね",
+    "れ",
+    "わ"
+   ],
+   "tip": {
+    "ja": "むすびが あるのは ぬと ね。ぬは 左が まるく、ねは たて線から はじまります。めと れと わは むすびが ありません。",
+    "en": "Only ぬ and ね end in a loop. ぬ starts with a curve, ね with an upright. め, れ and わ have no loop.",
+    "si": "වළල්ලක් තියෙන්නේ ぬ සහ ね වලට විතරයි. ぬ වක්‍රයකින්, ね සිරස් ඉරකින්. め, れ, わ වලට වළල්ලක් නැහැ."
+   }
+  },
+  {
+   "chars": [
+    "る",
+    "ろ",
+    "そ"
+   ],
+   "tip": {
+    "ja": "るは さいごに むすびます。ろは むすばずに とめます。そは 上に おれた 線が あります。",
+    "en": "る ends in a loop, ろ ends without one. そ has a zig-zag at the top.",
+    "si": "る අගට වළල්ලක්, ろ වළල්ලක් නැහැ. そ උඩ නැමුණු ඉරක්."
+   }
+  },
+  {
+   "chars": [
+    "し",
+    "つ",
+    "へ"
+   ],
+   "tip": {
+    "ja": "しは たてに ながく、下で 右に はねます。つは よこに ながい 形です。へは 山の 形です。",
+    "en": "し is tall and hooks to the right at the bottom. つ is wide and flat. へ is a shallow peak.",
+    "si": "し උසයි, පහළ දකුණට කොක්කක්. つ පළලයි. へ කන්දක් වගේ."
+   }
+  },
+  {
+   "chars": [
+    "た",
+    "な",
+    "に"
+   ],
+   "tip": {
+    "ja": "たの 左は 「十」の 形で、右下は とめます。なは 右下に むすびが あります。には 左が たて線 1本だけです。",
+    "en": "た has a cross shape on the left and stops at the lower right. な ends in a loop there. に has just one upright on the left.",
+    "si": "た වම පැත්තේ කුරුසයක්, පහළ දකුණේ නවතිනවා. な එතන වළල්ලකින් අවසන් වෙනවා. に වම පැත්තේ එක සිරස් ඉරක් විතරයි."
+   }
+  },
+  {
+   "chars": [
+    "う",
+    "つ",
+    "ふ"
+   ],
+   "tip": {
+    "ja": "うは 上に てんが あります。つは てんが ありません。ふは 上の てんの 下に 3つの ぶぶんが あります。",
+    "en": "う has a dot on top, つ has none, ふ has a dot plus three separate pieces below it.",
+    "si": "う උඩ තිතක්, つ තිතක් නැහැ, ふ තිතක් සහ පහළින් කොටස් තුනක්."
+   }
+  },
+  {
+   "chars": [
+    "ま",
+    "も",
+    "す"
+   ],
+   "tip": {
+    "ja": "まは よこ線 2本、もは 2本ですが たて線が 左から 出ます。すは よこ線 1本で 下に むすびます。",
+    "en": "ま has two crossbars. も has two as well, but the upright starts on the left. す has one crossbar and a loop below.",
+    "si": "ま තිරස් ඉරි දෙකක්. も දෙකක්, ඒත් සිරස් ඉර වමෙන්. す එකක් සහ පහළ වළල්ලක්."
+   }
+  },
+  {
+   "chars": [
+    "シ",
+    "ツ",
+    "ソ",
+    "ン",
+    "ジ",
+    "ズ"
+   ],
+   "tip": {
+    "ja": "この 6つは ぜんぶ 同じ 見わけかたです。左から 右に 書くのが シ・ン、上から 下に 書くのが ツ・ソ。てんが 2つなら シ・ツ、1つなら ソ・ン。てんてんが つくと ジ・ズです。",
+    "en": "All six use one rule. シ and ン are written left to right; ツ and ソ from the top down. Two dots means シ or ツ, one dot means ソ or ン. Add the two marks and you get ジ and ズ.",
+    "si": "මේ හය එකම නීතියක්. シ සහ ン වමේ සිට දකුණට; ツ සහ ソ උඩ සිට යටට. තිත් දෙකක් නම් シ හෝ ツ, එකක් නම් ソ හෝ ン. සලකුණු දෙක එකතු කළාම ジ සහ ズ."
+   }
+  },
+  {
+   "chars": [
+    "す",
+    "む",
+    "ま"
+   ],
+   "tip": {
+    "ja": "すは よこ線が 1本で 下に むすびます。むは よこ線 1本で 右下に てんが あります。まは よこ線が 2本です。",
+    "en": "す has one crossbar and a loop below. む has one crossbar and a dot at the lower right. ま has two crossbars.",
+    "si": "す තිරස් ඉරක් සහ පහළ වළල්ලක්. む තිරස් ඉරක් සහ පහළ දකුණේ තිතක්. ま තිරස් ඉරි දෙකක්."
+   }
+  },
+  {
+   "chars": [
+    "く",
+    "へ",
+    "て",
+    "ひ"
+   ],
+   "tip": {
+    "ja": "くは たてに おれます。へは よこに ひくい 山です。ては 上の よこ線から 左下へ。ひは 左が たてに ながく、右へ ながれます。",
+    "en": "く bends downward, へ is a low horizontal peak, て starts from a bar on top and sweeps to the lower left, ひ has a tall left side flowing to the right.",
+    "si": "く පහළට නැමෙනවා, へ පහත් තිරස් කන්දක්, て උඩ ඉරකින් පහළ වමට, ひ වම උසයි දකුණට ගලනවා."
+   }
+  },
+  {
+   "chars": [
+    "ふ",
+    "え"
+   ],
+   "tip": {
+    "ja": "ふは てんの 下に 3つの ぶぶんが あります。えは 上の てんから 下へ つづく 1本の 形です。",
+    "en": "ふ has three separate pieces under the dot. え runs as one connected shape from the dot downward.",
+    "si": "ふ තිත යට කොටස් තුනක්. え තිතේ සිට පහළට එකට සම්බන්ධයි."
+   }
+  },
+  {
+   "chars": [
+    "ゆ",
+    "わ",
+    "を"
+   ],
+   "tip": {
+    "ja": "をは 上に よこ線が 1本 あります。わ・ゆには ありません。ゆは 中に むすびが あり、わは たて線から はじまって むすびが ありません。",
+    "en": "を has a horizontal bar across the top; わ and ゆ do not. ゆ has a loop inside, わ starts from an upright and has no loop.",
+    "si": "を උඩින් තිරස් ඉරක් තියෙනවා; わ සහ ゆ වලට නැහැ. ゆ ඇතුළේ වළල්ලක්, わ සිරස් ඉරකින් පටන් ගන්නවා, වළල්ලක් නැහැ."
+   }
+  },
+  {
+   "chars": [
+    "よ",
+    "ま",
+    "も"
+   ],
+   "tip": {
+    "ja": "よは たて線 1本に むすび。まは よこ線 2本に むすび。もは たて線が 左から 出て よこ線 2本です。",
+    "en": "よ is one upright with a loop. ま adds two crossbars. も has two crossbars but its upright starts on the left.",
+    "si": "よ එක සිරස් ඉරක් සහ වළල්ලක්. ま තිරස් ඉරි දෙකක් එකතු වෙනවා. も තිරස් ඉරි දෙකයි, ඒත් සිරස් ඉර වමෙන්."
+   }
+  },
+  {
+   "chars": [
+    "せ",
+    "さ",
+    "き"
+   ],
+   "tip": {
+    "ja": "せは たて線が 下で 右に まがります。さは 2かくで 下が はなれます。きは よこ線が 2本です。",
+    "en": "せ has an upright that turns right at the bottom. さ is two strokes with the lower part detached. き has two crossbars.",
+    "si": "せ වල සිරස් ඉර පහළින් දකුණට හැරෙනවා. さ ඉරි දෙකක්, පහළ කොටස වෙන්. き තිරස් ඉරි දෙකක්."
+   }
+  },
+  {
+   "chars": [
+    "ん",
+    "そ"
+   ],
+   "tip": {
+    "ja": "んは 左下から 右へ 1本で ながれます。そは 上に おれた 線が あり、2つの ぶぶんに 見えます。",
+    "en": "ん flows as one stroke from the lower left to the right. そ has a zig-zag at the top and reads as two parts.",
+    "si": "ん පහළ වමේ සිට දකුණට එක ඉරක්. そ උඩ නැමීමක් තියෙනවා, කොටස් දෙකක් වගේ."
+   }
+  },
+  {
+   "chars": [
+    "こ",
+    "に",
+    "た"
+   ],
+   "tip": {
+    "ja": "こは よこ線 2本だけ。にの 左は たて線 1本。たの 左は 「十」の 形です。",
+    "en": "こ is just two horizontal strokes. に has a single upright on the left. た has a cross shape on the left.",
+    "si": "こ තිරස් ඉරි දෙකක් විතරයි. に වම පැත්තේ එක සිරස් ඉරක්. た වම පැත්තේ කුරුසයක්."
+   }
+  },
+  {
+   "chars": [
+    "み",
+    "さ",
+    "き",
+    "ち"
+   ],
+   "tip": {
+    "ja": "みは 下に むすびが あります。さ・き・ちは むすびが ありません。よこ線が 2本なら き、1本で 左むきなら さ、右むきなら ちです。",
+    "en": "み ends in a loop; さ, き and ち do not. Two crossbars means き; one crossbar facing left is さ, facing right is ち.",
+    "si": "み අගට වළල්ලක්; さ, き, ち වලට නැහැ. තිරස් ඉරි දෙකක් නම් き; එකක් වමට නම් さ, දකුණට නම් ち."
+   }
+  },
+  {
+   "chars": [
+    "や",
+    "か",
+    "が"
+   ],
+   "tip": {
+    "ja": "かは 「力」に てんを つけた 形です。やは よこ線が 中を つらぬいて、右上に のびます。がは かに てんてんが ついた 形です。",
+    "en": "か is the shape 力 with a dot added. や has a stroke running through the middle and out to the upper right. が is か with the two marks.",
+    "si": "か කියන්නේ 力 හැඩයට තිතක් එකතු කළ එක. や මැදින් කැපෙන ඉරක් උඩ දකුණට යනවා. が කියන්නේ か ට සලකුණු දෙක එක්කලා."
+   }
+  },
+  {
+   "chars": [
+    "と",
+    "て",
+    "ど"
+   ],
+   "tip": {
+    "ja": "とは たて線に 右下から 1本 つきます。ては 上の よこ線から はじまります。どは とに てんてんが ついた 形です。",
+    "en": "と is an upright with a stroke joining from the lower right. て starts from a bar on top. ど is と with the two marks.",
+    "si": "と සිරස් ඉරකට පහළ දකුණින් ඉරක්. て උඩ ඉරකින් පටන් ගන්නවා. ど කියන්නේ と ට සලකුණු දෙක එක්කලා."
+   }
+  },
+  {
+   "chars": [
+    "の",
+    "ぬ",
+    "め"
+   ],
+   "tip": {
+    "ja": "のは 1かくで むすびが ありません。ぬは むすびが あります。めは むすびが なく、2かくです。",
+    "en": "の is one stroke with no loop. ぬ ends in a loop. め has no loop and is written in two strokes.",
+    "si": "の එක ඉරයි, වළල්ලක් නැහැ. ぬ අගට වළල්ලක්. め වළල්ලක් නැහැ, ඉරි දෙකයි."
+   }
+  },
+  {
+   "chars": [
+    "サ",
+    "セ",
+    "ヤ"
+   ],
+   "tip": {
+    "ja": "サは たて線が 2本 下に 出ます。セは 1本で 下が 右に まがります。ヤは 右上に ながい 線が のびます。",
+    "en": "サ has two uprights running below the bar. セ has one that turns right. ヤ has a long stroke to the upper right.",
+    "si": "サ ඉරෙන් පහළට සිරස් ඉරි දෙකක්. セ එකක්, දකුණට හැරෙනවා. ヤ උඩ දකුණට දිග ඉරක්."
+   }
+  },
+  {
+   "chars": [
+    "ラ",
+    "フ",
+    "ヲ"
+   ],
+   "tip": {
+    "ja": "ラは 上に みじかい よこ線が あります。フは 1かく だけ。ヲは よこ線が 2本 あります。",
+    "en": "ラ has a short bar on top. フ is a single stroke. ヲ has two horizontal bars.",
+    "si": "ラ උඩ කෙටි ඉරක්. フ එක ඉරයි. ヲ තිරස් ඉරි දෙකක්."
+   }
+  },
+  {
+   "chars": [
+    "レ",
+    "ル",
+    "ノ"
+   ],
+   "tip": {
+    "ja": "ノは 左下へ おりるだけ。レは 下で 右上に あがります。ルは レの 左に もう1本 あります。",
+    "en": "ノ only falls to the lower left. レ turns up to the right at the bottom. ル is レ with one more stroke on its left.",
+    "si": "ノ පහළ වමට විතරයි. レ පහළින් දකුණට උඩට. ル කියන්නේ レ ට වමෙන් තව එකක්."
+   }
+  },
+  {
+   "chars": [
+    "ト",
+    "カ",
+    "エ"
+   ],
+   "tip": {
+    "ja": "トは たて線に みじかい てんが 1つ。カは 右下に はらいが あります。エは よこ線が 上下に 2本です。",
+    "en": "ト is an upright with one short stroke. カ sweeps down to the right. エ has bars at both the top and the bottom.",
+    "si": "ト සිරස් ඉරක් සහ කෙටි එකක්. カ පහළ දකුණට ගලනවා. エ උඩ සහ පහළ ඉරි දෙකක්."
+   }
+  },
+  {
+   "chars": [
+    "ニ",
+    "ミ"
+   ],
+   "tip": {
+    "ja": "ニは よこ線 2本、ミは ななめの 線 3本です。ミは 右上から 左下へ 3かい 書きます。",
+    "en": "ニ is two horizontal strokes; ミ is three slanted ones written from the upper right to the lower left.",
+    "si": "ニ තිරස් ඉරි දෙකක්; ミ ඇල ඉරි තුනක්, උඩ දකුණේ සිට පහළ වමට."
+   }
+  },
+  {
+   "chars": [
+    "リ",
+    "ハ",
+    "ソ"
+   ],
+   "tip": {
+    "ja": "リは 2本とも たてに ながく、右が ながい。ハは 2本が ひらいて います。ソは てんと ながい 線の 組みあわせです。",
+    "en": "リ has two tall strokes with the right one longer. ハ opens outward. ソ is a dot plus one long stroke.",
+    "si": "リ උස ඉරි දෙකක්, දකුණ දිගයි. ハ පිටතට විවෘතයි. ソ තිතක් සහ දිග ඉරක්."
+   }
+  },
+  {
+   "chars": [
+    "イ",
+    "ト",
+    "ノ"
+   ],
+   "tip": {
+    "ja": "イは 左に みじかい てん、右に ながい はらい。トは たて線が まっすぐ 下に のびます。",
+    "en": "イ has a short stroke on the left and a long sweep on the right. ト has a straight upright running down.",
+    "si": "イ වමේ කෙටි ඉරක්, දකුණේ දිග ගැලීමක්. ト කෙළින් සිරස් ඉරක්."
+   }
+  },
+  {
+   "chars": [
+    "モ",
+    "ヨ",
+    "キ"
+   ],
+   "tip": {
+    "ja": "モは よこ線 2本に たて線が 下へ ぬけます。ヨは よこ線 3本で 左に とじます。キは よこ線 2本で たてが 中央です。",
+    "en": "モ has two bars with an upright running through to the bottom. ヨ has three bars closed on the left. キ has two bars with a centred upright.",
+    "si": "モ ඉරි දෙකක් සහ පහළට කැපෙන සිරස් ඉරක්. ヨ ඉරි තුනක්, වමෙන් වැසෙනවා. キ ඉරි දෙකක්, මැදින් සිරස් ඉරක්."
+   }
+  },
+  {
+   "chars": [
+    "も",
+    "し",
+    "つ"
+   ],
+   "tip": {
+    "ja": "もは よこ線が 2本 ある たて長の 形。しは よこ線が なく、たてに ながい 1本です。つは よこに ひろい 形です。",
+    "en": "も is tall with two crossbars. し has no crossbars — one tall stroke hooking right. つ is wide and flat.",
+    "si": "も උසයි, තිරස් ඉරි දෙකක්. し තිරස් ඉරි නැහැ — උස එක ඉරක්. つ පළලයි."
+   }
+  }
+ ],
+ "rules": {
+  "hyaku": {
+   "ja": "3・6・8の あとは 音が かわります。300 さんびゃく、600 ろっぴゃく、800 はっぴゃく。ほかは そのままです。",
+   "en": "After 3, 6 and 8 the sound changes: 300 さんびゃく, 600 ろっぴゃく, 800 はっぴゃく. The rest are regular.",
+   "si": "3, 6, 8 පස්සේ ශබ්දය වෙනස් වෙනවා: 300 さんびゃく, 600 ろっぴゃく, 800 はっぴゃく. අනිත් ඒවා නීතිගතයි."
+  },
+  "sen": {
+   "ja": "1000は 「せん」です。「いっせん」とは いいません。3000は さんぜん、8000は はっせん に なります。",
+   "en": "1000 on its own is せん, never いっせん. 3000 becomes さんぜん and 8000 becomes はっせん.",
+   "si": "1000 කියන්නේ せん, いっせん නෙවෙයි. 3000 さんぜん, 8000 はっせん."
+  },
+  "man": {
+   "ja": "10000は かならず 「いちまん」です。「まん」だけとは いいません。",
+   "en": "10,000 is always いちまん. Japanese never says まん on its own here.",
+   "si": "10,000 හැම විටම いちまん. まん විතරක් කියන්නේ නැහැ."
+  },
+  "counter": {
+   "ja": "1・6・8の あとは つまる 音（いっ・ろっ・はっ）に なり、3の あとは にごる ことが あります。1本 いっぽん、3本 さんぼん、6本 ろっぽん、8本 はっぽん。",
+   "en": "After 1, 6 and 8 the counter takes a small っ (いっ, ろっ, はっ), and after 3 it often voices. 1本 いっぽん, 3本 さんぼん, 6本 ろっぽん, 8本 はっぽん.",
+   "si": "1, 6, 8 පස්සේ කුඩා っ එනවා (いっ, ろっ, はっ), 3 පස්සේ බොහෝ විට නාද වෙනවා. 1本 いっぽん, 3本 さんぼん, 6本 ろっぽん, 8本 はっぽん."
+  },
+  "counterIrregular": {
+   "ja": "この かぞえかたは 形が かわります。1人 ひとり、2人 ふたり、20歳 はたち、1日 ついたち。おぼえる しか ありません。",
+   "en": "This counter simply changes shape and has to be memorised: 1人 ひとり, 2人 ふたり, 20歳 はたち, 1日 ついたち.",
+   "si": "මේ ගණන් වචනය හැඩය වෙනස් කරනවා, කටපාඩම් කරන්න ඕනේ: 1人 ひとり, 2人 ふたり, 20歳 はたち, 1日 ついたち."
+  },
+  "hour": {
+   "ja": "時こくで あてられない よみは 3つだけです。4時 よじ、7時 しちじ、9時 くじ。ほかは すうじの まま＋じ です。",
+   "en": "Only three hours are unpredictable: 4時 よじ, 7時 しちじ, 9時 くじ. Every other hour is just the number plus じ.",
+   "si": "අනුමාන කරන්න බැරි පැය තුනයි: 4時 よじ, 7時 しちじ, 9時 くじ. අනිත් හැම එකක්ම අංකය + じ."
+  },
+  "minute": {
+   "ja": "「〜分」は 1・3・4・6・8・10の あとで ぷん に なります。ほかは ふん です。",
+   "en": "Minutes become ぷん after 1, 3, 4, 6, 8 and 10. Everywhere else it is ふん.",
+   "si": "විනාඩි 1, 3, 4, 6, 8, 10 පස්සේ ぷん වෙනවා. අනිත් තැන්වල ふん."
+  },
+  "half": {
+   "ja": "30分は ふつう 「半」と いいます。「さんじゅっぷん」も まちがいでは ありませんが、あまり つかいません。",
+   "en": "Thirty minutes past is normally said as 半. さんじゅっぷん is not wrong, but it is rarely used.",
+   "si": "විනාඩි 30 සාමාන්‍යයෙන් 半. さんじゅっぷん වැරදි නැහැ, ඒත් කලාතුරකින් පාවිච්චි වෙනවා."
+  }
+ }
+}

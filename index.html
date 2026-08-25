@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Hiragana and katakana study site for Sinhala- and English-speaking learners of Japanese.">
+<meta name="theme-color" content="#7A1B2E">
+<title>かな学習 — TAKANE-SHIKI KANA STUDY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Sans+Sinhala:wght@400;600&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="hbar">
+    <a class="mark" href="index.html">かな<small>Takane-shiki Kana Study</small></a>
+    <nav class="nav">
+      <a href="index.html" data-nav data-t="navHome" class="si-swap">Home</a>
+      <a href="guide.html" data-nav data-t="navGuide" class="si-swap">Rules</a>
+      <a href="chart.html" data-nav data-t="navChart" class="si-swap">Chart</a>
+      <a href="numbers.html" data-nav data-t="navNumbers" class="si-swap">Numbers</a>
+      <a href="drill.html" data-nav data-t="navDrill" class="si-swap">Practice</a>
+    </nav>
+    <div class="langs" id="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="si" class="si" aria-pressed="false">සිං</button>
+      <button type="button" data-lang="ja" aria-pressed="false">日本語</button>
+    </div>
+  </div>
+  <div class="mastery">
+    <div class="mbarwrap">
+      <div class="mrow">
+        <span id="mLabel" data-t="mastery" class="si-swap">Mastered</span>
+        <b id="mCount">0 / 102</b>
+        <span class="days" id="mDays"></span>
+      </div>
+      <div class="mbar"><i id="mFill" style="width:0"></i></div>
+    </div>
+    <div class="goal" id="goal"><span class="ring"></span><span class="txt"></span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1 data-t="homeLead" class="si-swap">Learn to read hiragana and katakana.</h1>
+    <p data-t="homeSub" class="si-swap"></p>
+  </div>
+
+  <div class="cards">
+    <a class="hcard" href="guide.html">
+      <div class="n">1</div>
+      <h2 data-t="cGuideT" class="si-swap"></h2>
+      <p data-t="cGuideD" class="si-swap"></p>
+      <span class="go" data-t="goto"></span>
+    </a>
+    <a class="hcard" href="drill.html">
+      <div class="n">2</div>
+      <h2 data-t="cDrillT" class="si-swap"></h2>
+      <p data-t="cDrillD" class="si-swap"></p>
+      <span class="go" data-t="goto"></span>
+    </a>
+    <a class="hcard" href="chart.html">
+      <div class="n">3</div>
+      <h2 data-t="cChartT" class="si-swap"></h2>
+      <p data-t="cChartD" class="si-swap"></p>
+      <span class="go" data-t="goto"></span>
+    </a>
+    <a class="hcard" href="numbers.html">
+      <div class="n">4</div>
+      <h2 data-t="cNumT" class="si-swap"></h2>
+      <p data-t="cNumD" class="si-swap"></p>
+      <span class="go" data-t="goto"></span>
+    </a>
+  </div>
+
+  <footer>
+    <p id="f1" data-t="footKeys" class="si-swap"></p>
+    <p id="f2" data-t="footSinhala" class="si-swap"></p>
+  </footer>
+</div>
+
+<script>
+window.__i18nFallback={
+  en:"Could not load the site data. If you opened this file directly from disk, run a local server (python3 -m http.server) or use offline.html.",
+  ja:"サイトデータを よみこめませんでした。ファイルを ちょくせつ ひらいた ばあいは ローカルサーバー（python3 -m http.server）を つかうか、offline.html を ひらいて ください。",
+  si:"අඩවි දත්ත පූරණය කළ නොහැක. ගොනුව කෙලින්ම විවෘත කළා නම්, local server එකක් (python3 -m http.server) හෝ offline.html භාවිතා කරන්න."
+};
+</script>
+<script src="site.js"></script>
+<script src="home.js"></script>
+</body>
+</html>

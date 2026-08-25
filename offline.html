@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Hiragana and katakana study site for Sinhala- and English-speaking learners of Japanese.">
+<meta name="theme-color" content="#7A1B2E">
+<title>かな学習 — TAKANE-SHIKI KANA STUDY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Sans+Sinhala:wght@400;600&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   TAKANE-SHIKI KANA DRILL — stylesheet
+   Identity: maroon + gold, shared with the printed materials.
+   Fonts: BIZ UDPGothic (body) / Zen Kaku Gothic New (kana display).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Colour: one accent family + a shared neutral base. Switching theme swaps
+   four variables; switching brightness swaps the base. Everything else in the
+   sheet reads from these, so no rule needs to know which theme is active.
+   -------------------------------------------------------------------------- */
+:root{
+  /* default family — えんじ */
+  --accent:#7A1B2E; --accent-deep:#4E0E1C; --accent-dk:#B8536A;
+  --gold:#C7A247; --gold-lt:#E9D9A9; --gold-dp:#A8842E;
+
+  --maroon:var(--accent); --maroon-deep:var(--accent-deep); --maroon-ink:var(--accent-deep);
+  --paper:#FAF5EC; --card:#FFFEFA; --field:#FFFFFF;
+  --ink:#22181A; --ink-soft:#6E5C5E;
+  --rule:rgba(34,24,26,.12); --rule-2:rgba(34,24,26,.07);
+  --ok:#2F6E4E; --ok-bg:#EEF6F1; --ok-tag:#DFF0E7;
+  --ng:#A3283C; --ng-bg:#FCF0F2; --ng-tag:#F7DFE4;
+  --glow:rgba(199,162,71,.16);
+  --shadow:0 1px 2px rgba(20,10,14,.05),0 6px 18px rgba(20,10,14,.06);
+
+  --jp-disp:"Zen Kaku Gothic New","BIZ UDPGothic","Hiragino Sans",sans-serif;
+  --ui:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI",system-ui,-apple-system,sans-serif;
+  --si:"Noto Sans Sinhala","Iskoola Pota",sans-serif;
+
+  --s1:6px; --s2:10px; --s3:16px; --s4:22px; --s5:30px;
+  --tap:46px;
+  --gs:1;            /* glyph scale, driven by the text-size setting */
+}
+
+html[data-theme="ai"]{
+  --accent:#1F3B63; --accent-deep:#101F36; --accent-dk:#6E96C9;
+  --gold:#C7A247; --gold-lt:#E6D5A4; --gold-dp:#9E7C29;
+  --glow:rgba(110,150,201,.16);
+}
+html[data-theme="matcha"]{
+  --accent:#2F5D46; --accent-deep:#16301F; --accent-dk:#6FB58F;
+  --gold:#C79B3E; --gold-lt:#E7D6A6; --gold-dp:#9A7526;
+  --glow:rgba(111,181,143,.15);
+}
+html[data-theme="sumi"]{
+  --accent:#2A2A2C; --accent-deep:#141416; --accent-dk:#B9B9BE;
+  --gold:#B08635; --gold-lt:#E0CFA4; --gold-dp:#8A6A25;
+  --glow:rgba(0,0,0,.07);
+}
+
+/* Dark base — one neutral shell, whichever family is on. */
+html[data-scheme="dark"]{
+  --maroon:var(--accent-dk); --maroon-deep:#0F0C0E; --maroon-ink:#F2E9E6;
+  --paper:#161215; --card:#1E191C; --field:#241E22;
+  --ink:#F2E9E6; --ink-soft:#AC9EA2;
+  --rule:rgba(242,233,230,.14); --rule-2:rgba(242,233,230,.07);
+  --ok:#6FC79A; --ok-bg:#16281F; --ok-tag:#1D3A2B;
+  --ng:#E88497; --ng-bg:#2C171C; --ng-tag:#3D1F26;
+  --glow:rgba(199,162,71,.09);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.28);
+}
+@media (prefers-color-scheme:dark){
+  html[data-scheme="auto"]{
+    --maroon:var(--accent-dk); --maroon-deep:#0F0C0E; --maroon-ink:#F2E9E6;
+    --paper:#161215; --card:#1E191C; --field:#241E22;
+    --ink:#F2E9E6; --ink-soft:#AC9EA2;
+    --rule:rgba(242,233,230,.14); --rule-2:rgba(242,233,230,.07);
+    --ok:#6FC79A; --ok-bg:#16281F; --ok-tag:#1D3A2B;
+    --ng:#E88497; --ng-bg:#2C171C; --ng-tag:#3D1F26;
+    --glow:rgba(199,162,71,.09);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.28);
+  }
+}
+
+/* Text size. Glyphs use clamp(), which ignores root font-size, so they get
+   an explicit multiplier instead. */
+html[data-size="l"]{font-size:110%; --gs:1.06;}
+html[data-size="xl"]{font-size:122%; --gs:1.12;}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:radial-gradient(1100px 460px at 50% -160px,var(--glow),transparent 70%),var(--paper);
+  color:var(--ink);font-family:var(--ui);line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+button{font:inherit;color:inherit}
+/* Sinhala inline inside an English or Japanese page */
+.si{font-family:var(--si);font-size:1.04em;line-height:1.7}
+/* Whole page in Sinhala: set it once at the root so no element can be missed.
+   Kana keeps its own font because every kana rule names --jp-disp explicitly. */
+html[lang="si"]{--ui:"Noto Sans Sinhala","Iskoola Pota","BIZ UDPGothic","Hiragino Sans",system-ui,sans-serif}
+html[lang="si"] body{line-height:1.8}
+html[lang="si"] .flabel,html[lang="si"] .l,html[lang="si"] .mrow,
+html[lang="si"] .csec h2,html[lang="si"] .mapset h3{letter-spacing:.04em}
+.wrap{max-width:800px;margin:0 auto;padding:0 var(--s3) 72px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- header ---------- */
+header{background:linear-gradient(168deg,var(--accent) 0%,var(--accent-deep) 100%);color:#FAF5EC}
+.hbar{max-width:800px;margin:0 auto;padding:15px var(--s3) 13px;display:flex;align-items:center;
+  gap:12px;flex-wrap:wrap}
+.mark{font-family:var(--jp-disp);font-weight:700;font-size:1.18rem;line-height:1.2}
+.mark small{display:block;font-family:var(--ui);font-weight:400;font-size:.6rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold-lt);margin-top:3px;opacity:.85}
+.tools{display:flex;gap:6px;align-items:center;margin-left:auto}
+.langs{display:flex;gap:4px}
+@media (max-width:430px){.mark small{display:none}}
+.langs button{font-size:.78rem;padding:6px 12px;border-radius:999px;cursor:pointer;
+  background:transparent;color:var(--gold-lt);border:1px solid rgba(233,217,169,.4)}
+.langs button[aria-pressed="true"]{background:var(--gold);color:var(--accent-deep);border-color:var(--gold);font-weight:700}
+
+.mastery{max-width:800px;margin:0 auto;padding:0 var(--s3) 14px;display:flex;align-items:flex-end;gap:0}
+.mastery > div:first-child{flex:1;min-width:0}
+.mbarwrap{flex:1;min-width:0}
+.mrow{display:flex;align-items:baseline;gap:10px;font-size:.62rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold-lt);opacity:.92}
+.mrow .days{margin-left:auto;letter-spacing:.06em;text-transform:none;font-size:.72rem;color:#fff;opacity:.75}
+.mrow b{font-family:var(--jp-disp);font-size:.95rem;letter-spacing:0;color:#fff;
+  font-variant-numeric:tabular-nums}
+.mbar{height:6px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;margin-top:5px}
+.mbar i{display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--gold-dp),var(--gold),var(--gold-lt))}
+
+/* ---------- controls ---------- */
+.setup{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:8px 0 10px;
+  margin-top:18px;box-shadow:var(--shadow);overflow:hidden}
+.field{display:flex;align-items:center;gap:var(--s1);padding:8px var(--s3)}
+.field + .field{border-top:1px dashed var(--rule)}
+.flabel{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);
+  min-width:88px;font-weight:700;flex:none}
+/* one horizontal lane per row — 10 modes should not stack three deep on a phone */
+.lane{display:flex;gap:var(--s1);overflow-x:auto;scrollbar-width:none;padding:2px 0;
+  -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+.lane::-webkit-scrollbar{display:none}
+.chip{font-size:.82rem;padding:8px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;
+  border:1px solid var(--rule);background:var(--field);color:var(--ink);flex:none;scroll-snap-align:start}
+.chip[aria-pressed="true"]{background:var(--maroon);color:#fff;border-color:var(--maroon);
+  box-shadow:0 2px 8px rgba(122,27,46,.22)}
+.chip:disabled{opacity:.3;cursor:not-allowed}
+.chip.learn[aria-pressed="true"]{background:var(--gold);color:var(--accent-deep);border-color:var(--gold-dp)}
+.chip:active{transform:translateY(1px)}
+.chip:focus-visible,.langs button:focus-visible,.opt:focus-visible,.ghost:focus-visible,
+.tile:focus-visible,.btile:focus-visible,.slot:focus-visible,#typed:focus-visible{
+  outline:2px solid var(--gold-dp);outline-offset:2px}
+
+/* ---------- question card ---------- */
+.card{background:var(--card);border:1px solid var(--rule);border-radius:16px;margin-top:var(--s3);
+  padding:var(--s4) var(--s3);position:relative;box-shadow:var(--shadow);overflow:hidden;min-height:240px}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;
+  background:linear-gradient(90deg,var(--maroon),var(--gold),var(--gold-lt))}
+.corner{position:absolute;top:13px;right:15px;font-size:.6rem;letter-spacing:.14em;color:var(--ink-soft);
+  text-transform:uppercase;font-variant-numeric:tabular-nums}
+.bar{height:3px;background:var(--rule);border-radius:2px;margin:2px 0 14px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gold)}
+.ask{font-size:.84rem;color:var(--ink-soft);margin:0 0 var(--s2);max-width:86%}
+/* the Japanese on this site is 分かち書き — break at the spaces, not inside a word */
+.ask,.hint,.sub,.expl .nt,.gsec p,.hero p,.pagehead p,.hcard p,.nowbar .val,.map p.note,footer p{
+  word-break:keep-all;overflow-wrap:break-word}
+.hint,.ask{text-wrap:balance}
+.stage{text-align:center;padding:12px 4px var(--s4);border-bottom:1px solid var(--rule);margin-bottom:var(--s3)}
+.glyph{font-family:var(--jp-disp);font-weight:500;line-height:1;font-size:calc(clamp(4.2rem,20vw,6.6rem)*var(--gs));
+  color:var(--maroon-ink);letter-spacing:.02em}
+.glyph.small{font-size:calc(clamp(2.4rem,10vw,3.2rem)*var(--gs))}
+.reading{font-family:var(--jp-disp);font-size:calc(clamp(1.9rem,8vw,2.6rem)*var(--gs));color:var(--maroon-ink);letter-spacing:.04em}
+.romacue{font-size:calc(clamp(1.6rem,7vw,2.2rem)*var(--gs));color:var(--maroon-ink);letter-spacing:.22em;font-weight:700}
+.sub{margin-top:8px;font-size:1rem;color:var(--ink-soft)}
+
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2)}
+.opt{cursor:pointer;background:var(--field);border:1px solid var(--rule);border-radius:12px;
+  padding:15px 8px;text-align:center;position:relative;min-height:var(--tap);
+  box-shadow:0 1px 2px rgba(78,14,28,.04)}
+.opt:active{transform:translateY(1px)}
+.opt .num{position:absolute;top:6px;left:9px;font-size:.6rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.opt .main{font-size:1.4rem;line-height:1.25;display:block}
+.opt .main.kana{font-family:var(--jp-disp);font-size:2rem}
+.opt .main.word{font-family:var(--jp-disp);font-size:1.45rem}
+.opt .si{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:2px;min-height:1.1em}
+.opt[data-state="ok"]{border-color:var(--ok);background:var(--ok-bg);box-shadow:inset 0 0 0 1px var(--ok)}
+.opt[data-state="ng"]{border-color:var(--ng);background:var(--ng-bg)}
+.opt:disabled{cursor:default}
+
+/* ---------- gojuon fill ---------- */
+.seq{display:flex;flex-wrap:wrap;gap:var(--s1);justify-content:center}
+.cell{width:clamp(42px,11vw,58px);height:clamp(42px,11vw,58px);border-radius:10px;
+  border:1px solid var(--rule);background:var(--field);display:flex;align-items:center;
+  justify-content:center;font-family:var(--jp-disp);font-size:clamp(1.3rem,5vw,1.8rem)}
+.cell.gap{border:none;background:transparent}
+.cell.blank{border:2px dashed var(--maroon);background:var(--ng-bg);color:var(--maroon)}
+
+/* ---------- spell ---------- */
+.slots{display:flex;flex-wrap:wrap;gap:var(--s1);justify-content:center;min-height:62px}
+.slot{width:clamp(44px,11.5vw,58px);height:clamp(44px,11.5vw,58px);border-radius:10px;
+  border:2px dashed var(--rule);background:var(--field);display:flex;align-items:center;
+  justify-content:center;font-family:var(--jp-disp);font-size:clamp(1.4rem,5.5vw,1.9rem);
+  color:var(--maroon-ink)}
+.slot.on{border-style:solid;border-color:var(--gold-dp);cursor:pointer}
+.slot.ok{border-style:solid;border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+.slot.ng{border-style:solid;border-color:var(--ng);background:var(--ng-bg);color:var(--ng)}
+.bank{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:var(--s3)}
+.btile{width:clamp(46px,12vw,60px);height:clamp(46px,12vw,60px);border-radius:12px;cursor:pointer;
+  border:1px solid var(--rule);background:var(--field);font-family:var(--jp-disp);
+  font-size:clamp(1.4rem,5.5vw,1.9rem);box-shadow:0 1px 2px rgba(78,14,28,.05)}
+.btile:active{transform:translateY(1px)}
+.btile[data-used="1"]{opacity:.22;pointer-events:none}
+.hint{font-size:.75rem;color:var(--ink-soft);text-align:center;margin:12px 0 0}
+
+/* ---------- explanation ---------- */
+.expl{margin-top:var(--s3);border:1px solid var(--rule);border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;background:var(--field);padding:14px var(--s3)}
+.expl .hw{font-family:var(--jp-disp);font-size:1.7rem;color:var(--maroon-ink);line-height:1.2}
+.expl .rm{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dp);font-weight:700}
+.expl .mn{margin:4px 0 8px;font-size:.95rem}
+.expl .nt{font-size:.88rem;color:var(--ink-soft);margin:0}
+
+#typeBox{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+#typed{font-size:1.5rem;text-align:center;width:190px;padding:11px 12px;border-radius:12px;
+  border:1px solid var(--rule);background:var(--field);color:var(--ink);letter-spacing:.05em}
+#typed[data-state="ok"]{border-color:var(--ok);background:var(--ok-bg)}
+#typed[data-state="ng"]{border-color:var(--ng);background:var(--ng-bg)}
+
+.verdict{margin-top:14px;min-height:3.1em;font-size:.92rem}
+.verdict b{color:var(--maroon-ink)}
+.verdict .tag{display:inline-block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;margin-right:8px;vertical-align:2px;font-weight:700}
+.verdict.ok .tag{background:var(--ok-tag);color:var(--ok)}
+.verdict.ng .tag{background:var(--ng-tag);color:var(--ng)}
+.rowbtns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.ghost{font-size:.86rem;padding:11px 18px;border-radius:999px;cursor:pointer;min-height:var(--tap);
+  background:var(--maroon);color:#fff;border:1px solid var(--maroon);box-shadow:0 2px 8px rgba(122,27,46,.2)}
+.ghost:active{transform:translateY(1px)}
+.ghost.alt{background:var(--field);color:var(--maroon-ink);border-color:var(--rule);box-shadow:none}
+.ghost:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+
+/* ---------- score ---------- */
+.score{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:14px;overflow:hidden;margin-top:14px;box-shadow:var(--shadow)}
+.score div{background:var(--card);padding:11px 4px;text-align:center}
+.score .n{font-family:var(--jp-disp);font-size:1.35rem;line-height:1.1;color:var(--maroon-ink);
+  font-variant-numeric:tabular-nums}
+.score .n.hot{color:var(--gold-dp)}
+.score .l{font-size:.55rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ---------- result ---------- */
+.result{text-align:center}
+.result h2{font-family:var(--jp-disp);font-size:1.45rem;margin:2px 0 14px;color:var(--maroon-ink)}
+.gauge{width:170px;height:170px;border-radius:50%;margin:0 auto;display:flex;align-items:center;
+  justify-content:center;position:relative}
+.gauge::after{content:"";position:absolute;inset:13px;border-radius:50%;background:var(--card)}
+.gauge span{position:relative;z-index:1;font-family:var(--jp-disp);font-size:2.7rem;line-height:1;
+  color:var(--maroon-ink);font-variant-numeric:tabular-nums}
+.gauge span i{font-size:1.1rem;font-style:normal}
+.weaklist{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;justify-content:center}
+
+/* ---------- kana map: laid out as the real gojuon chart ---------- */
+.map{margin-top:var(--s5)}
+.map h2{font-family:var(--jp-disp);font-size:1.02rem;margin:0 0 3px;color:var(--maroon-ink)}
+.map p.note{font-size:.78rem;color:var(--ink-soft);margin:0 0 12px}
+.mapset{margin-bottom:var(--s4)}
+.mapset h3{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);
+  margin:0 0 8px;padding-bottom:4px;border-bottom:1px solid var(--rule);font-weight:700}
+.chart{display:grid;gap:5px;justify-content:start}
+.chart.c5{grid-template-columns:repeat(5,auto)}
+.chart.c3{grid-template-columns:repeat(3,auto)}
+.tiles{display:flex;flex-wrap:wrap;gap:5px}
+.tile{width:38px;height:38px;border-radius:9px;border:1px solid var(--rule);background:var(--field);
+  display:flex;align-items:center;justify-content:center;font-family:var(--jp-disp);font-size:1.15rem;
+  color:var(--ink);position:relative;padding:0;cursor:default;font-weight:500}
+.tile.act{cursor:pointer;min-width:38px}
+.tile.hole{border:none;background:transparent}
+.tile[data-weak="1"]{border-color:var(--ng);color:var(--ng)}
+.tile[data-rare="1"]{opacity:.4}
+.tile i{position:absolute;inset:0;border-radius:8px;
+  background:linear-gradient(160deg,var(--gold-lt),var(--gold));z-index:0}
+.tile span{position:relative;z-index:1}
+.tiles.big .tile{width:56px;height:56px;font-size:1.5rem}
+/* The learn chart must fit five columns inside the card on a 360px phone,
+   so the cells share the row rather than carrying a fixed width. */
+.chart.c5.big{grid-template-columns:repeat(5,minmax(0,1fr));max-width:330px}
+.chart.c3.big{grid-template-columns:repeat(3,minmax(0,1fr));max-width:200px}
+.chart.big .tile{width:auto;height:auto;aspect-ratio:1;font-size:calc(clamp(1.15rem,4.4vw,1.5rem)*var(--gs))}
+
+footer{margin-top:var(--s5);padding-top:14px;border-top:1px solid var(--rule);
+  font-size:.75rem;color:var(--ink-soft)}
+footer p{margin:.5em 0}
+
+@media (min-width:560px){.opts{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (prefers-reduced-motion:no-preference){
+  .stage,.expl{animation:rise .2s ease-out}
+  @keyframes rise{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+  .bar i,.mbar i{transition:width .35s ease}
+  .chip,.opt,.ghost,.btile,.tile{transition:transform .08s ease,background .12s ease,border-color .12s ease}
+  .opt[data-state="ok"]{animation:pop .3s ease}
+  @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.045)}100%{transform:scale(1)}}
+}
+
+/* ==========================================================================
+   Site chrome — nav, home, rules page, printable chart
+   ========================================================================== */
+
+.nav{display:flex;gap:2px;flex:1 1 100%;order:3;overflow-x:auto;scrollbar-width:none;margin:2px -4px -2px}
+.nav::-webkit-scrollbar{display:none}
+.nav a{color:var(--gold-lt);text-decoration:none;font-size:.8rem;padding:7px 12px;border-radius:999px;
+  white-space:nowrap;opacity:.8}
+.nav a[aria-current="page"]{background:rgba(255,255,255,.13);color:#fff;opacity:1;font-weight:700}
+a.mark{color:inherit;text-decoration:none}
+@media (min-width:640px){.nav{flex:0 1 auto;order:0;margin:0}}
+
+/* ---------- home ---------- */
+.hero{padding:var(--s5) 0 var(--s4)}
+.hero h1{font-family:var(--jp-disp);font-size:clamp(1.5rem,6vw,2.1rem);line-height:1.35;
+  margin:0 0 var(--s2);color:var(--maroon-ink)}
+.hero p{margin:0;color:var(--ink-soft);max-width:48ch}
+.cards{display:grid;gap:var(--s2)}
+@media (min-width:660px){.cards{grid-template-columns:repeat(3,1fr)}}
+.hcard{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:var(--s4) var(--s3);text-decoration:none;color:inherit;
+  box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hcard::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;
+  background:linear-gradient(90deg,var(--maroon),var(--gold))}
+.hcard .n{font-family:var(--jp-disp);font-size:2.4rem;line-height:1;color:var(--gold-dp);margin-bottom:var(--s2)}
+.hcard h2{font-family:var(--jp-disp);font-size:1.05rem;margin:0 0 6px;color:var(--maroon-ink)}
+.hcard p{margin:0 0 var(--s3);font-size:.85rem;color:var(--ink-soft);flex:1}
+.hcard .go{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon-ink);font-weight:700}
+.hcard:active{transform:translateY(1px)}
+
+/* ---------- rules page ---------- */
+.pagehead{padding:var(--s5) 0 var(--s3)}
+.pagehead h1{font-family:var(--jp-disp);font-size:clamp(1.4rem,5.5vw,1.9rem);margin:0 0 8px;color:var(--maroon-ink)}
+.pagehead p{margin:0;color:var(--ink-soft);max-width:52ch}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 var(--s5)}
+.toc a{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;text-decoration:none;
+  padding:7px 13px;border-radius:999px;border:1px solid var(--rule);background:var(--card);color:var(--ink)}
+.toc a b{color:var(--gold-dp);font-variant-numeric:tabular-nums}
+.gsec{margin-bottom:var(--s5);scroll-margin-top:16px}
+.gsec h2{font-family:var(--jp-disp);font-size:1.12rem;color:var(--maroon-ink);margin:0 0 var(--s2);
+  display:flex;align-items:baseline;gap:10px;padding-bottom:8px;border-bottom:2px solid var(--gold)}
+.gsec h2 b{font-size:.8rem;color:var(--gold-dp);font-variant-numeric:tabular-nums}
+.gsec p{margin:0 0 .8em;max-width:62ch}
+.exbox{border-left:4px solid var(--gold);background:var(--card);border:1px solid var(--rule);
+  border-left-width:4px;border-radius:0 12px 12px 0;padding:12px var(--s3);margin-top:var(--s3)}
+.exlabel{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+  font-weight:700;margin-bottom:8px}
+.exrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:5px 0}
+.exrow + .exrow{border-top:1px dashed var(--rule)}
+.exk{font-family:var(--jp-disp);font-size:1.3rem;color:var(--maroon-ink);min-width:7em}
+.exr{font-size:.85rem;color:var(--gold-dp);font-weight:700;min-width:7em}
+.exg{font-size:.82rem;color:var(--ink-soft)}
+.lookwrap{display:grid;gap:var(--s3);margin-top:var(--s3)}
+@media (min-width:620px){.lookwrap{grid-template-columns:1fr 1fr}}
+.lookcol{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:12px var(--s3)}
+.lookcol h3{font-family:var(--jp-disp);font-size:.9rem;margin:0 0 8px;color:var(--maroon-ink);
+  padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.lookrow{display:flex;flex-wrap:wrap;align-items:center;gap:3px;padding:5px 0;font-family:var(--jp-disp)}
+.lookrow i{color:var(--rule);font-style:normal;font-size:.8rem}
+.lk{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;
+  border-radius:8px;background:var(--field);border:1px solid var(--rule);font-size:1.15rem}
+.gcta{margin:var(--s5) 0 0}
+.gcta .ghost{display:inline-block;text-decoration:none}
+
+/* ---------- printable chart ---------- */
+.csec{margin-bottom:var(--s4);break-inside:avoid}
+.csec h2{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+  font-weight:700;margin:0 0 8px;padding-bottom:5px;border-bottom:1px solid var(--rule)}
+.cgrid{display:grid;gap:5px;justify-content:start}
+.cgrid.c5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.cgrid.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ccell{border:1px solid var(--rule);border-radius:10px;background:var(--card);padding:7px 4px;
+  text-align:center;min-width:0}
+.ccell.hole{border:none;background:transparent}
+.ccell.rare{opacity:.45}
+.ckana{font-family:var(--jp-disp);font-size:1.5rem;line-height:1.15;color:var(--maroon-ink)}
+.ckana em{font-style:normal;font-size:1.05rem;color:var(--ink-soft);margin-left:5px}
+.crom{font-size:.7rem;color:var(--gold-dp);font-weight:700;letter-spacing:.04em}
+.csi{font-size:.78rem;color:var(--ink-soft);line-height:1.4}
+
+.printhint{font-size:.75rem;color:var(--ink-soft);align-self:center}
+.printonly{display:none}
+
+/* --------------------------------------------------------------------------
+   Print / save as PDF. Only the reference material prints: the chart, the kana
+   rules and the number rules. The practice is interactive and has no meaning
+   on paper, so it is left out entirely.
+   -------------------------------------------------------------------------- */
+@media print{
+  header,.mastery,.goal,.nav,.langs,.tools,footer,
+  .rowbtns,.printhint,.sheet,.setup,.nowbar,.modebar,
+  .numsec,#card,.score,.map,.hero,.cards,.toc,.gcta{display:none!important}
+  .printonly{display:block}
+  body{background:#fff;color:#000;font-size:10.5pt;line-height:1.6}
+  .wrap{max-width:none;padding:0}
+  .pagehead{padding:0 0 6mm}
+  .pagehead h1{color:#000;font-size:16pt;margin:0 0 2mm}
+  .pagehead p{color:#333;font-size:9.5pt;max-width:none}
+  .printfoot{position:running(foot)}
+  /* kana chart — a CSS grid will not split across printed pages in Chromium,
+     so for print the cells are laid out inline and the table flows normally */
+  .cgrid{display:block!important;font-size:0;margin:0 -1.5mm}
+  .ccell{display:inline-block;vertical-align:top;width:calc(20% - 3.2mm);
+    margin:0 1.5mm 3mm;font-size:10.5pt;border-color:#bbb;background:#fff;break-inside:avoid}
+  .cgrid.c3 .ccell{width:calc(33.33% - 3.2mm)}
+  .ccell.hole{visibility:hidden}
+  .ckana,.crom{color:#000}
+  .csi{color:#333}
+  .csec{margin-bottom:6mm;break-inside:auto}
+  .cgrid{break-inside:auto}
+  .csec h2{color:#000;border-color:#999;font-size:8pt}
+  /* rules pages */
+  .gsec{margin-bottom:7mm}
+  .gsec h2{color:#000;border-bottom:1.5pt solid #999;font-size:12pt;padding-bottom:2mm;
+    break-after:avoid}
+  .gsec h2 b{color:#666}
+  .gsec p{color:#000;max-width:none;margin:0 0 2mm}
+  .exbox{background:#fafafa;border:1pt solid #ccc;border-left:3pt solid #999;
+    break-inside:avoid;padding:3mm 4mm}
+  .exk,.exr{color:#000}
+  .exg{color:#444}
+  .lookwrap{display:block}
+  .lookcol{border:1pt solid #ccc;background:#fff;break-inside:avoid;margin-bottom:4mm}
+  .lookcol h3{color:#000}
+  .lk{border-color:#999;background:#fff}
+  .looktip{color:#333}
+  @page{margin:14mm 12mm}
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hbar">
+    <a class="mark" href="#" data-goto="index">かな<small>Takane-shiki Kana Study</small></a>
+    <nav class="nav">
+      <a href="#" data-goto="index" data-nav data-t="navHome" class="si-swap">Home</a>
+      <a href="#" data-goto="guide" data-nav data-t="navGuide" class="si-swap">Rules</a>
+      <a href="#" data-goto="chart" data-nav data-t="navChart" class="si-swap">Chart</a>
+      <a href="#" data-goto="numbers" data-nav data-t="navNumbers" class="si-swap">Numbers</a>
+      <a href="#" data-goto="drill" data-nav data-t="navDrill" class="si-swap">Practice</a>
+    </nav>
+    <div class="langs" id="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="si" class="si" aria-pressed="false">සිං</button>
+      <button type="button" data-lang="ja" aria-pressed="false">日本語</button>
+    </div>
+  </div>
+  <div class="mastery">
+    <div class="mbarwrap">
+      <div class="mrow">
+        <span id="mLabel" data-t="mastery" class="si-swap">Mastered</span>
+        <b id="mCount">0 / 102</b>
+        <span class="days" id="mDays"></span>
+      </div>
+      <div class="mbar"><i id="mFill" style="width:0"></i></div>
+    </div>
+    <div class="goal" id="goal"><span class="ring"></span><span class="txt"></span></div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="page" data-page="index">
+  <div class="hero">
+    <h1 data-t="homeLead" class="si-swap">Learn to read hiragana and katakana.</h1>
+    <p data-t="homeSub" class="si-swap"></p>
+  </div>
+
+  <div class="cards">
+    <a class="hcard" href="#" data-goto="guide">
+      <div class="n">1</div>
+      <h2 data-t="cGuideT" class="si-swap"></h2>
+      <p data-t="cGuideD" class="si-swap"></p>
+      <span class="go" data-t="goto"></span>
+    </a>
+    <a class="hcard" href="#" data-goto="drill">
+      <div class="n">2</div>
+      <h2 data-t="cDrillT" class="si-swap"></h2>
+      <p data-t="cDrillD" class="si-swap"></p>
+      <span class="go" data-t="goto"></span>
+    </a>
+    <a class="hcard" href="#" data-goto="chart">
+      <div class="n">3</div>
+      <h2 data-t="cChartT" class="si-swap"></h2>
+      <p data-t="cChartD" class="si-swap"></p>
+      <span class="go" data-t="goto"></span>
+    </a>
+    <a class="hcard" href="#" data-goto="numbers">
+      <div class="n">4</div>
+      <h2 data-t="cNumT" class="si-swap"></h2>
+      <p data-t="cNumD" class="si-swap"></p>
+      <span class="go" data-t="goto"></span>
+    </a>
+  </div>
+
+  </div>
+<div class="page" data-page="guide" hidden>
+  <p class="printonly printfoot" style="font-size:8pt;color:#666;margin:0 0 4mm;letter-spacing:.1em" data-t="printFoot"></p>
+  <div class="pagehead">
+    <h1 data-t="cGuideT" class="si-swap"></h1>
+    <p data-t="guideLead" class="si-swap"></p>
+    <p class="rowbtns"><button class="ghost" id="printBtn" data-t="pdfBtn"></button>
+      <span class="printhint" data-t="printHint"></span></p>
+  </div>
+  <div id="guideBody"></div>
+
+  </div>
+<div class="page" data-page="chart" hidden>
+  <p class="printonly printfoot" style="font-size:8pt;color:#666;margin:0 0 4mm;letter-spacing:.1em" data-t="printFoot"></p>
+  <div class="pagehead">
+    <h1 data-t="cChartT" class="si-swap"></h1>
+    <p data-t="chartLead" class="si-swap"></p>
+    <p class="rowbtns"><button class="ghost" id="printBtn" data-t="pdfBtn"></button>
+      <span class="printhint" data-t="printHint"></span></p>
+  </div>
+  <div id="chartBody"></div>
+
+  </div>
+<div class="page" data-page="numbers" hidden>
+  <p class="printonly printfoot" style="font-size:8pt;color:#666;margin:0 0 4mm;letter-spacing:.1em" data-t="printFoot"></p>
+  <div class="pagehead">
+    <h1 data-t="cNumT" class="si-swap"></h1>
+    <p data-t="numLead" class="si-swap"></p>
+    <p class="rowbtns"><button class="ghost" id="printBtn" data-t="pdfBtn"></button>
+      <span class="printhint" data-t="printHint"></span></p>
+  </div>
+
+  <div id="numGuide"></div>
+
+  <div class="numsec">
+    <h2 data-t="navDrill" class="si-swap"></h2>
+
+    <div class="nowbar">
+      <div class="grow">
+        <span class="lbl si-swap" data-t="nowPlaying"></span>
+        <div class="val" id="numNow"></div>
+      </div>
+      <button class="ghost alt" id="numSettings" data-t="change"></button>
+    </div>
+    <div class="modebar"><div class="lane" id="numModes"></div></div>
+
+    <div class="card" id="numCard"><p style="padding:20px 4px" data-t="loading">Loading…</p></div>
+
+    <div class="score">
+      <div><div class="n" id="nAsked">0</div><div class="l" data-t="sAsked">Answered</div></div>
+      <div><div class="n" id="nRate">-</div><div class="l" data-t="sRate">Correct</div></div>
+      <div><div class="n" id="nStreak">0</div><div class="l" data-t="sStreak">Streak</div></div>
+      <div><div class="n" id="nSpeed">-</div><div class="l" data-t="sSpeed">Avg sec</div></div>
+    </div>
+  </div>
+
+  </div>
+<div class="page" data-page="drill" hidden>
+  <div class="nowbar">
+    <div class="grow">
+      <span class="lbl si-swap" data-t="nowPlaying"></span>
+      <div class="val" id="nowVal"></div>
+    </div>
+    <button class="ghost alt" id="openSettings" data-t="change"></button>
+  </div>
+  <div class="modebar"><div class="lane" id="modeChips"></div></div>
+
+  <div class="card" id="card"><p style="padding:20px 4px" data-t="loading">Loading…</p></div>
+
+  <div class="score" id="scoreBox">
+    <div><div class="n" id="sAsked">0</div><div class="l" data-t="sAsked">Answered</div></div>
+    <div><div class="n" id="sRate">-</div><div class="l" data-t="sRate">Correct</div></div>
+    <div><div class="n" id="sStreak">0</div><div class="l" data-t="sStreak">Streak</div></div>
+    <div><div class="n" id="sSpeed">-</div><div class="l" data-t="sSpeed">Avg sec</div></div>
+  </div>
+
+  <div class="map">
+    <h2 id="mapH" data-t="mapTitle" class="si-swap">Your kana map</h2>
+    <p class="note si-swap" id="mapN" data-t="mapNote"></p>
+    <div id="mapBody"></div>
+  </div>
+
+  </div>
+  <footer>
+    <p id="f1" data-t="footKeys" class="si-swap"></p>
+    <p id="f2" data-t="footSinhala" class="si-swap"></p>
+  </footer>
+</div>
+
+<script>
+window.__i18nFallback={
+  en:"Could not load the site data. If you opened this file directly from disk, run a local server (python3 -m http.server) or use offline.html.",
+  ja:"サイトデータを よみこめませんでした。ファイルを ちょくせつ ひらいた ばあいは ローカルサーバー（python3 -m http.server）を つかうか、offline.html を ひらいて ください。",
+  si:"අඩවි දත්ත පූරණය කළ නොහැක. ගොනුව කෙලින්ම විවෘත කළා නම්, local server එකක් (python3 -m http.server) හෝ offline.html භාවිතා කරන්න."
+};
+</script>
+<script>window.KANA_DATA={"kana":{"sei":[["あ","ア","a","අ","a"],["い","イ","i","ඉ","a"],["う","ウ","u","උ","a"],["え","エ","e","එ","a"],["お","オ","o","ඔ","a"],["か","カ","ka","ක","ka"],["き","キ","ki","කි","ka"],["く","ク","ku","කු","ka"],["け","ケ","ke","කෙ","ka"],["こ","コ","ko","කො","ka"],["さ","サ","sa","ස","sa"],["し","シ","shi","ශි","sa"],["す","ス","su","සු","sa"],["せ","セ","se","සෙ","sa"],["そ","ソ","so","සො","sa"],["た","タ","ta","ත","ta"],["ち","チ","chi","චි","ta"],["つ","ツ","tsu","ට්සු","ta"],["て","テ","te","තෙ","ta"],["と","ト","to","තො","ta"],["な","ナ","na","න","na"],["に","ニ","ni","නි","na"],["ぬ","ヌ","nu","නු","na"],["ね","ネ","ne","නෙ","na"],["の","ノ","no","නො","na"],["は","ハ","ha","හ","ha"],["ひ","ヒ","hi","හි","ha"],["ふ","フ","fu","ෆු","ha"],["へ","ヘ","he","හෙ","ha"],["ほ","ホ","ho","හො","ha"],["ま","マ","ma","ම","ma"],["み","ミ","mi","මි","ma"],["む","ム","mu","මු","ma"],["め","メ","me","මෙ","ma"],["も","モ","mo","මො","ma"],["や","ヤ","ya","ය","ya"],["ゆ","ユ","yu","යු","ya"],["よ","ヨ","yo","යො","ya"],["ら","ラ","ra","ර","ra"],["り","リ","ri","රි","ra"],["る","ル","ru","රු","ra"],["れ","レ","re","රෙ","ra"],["ろ","ロ","ro","රො","ra"],["わ","ワ","wa","ව","wa"],["を","ヲ","wo","ඔ","wa"],["ん","ン","n","න්","wa"]],"daku":[["が","ガ","ga","ග","ga"],["ぎ","ギ","gi","ගි","ga"],["ぐ","グ","gu","ගු","ga"],["げ","ゲ","ge","ගෙ","ga"],["ご","ゴ","go","ගො","ga"],["ざ","ザ","za","ස","za"],["じ","ジ","ji","ජි","za"],["ず","ズ","zu","සු","za"],["ぜ","ゼ","ze","සෙ","za"],["ぞ","ゾ","zo","සො","za"],["だ","ダ","da","ද","da"],["ぢ","ヂ","ji","ජි","da",1],["づ","ヅ","zu","සු","da",1],["で","デ","de","දෙ","da"],["ど","ド","do","දො","da"],["ば","バ","ba","බ","ba"],["び","ビ","bi","බි","ba"],["ぶ","ブ","bu","බු","ba"],["べ","ベ","be","බෙ","ba"],["ぼ","ボ","bo","බො","ba"]],"han":[["ぱ","パ","pa","ප","pa"],["ぴ","ピ","pi","පි","pa"],["ぷ","プ","pu","පු","pa"],["ぺ","ペ","pe","පෙ","pa"],["ぽ","ポ","po","පො","pa"]],"you":[["きゃ","キャ","kya","ක්‍ය","kya"],["きゅ","キュ","kyu","ක්‍යු","kya"],["きょ","キョ","kyo","ක්‍යො","kya"],["しゃ","シャ","sha","ශ්‍ය","sha"],["しゅ","シュ","shu","ශ්‍යු","sha"],["しょ","ショ","sho","ශ්‍යො","sha"],["ちゃ","チャ","cha","ච්‍ය","cha"],["ちゅ","チュ","chu","ච්‍යු","cha"],["ちょ","チョ","cho","ච්‍යො","cha"],["にゃ","ニャ","nya","න්‍ය","nya"],["にゅ","ニュ","nyu","න්‍යු","nya"],["にょ","ニョ","nyo","න්‍යො","nya"],["ひゃ","ヒャ","hya","හ්‍ය","hya"],["ひゅ","ヒュ","hyu","හ්‍යු","hya"],["ひょ","ヒョ","hyo","හ්‍යො","hya"],["みゃ","ミャ","mya","ම්‍ය","mya"],["みゅ","ミュ","myu","ම්‍යු","mya"],["みょ","ミョ","myo","ම්‍යො","mya"],["りゃ","リャ","rya","ර්‍ය","rya"],["りゅ","リュ","ryu","ර්‍යු","rya"],["りょ","リョ","ryo","ර්‍යො","rya"],["ぎゃ","ギャ","gya","ග්‍ය","gya"],["ぎゅ","ギュ","gyu","ග්‍යු","gya"],["ぎょ","ギョ","gyo","ග්‍යො","gya"],["じゃ","ジャ","ja","ජ","ja"],["じゅ","ジュ","ju","ජු","ja"],["じょ","ジョ","jo","ජො","ja"],["びゃ","ビャ","bya","බ්‍ය","bya"],["びゅ","ビュ","byu","බ්‍යු","bya"],["びょ","ビョ","byo","බ්‍යො","bya"],["ぴゃ","ピャ","pya","ප්‍ය","pya"],["ぴゅ","ピュ","pyu","ප්‍යු","pya"],["ぴょ","ピョ","pyo","ප්‍යො","pya"]],"look_h":[["あ","お","む"],["い","り","こ"],["き","さ","ち","ら"],["け","は","ほ","ま","ば","ぱ"],["ぬ","め","ね","れ","わ"],["る","ろ","そ"],["す","む","ま"],["し","つ","へ"],["た","な","に"],["く","へ","て"],["ふ","え"],["ゆ","わ"],["よ","ま"],["せ","さ"],["も","し"],["ん","そ"],["を","わ"],["う","つ","ふ"],["こ","に","た"],["ま","も","す"],["ひ","へ","く"],["み","さ","き"],["や","か","が"],["と","て","ど"],["の","ぬ","め"]],"look_k":[["シ","ツ","ソ","ン","ジ","ズ"],["ク","ワ","ケ","タ","ヲ"],["コ","ユ","ヨ","ロ"],["ノ","メ","ヌ","ス","ム"],["ハ","ヘ"],["ア","マ","ム","ヤ"],["チ","テ","ナ","キ"],["サ","セ","ヤ"],["ラ","フ","ヲ"],["オ","ホ"],["レ","ル","ノ"],["ウ","ワ","ラ"],["ト","カ","エ"],["ニ","ミ"],["リ","ソ","ハ"],["イ","ト"],["ネ","ホ","オ"],["ヒ","レ"],["モ","ヨ","キ"]],"sound":[["tsu","su","chi","shi"],["shi","hi","chi"],["ji","chi"],["za","sa","ja"],["zu","su","tsu"],["fu","bu","pu"],["ra","da"],["re","de"],["n","nu","mu"],["ga","ka"],["ba","pa","ha"],["bi","pi","hi"],["do","to"],["ge","ke"],["zo","so"]],"alt":{"shi":["si"],"chi":["ti"],"tsu":["tu"],"fu":["hu"],"ji":["zi","di"],"zu":["du"],"wo":["o"],"n":["nn","n'"],"sha":["sya"],"shu":["syu"],"sho":["syo"],"cha":["tya","cya"],"chu":["tyu"],"cho":["tyo"],"ja":["zya","jya"],"ju":["zyu","jyu"],"jo":["zyo","jyo"]},"grid":[["あ","い","う","え","お"],["か","き","く","け","こ"],["さ","し","す","せ","そ"],["た","ち","つ","て","と"],["な","に","ぬ","ね","の"],["は","ひ","ふ","へ","ほ"],["ま","み","む","め","も"],["や","","ゆ","","よ"],["ら","り","る","れ","ろ"],["わ","","","","を"]],"heads":["あ","か","さ","た","な","は","ま","や","ら","わ"],"small":"ゃゅょャュョっッーぁぃぅぇぉァィゥェォ","conflict":{"を":["お"],"お":["を"]}},"words":{"spell":[{"w":"ふじさん","r":"FUJISAN","en":"Mt. Fuji","si":"ෆුජි කන්ද","note":{"en":"Japan's highest mountain, 3,776 m, on the border of Shizuoka and Yamanashi. A World Heritage site since 2013. The climbing season is only July to early September.","ja":"日本で いちばん たかい 山です。3,776メートル。しずおかけんと やまなしけんの あいだに あります。2013年に 世界遺産に なりました。のぼれるのは 7月から 9月はじめだけです。","si":"ජපානයේ උසම කන්ද — මීටර් 3,776. ෂිසුඕකා සහ යමනාෂි අතර. 2013 සිට ලෝක උරුමයක්. නැගීමට හැක්කේ ජූලි සිට සැප්තැම්බර් මුල දක්වා පමණයි."}},{"w":"とうきょう","r":"TOUKYOU","en":"Tokyo","si":"ටෝකියෝ","note":{"en":"The capital of Japan. English writes it Tokyo, but the kana needs both う: to-u-kyo-u, four beats. Writing ときょ is a common mistake.","ja":"日本の しゅとです。えいごでは Tokyo ですが、かなでは 「う」が 2つ 入ります。「と・う・きょ・う」で 4はく。「ときょ」は まちがいです。","si":"ජපානයේ අගනුවර. ඉංග්‍රීසියෙන් Tokyo ලෙස ලියුවත්, කනා වලට う දෙකම ඕනේ: to-u-kyo-u, බීට් හතරයි. ときょ ලෙස ලිවීම බහුල වැරැද්දක්."}},{"w":"さくら","r":"SAKURA","en":"cherry blossom","si":"සකුරා මල","note":{"en":"Cherry blossom. It blooms for about a week between late March and April. People sit under the trees for hanami — flower viewing.","ja":"さくらの 花です。3月の おわりから 4月に 1しゅうかんぐらい さきます。木の したで 「はなみ」を します。","si":"සකුරා මල. මාර්තු අගදී සිට අප්‍රේල් දක්වා සතියක් පමණ පිපෙනවා. මිනිස්සු ගස් යට වාඩිවෙලා 'හනාමි' කරනවා."}},{"w":"おんせん","r":"ONSEN","en":"hot spring","si":"උණු දිය උල්පත","note":{"en":"A natural hot spring bath. You wash your body fully before getting in, and you do not put your towel in the water. Some onsen still refuse guests with tattoos.","ja":"しぜんの おふろです。入る まえに からだを ぜんぶ あらいます。タオルは おゆに 入れません。いれずみが ある人は 入れない ところも あります。","si":"ස්වාභාවික උණු දිය නාන තැනක්. ඇතුළු වීමට පෙර සිරුර සම්පූර්ණයෙන් සෝදනවා. තුවාය වතුරට දමන්නේ නැහැ. පච්ච තියෙන අයට ඇතුළු වීම තහනම් තැන් තිබෙනවා."}},{"w":"しんかんせん","r":"SHINKANSEN","en":"bullet train","si":"අධිවේගී දුම්රිය","note":{"en":"The high-speed train. Tokyo to Osaka takes about two and a half hours. Reserved and non-reserved cars are separate, so check your ticket.","ja":"はやい でんしゃです。とうきょうから おおさかまで 2じかん半ぐらいです。していせきと じゆうせきが あるので きっぷを よく みてください。","si":"අධිවේගී දුම්රිය. ටෝකියෝ සිට ඕසාකා දක්වා පැය දෙකහමාරක් පමණ. වෙන් කළ සහ නොවෙන් කළ මැදිරි වෙන් වෙන් නිසා ටිකට් එක බලන්න."}},{"w":"コンビニ","r":"KONBINI","en":"convenience store","si":"පහසු වෙළඳසැල","note":{"en":"A 24-hour convenience store. You can pay bills, print documents, send parcels and withdraw cash there, not just buy food.","ja":"24じかん あいている みせです。ものを かうだけでなく、りょうきんの しはらい、いんさつ、たくはい、ATMも つかえます。","si":"පැය 24ම විවෘත වෙළඳසැලක්. කෑම ගන්නවා විතරක් නෙවෙයි - බිල් ගෙවීම, මුද්‍රණය, පාර්සල් යැවීම, ATM එකත් තියෙනවා."}},{"w":"ヘルメット","r":"HERUMETTO","en":"helmet","si":"හිස්වැසුම","note":{"en":"Helmet. On a Japanese construction or factory site it is required, not optional. Note the small ッ — the sound stops for one beat.","ja":"ヘルメットです。こうじげんばや こうじょうでは かならず かぶります。小さい「ッ」に ちゅういしてください。1はく とまります。","si":"හිස්වැසුම. ජපානයේ ඉදිකිරීම් හෝ කර්මාන්තශාලා බිමක එය අනිවාර්යයි. කුඩා ッ එකට සැලකිලිමත් වන්න - බීට් එකක් නවතිනවා."}},{"w":"あんぜん","r":"ANZEN","en":"safety","si":"ආරක්ෂාව","note":{"en":"Safety. You will hear it every day at work: 安全第一 (anzen dai-ichi) means safety first. Learn it before your first shift.","ja":"「あんぜん」です。しょくばで まいにち ききます。「安全第一（あんぜんだいいち）」＝ safety first。はたらく まえに おぼえましょう。","si":"ආරක්ෂාව. රැකියා ස්ථානයේ දිනපතා අහන්න ලැබෙනවා. 安全第一 (anzen dai-ichi) = ආරක්ෂාව පළමුව. වැඩට යන්න කලින් මතක තියාගන්න."}},{"w":"きゅうけい","r":"KYUUKEI","en":"break / rest","si":"විවේකය","note":{"en":"A work break. Ask 休憩してもいいですか (kyuukei shite mo ii desu ka). きゅ is one beat and きゅう is two — four beats in total: kyu-u-ke-i.","ja":"やすみ じかんです。「きゅうけい しても いいですか」と ききます。「きゅ」は 1はく、「きゅう」は 2はくです。","si":"වැඩ විවේකය. 休憩してもいいですか කියලා අහන්න පුළුවන්. きゅ එක බීට් එකයි; きゅう බීට් දෙකයි."}},{"w":"ざんぎょう","r":"ZANGYOU","en":"overtime","si":"අතිකාල","note":{"en":"Overtime work. By law it must be paid at a higher rate. If you are asked to do it often without extra pay, that is a problem worth raising.","ja":"じかんがいの しごとです。ほうりつで わりましの きゅうりょうが ひつようです。はらわれない ばあいは そうだんして ください。","si":"අතිකාල වැඩ. නීතියෙන් වැඩි ගෙවීමක් ලැබිය යුතුයි. නොගෙවා නිතර කරන්න කියනවා නම්, ඒක කතා කළ යුතු කරුණක්."}},{"w":"せんぱい","r":"SENPAI","en":"senior colleague","si":"ජ්‍යෙෂ්ඨ සගයා","note":{"en":"Someone who joined before you. In a Japanese workplace the senpai teaches you the job, so asking them questions early is expected, not rude.","ja":"じぶんより さきに 入った 人です。しごとを おしえて くれます。はやく しつもん するのは しつれいでは ありません。","si":"ඔබට කලින් ආපු කෙනා. ජපන් රැකියා ස්ථානයක සෙන්පායි වැඩ උගන්වනවා. ඉක්මනින් ප්‍රශ්න ඇහීම අගෞරවයක් නෙවෙයි."}},{"w":"すみません","r":"SUMIMASEN","en":"excuse me / sorry / thank you","si":"සමාවෙන්න","note":{"en":"The most useful word in Japan. It works as sorry, excuse me, and thank you depending on the situation. When unsure, this is a safe choice.","ja":"日本で いちばん つかう ことばです。あやまる とき、よびかける とき、おれいを いう ときに つかえます。","si":"ජපානයේ වැඩිම ප්‍රයෝජනවත් වචනය. සමාව, 'මට අහන්න පුළුවන්ද', ස්තූතියි - තුනටම වැඩ කරනවා."}},{"w":"おつかれさま","r":"OTSUKARESAMA","en":"thanks for your work","si":"මහන්සි වුණාට ස්තූතියි","note":{"en":"Said when someone finishes work or leaves for the day. There is no English equivalent — treat it as the standard goodbye at work.","ja":"しごとが おわった 人に いいます。えいごに ぴったりの ことばは ありません。しょくばの 「さようなら」だと おもって ください。","si":"වැඩ ඉවර වුණාම හෝ යනකොට කියනවා. ඉංග්‍රීසියේ හරියටම වචනයක් නැහැ. රැකියා ස්ථානයේ 'ගිහින් එන්නම්' කියලා හිතන්න."}},{"w":"べんとう","r":"BENTOU","en":"boxed lunch","si":"දිවා ආහාර පෙට්ටිය","note":{"en":"A packed lunch box. Convenience stores and station shops sell them, and many workplaces have a microwave to heat them.","ja":"おべんとうです。コンビニや えきで かえます。しょくばに でんしレンジが ある ところも おおいです。","si":"දිවා ආහාර පෙට්ටිය. පහසු වෙළඳසැල් සහ දුම්රියපොළවල විකුණනවා. බොහෝ රැකියා ස්ථානවල රත් කරන්න මයික්‍රෝවේව් තියෙනවා."}},{"w":"スリランカ","r":"SURIRANKA","en":"Sri Lanka","si":"ශ්‍රී ලංකාව","note":{"en":"Your own country, written in katakana. Country names always use katakana, so this is a good first katakana word to master.","ja":"あなたの くにです。くにの なまえは カタカナで かきます。さいしょに おぼえると べんりです。","si":"ඔබේ රට, කටකනා වලින්. රටවල නම් හැම විටම කටකනා වලින් ලියනවා. පළමුව මතක තියාගන්න හොඳ වචනයක්."}},{"w":"コロンボ","r":"KORONBO","en":"Colombo","si":"කොළඹ","note":{"en":"Colombo in katakana. The l becomes ロ — Japanese has no l, so every l turns into the ら-row. The mb becomes ンボ.","ja":"コロンボです。「l」は「ロ」に なります。日本語に「l」の おとが ないので、ぜんぶ ら行に なります。「mb」は「ンボ」です。","si":"කොළඹ, කටකනා වලින්. l ශබ්දය ロ බවට - ජපන් භාෂාවේ l නැති නිසා හැම l එකක්ම ら පේළියට යනවා. mb ශබ්දය ンボ බවට."}},{"w":"こうじょう","r":"KOUJOU","en":"factory","si":"කර්මාන්තශාලාව","note":{"en":"Factory. Many specified-skilled-worker jobs are in one. Both halves end in a long o written with う: ko-u, jo-u.","ja":"こうじょうです。とくていぎのうの しごとが おおい ばしょです。「こう」も「じょう」も ながい おとです。","si":"කර්මාන්තශාලාව. විශේෂිත නිපුණතා රැකියා බොහොමයක් තියෙන්නේ එහෙයි. ශබ්ද දෙකම දිගුයි: ko-u-jo-u."}},{"w":"でんしゃ","r":"DENSHA","en":"train","si":"දුම්රිය","note":{"en":"Train. しゃ is one beat, not two — でんしゃ has three beats: de-n-sha. Getting this wrong is a common listening mistake.","ja":"でんしゃです。「しゃ」は 1はくです。「で・ん・しゃ」で 3はく。ここを まちがえる人が おおいです。","si":"දුම්රිය. しゃ බීට් එකයි, දෙකක් නෙවෙයි. でんしゃ බීට් තුනයි: de-n-sha. ශ්‍රවණයේදී බහුලව වැරදෙන තැනක්."}},{"w":"びょういん","r":"BYOUIN","en":"hospital","si":"රෝහල","note":{"en":"Hospital. Careful: びよういん with a big よ means hair salon. The small ょ changes the meaning completely.","ja":"びょういんです。大きい「よ」の 「びよういん」は hair salon です。小さい「ょ」で いみが かわります。","si":"රෝහල. පරෙස්සම් - ලොකු よ එක්ක びよういん කියන්නේ කොණ්ඩා සැලූන් එකට. කුඩා ょ අර්ථය සම්පූර්ණයෙන් වෙනස් කරනවා."}},{"w":"きっぷ","r":"KIPPU","en":"ticket","si":"ටිකට් එක","note":{"en":"Ticket. The small っ makes you stop for one beat before p. Say ki-(stop)-pu, not kipu.","ja":"きっぷです。小さい「っ」で 1はく とまります。「き・っ・ぷ」で 3はくです。","si":"ටිකට් එක. කුඩා っ නිසා p කලින් බීට් එකක් නවතිනවා. ki-(නවතී)-pu, kipu නෙවෙයි."}},{"w":"みず","r":"MIZU","en":"water","si":"වතුර","note":{"en":"Water. In a Japanese restaurant water is free and served automatically, often with ice even in winter.","ja":"みずです。日本の レストランでは むりょうです。ふゆでも こおりが 入って います。","si":"වතුර. ජපන් අවන්හලක වතුර නොමිලේ, ඉබේම ගෙනත් දෙනවා - සීතලේ වුණත් අයිස් එක්ක."}},{"w":"ゴミ","r":"GOMI","en":"rubbish","si":"කසළ","note":{"en":"Rubbish. Japan separates it strictly — burnable, plastic, cans, bottles — and each type has its own collection day. Getting it wrong annoys neighbours fast.","ja":"ゴミです。日本では もえるゴミ、プラスチック、かん、びんに わけます。出す 日も きまって います。","si":"කසළ. ජපානයේ දැඩි ලෙස වර්ග කරනවා - දැවෙන, ප්ලාස්ටික්, ටින්, බෝතල් - එකිනෙකට එකතු කරන දවසත් වෙනස්."}},{"w":"やすみ","r":"YASUMI","en":"day off / holiday","si":"නිවාඩුව","note":{"en":"A day off. To ask for one: 休みをとってもいいですか. Ask early — in Japan sudden requests are harder to grant.","ja":"やすみです。「やすみを とっても いいですか」と ききます。はやめに いうと いいです。","si":"නිවාඩුව. 休みをとってもいいですか කියලා අහන්න. කලින්ම කියන්න - හදිසි ඉල්ලීම් ජපානයේ අපහසුයි."}},{"w":"ありがとう","r":"ARIGATOU","en":"thank you","si":"ස්තූතියි","note":{"en":"Thank you. The polite form adds ございます. Note the long vowel at the end: to-u, not just to.","ja":"ありがとうです。ていねいには 「ありがとう ございます」。さいごは ながい おと「とう」です。","si":"ස්තූතියි. ආචාරශීලී ආකාරය ございます එකතු කරනවා. අගට දිගු ස්වරය: to-u, to විතරක් නෙවෙයි."}}],"quick":[{"w":"いぬ","r":"inu","en":"dog","si":"බල්ලා"},{"w":"ねこ","r":"neko","en":"cat","si":"පූසා"},{"w":"さかな","r":"sakana","en":"fish","si":"මාළු"},{"w":"みず","r":"mizu","en":"water","si":"වතුර"},{"w":"ほん","r":"hon","en":"book","si":"පොත"},{"w":"やま","r":"yama","en":"mountain","si":"කන්ද"},{"w":"かわ","r":"kawa","en":"river","si":"ගඟ"},{"w":"うみ","r":"umi","en":"sea","si":"මුහුද"},{"w":"そら","r":"sora","en":"sky","si":"අහස"},{"w":"はな","r":"hana","en":"flower","si":"මල"},{"w":"くるま","r":"kuruma","en":"car","si":"කාර් එක"},{"w":"ともだち","r":"tomodachi","en":"friend","si":"යාළුවා"},{"w":"かぞく","r":"kazoku","en":"family","si":"පවුල"},{"w":"あさ","r":"asa","en":"morning","si":"උදේ"},{"w":"よる","r":"yoru","en":"night","si":"රාත්‍රිය"},{"w":"たべる","r":"taberu","en":"to eat","si":"කනවා"},{"w":"のむ","r":"nomu","en":"to drink","si":"බොනවා"},{"w":"みる","r":"miru","en":"to see","si":"බලනවා"},{"w":"きく","r":"kiku","en":"to listen","si":"අහනවා"},{"w":"ちいさい","r":"chiisai","en":"small","si":"පොඩි"},{"w":"しごと","r":"shigoto","en":"work","si":"වැඩ"},{"w":"てがみ","r":"tegami","en":"letter","si":"ලිපිය"},{"w":"くすり","r":"kusuri","en":"medicine","si":"බෙහෙත"},{"w":"たまご","r":"tamago","en":"egg","si":"බිත්තරය"},{"w":"パン","r":"pan","en":"bread","si":"පාන්"},{"w":"テレビ","r":"terebi","en":"TV","si":"රූපවාහිනිය"},{"w":"ラジオ","r":"rajio","en":"radio","si":"රේඩියෝ"},{"w":"バス","r":"basu","en":"bus","si":"බස් එක"},{"w":"ホテル","r":"hoteru","en":"hotel","si":"හෝටලය"},{"w":"カメラ","r":"kamera","en":"camera","si":"කැමරාව"},{"w":"ペン","r":"pen","en":"pen","si":"පෑන"},{"w":"ドア","r":"doa","en":"door","si":"දොර"},{"w":"シャツ","r":"shatsu","en":"shirt","si":"කමිසය"},{"w":"ズボン","r":"zubon","en":"trousers","si":"කලිසම"},{"w":"カレー","r":"karee","en":"curry","si":"කරි"},{"w":"ミルク","r":"miruku","en":"milk","si":"කිරි"}],"special":[{"w":"がっこう","r":"gakkou","en":"school","si":"පාසල","kind":"t","bad":["がこう","がっこ","がこお"]},{"w":"きって","r":"kitte","en":"stamp","si":"මුද්දරය","kind":"t","bad":["きて","きっつて","きてて"]},{"w":"ざっし","r":"zasshi","en":"magazine","si":"සඟරාව","kind":"t","bad":["ざし","ざっしい","ざつし"]},{"w":"いっしょ","r":"issho","en":"together","si":"එකට","kind":"t","bad":["いしょ","いっしょう","いつしょ"]},{"w":"きっぷ","r":"kippu","en":"ticket","si":"ටිකට් එක","kind":"t","bad":["きぷ","きっぷう","きつぷ"]},{"w":"さっき","r":"sakki","en":"a moment ago","si":"ටික වෙලාවකට කලින්","kind":"t","bad":["さき","さっきい","さつき"]},{"w":"にっき","r":"nikki","en":"diary","si":"දිනපොත","kind":"t","bad":["にき","につき","にっきい"]},{"w":"しゅっしん","r":"shusshin","en":"hometown","si":"උපන් ගම","kind":"t","bad":["しゅしん","しゅっしいん","しゆっしん"]},{"w":"コーヒー","r":"koohii","en":"coffee","si":"කෝපි","kind":"c","bad":["コヒー","コーヒ","コオヒイ"]},{"w":"タクシー","r":"takushii","en":"taxi","si":"ටැක්සි","kind":"c","bad":["タクシ","タークシー","タクシイ"]},{"w":"ノート","r":"nooto","en":"notebook","si":"නෝට්බුක්","kind":"c","bad":["ノト","ノオト","ノートー"]},{"w":"スプーン","r":"supuun","en":"spoon","si":"හැන්ද","kind":"c","bad":["スプン","スープン","スプウン"]},{"w":"テーブル","r":"teeburu","en":"table","si":"මේසය","kind":"c","bad":["テブル","テエブル","テーブール"]},{"w":"サッカー","r":"sakkaa","en":"football","si":"පාපන්දු","kind":"c","bad":["サカー","サッカ","サッカア"]},{"w":"おおきい","r":"ookii","en":"big","si":"ලොකු","kind":"c","bad":["おきい","おおき","おうきい"]},{"w":"せんせい","r":"sensei","en":"teacher","si":"ගුරුවරයා","kind":"c","bad":["せんせ","せせい","せんせえ"]},{"w":"でんわ","r":"denwa","en":"telephone","si":"දුරකථනය","kind":"n","bad":["でわ","でんんわ","でぬわ"]},{"w":"しんぶん","r":"shinbun","en":"newspaper","si":"පත්තරය","kind":"n","bad":["しぶん","しんぶ","しんふん"]},{"w":"げんき","r":"genki","en":"well / healthy","si":"සනීපෙන්","kind":"n","bad":["げき","げんぎ","げんきい"]},{"w":"かんじ","r":"kanji","en":"kanji","si":"කන්ජි","kind":"n","bad":["かじ","かんち","かんじい"]},{"w":"あんぜん","r":"anzen","en":"safety","si":"ආරක්ෂාව","kind":"n","bad":["あぜん","あんせん","あんぜ"]},{"w":"うんてん","r":"unten","en":"driving","si":"රිය පැදවීම","kind":"n","bad":["うてん","うんて","うんでん"]},{"w":"ばんごう","r":"bangou","en":"number","si":"අංකය","kind":"n","bad":["ばごう","ばんご","ばんごお"]}]},"guide":{"sections":[{"id":"two-scripts","title":{"en":"Two kana, one sound system","si":"කනා දෙකක්, ශබ්ද පද්ධතියක්","ja":"ひらがなと カタカナ"},"body":{"en":["Hiragana and katakana are two ways of writing exactly the same sounds. あ and ア are both a. There is no difference in pronunciation at all — only in when each is used.","Hiragana is the default: ordinary Japanese words, and the small grammar pieces between them.","Katakana is for words that came from another language, country and place names, and sounds. Your own name and country will be written in katakana in Japan, so katakana is not something to leave for later."],"si":["හිරගනා සහ කටකනා යනු එකම ශබ්ද ලියන ක්‍රම දෙකක්. あ සහ ア දෙකම a. උච්චාරණයේ කිසිම වෙනසක් නැහැ — වෙනස තියෙන්නේ කවදා පාවිච්චි කරනවාද කියන එකේ පමණයි.","හිරගනා තමයි සාමාන්‍ය ක්‍රමය: සාමාන්‍ය ජපන් වචන සහ ඒවා අතර එන කුඩා ව්‍යාකරණ කොටස්.","කටකනා පාවිච්චි කරන්නේ වෙනත් භාෂාවකින් ආපු වචන, රටවල් සහ ස්ථානවල නම්, සහ ශබ්ද වලට. ඔබේ නමයි රටයි ජපානයේදී ලියන්නේ කටකනා වලින්, ඒ නිසා කටකනා පස්සට දාන්න එපා."],"ja":["ひらがなと カタカナは、おなじ おとを かく 2つの ほうほうです。「あ」も「ア」も a です。はつおんは まったく おなじで、つかう ばめんだけが ちがいます。","ひらがなが きほんです。ふつうの 日本語の ことばと、あいだに 入る みじかい ぶぶんに つかいます。","カタカナは、がいこくから きた ことば、くにや ばしょの なまえ、おとに つかいます。あなたの なまえも くにの なまえも 日本では カタカナで かかれます。あとまわしに できません。"]},"examples":[{"kana":"みず","romaji":"mizu","gloss":"water — an ordinary word"},{"kana":"パン","romaji":"pan","gloss":"bread — came from Portuguese"},{"kana":"スリランカ","romaji":"SURIRANKA","gloss":"Sri Lanka — a country name"}]},{"id":"beats","title":{"en":"One kana, one beat","si":"එක කනා අකුරක් = එක බීට් එකක්","ja":"1つの かな＝1はく"},"body":{"en":["Japanese is counted in beats, not syllables. Each full-size kana is exactly one beat, and every beat takes the same length of time.","This is the single most useful idea on this page. If you keep the beats even, you will be understood even when your pronunciation is not perfect. If you rush some and stretch others, you will not.","Try clapping once per kana as you read. にほん is three claps: に・ほ・ん."],"si":["ජපන් භාෂාව ගණන් කරන්නේ අක්ෂර වලින් නෙවෙයි, බීට් වලින්. සම්පූර්ණ ප්‍රමාණයේ එක කනා අකුරක් හරියටම බීට් එකයි, හැම බීට් එකක්ම එකම කාලයක් ගන්නවා.","මේ පිටුවේ වැදගත්ම අදහස මෙයයි. බීට් සමානව තියාගත්තොත්, උච්චාරණය පරිපූර්ණ නැතත් ඔබව තේරුම් ගන්නවා. සමහර ඒවා ඉක්මන් කරලා අනිත් ඒවා දිග ඇරියොත් තේරෙන්නේ නැහැ.","කියවනකොට එක කනා අකුරකට එක අත්පොළසනක් ගහන්න. にほん කියන්නේ අත්පොළසන් තුනයි: に・ほ・ん."],"ja":["日本語は はくで かぞえます。大きい かな 1つが ちょうど 1はくで、どの はくも おなじ ながさです。","このページで いちばん だいじな かんがえかたです。はくを そろえれば、はつおんが かんぺきでなくても つうじます。はやくしたり のばしたり すると つうじません。","よみながら かな 1つに 1かい てを たたいて みてください。「にほん」は 3かいです。に・ほ・ん。"]},"examples":[{"kana":"に・ほ・ん","romaji":"nihon","gloss":"3 beats"},{"kana":"た・ま・ご","romaji":"tamago","gloss":"3 beats"},{"kana":"と・う・きょ・う","romaji":"toukyou","gloss":"4 beats — きょ is one"}]},{"id":"dakuten","title":{"en":"The two marks: ゛and ゜","si":"සලකුණු දෙක: ゛සහ ゜","ja":"だくおん・はんだくおん"},"body":{"en":["Two small marks in the top right corner change the consonant. Nothing else about the kana changes.","The two-stroke mark ゛turns k→g, s→z, t→d, h→b. The circle ゜only goes on the は row and turns h→p.","So は ば ぱ are the same shape three times over. Reading them apart quickly is a matter of practice, not of learning new characters."],"si":["දකුණු ඉහළ කොනේ කුඩා සලකුණු දෙකක් ව්‍යඤ්ජනය වෙනස් කරනවා. කනා අකුරේ අනිත් කිසිවක් වෙනස් වෙන්නේ නැහැ.","ඉරි දෙකේ සලකුණ ゛මගින් k→g, s→z, t→d, h→b බවට පත් වෙනවා. රවුම ゜යන්නේ は පේළියට විතරයි, h→p බවට හරවනවා.","එහෙනම් は ば ぱ කියන්නේ එකම හැඩය තුන් වතාවක්. ඒවා ඉක්මනින් වෙන් කරගන්න පුරුද්ද ඕනේ, අලුත් අකුරු ඉගෙන ගන්න ඕනේ නැහැ."],"ja":["右うえの 小さい しるしで、しいんが かわります。かなの ほかの ぶぶんは かわりません。","「゛」は k→g、s→z、t→d、h→b に します。「゜」は は行だけに つき、h→p に します。","「は」「ば」「ぱ」は おなじ かたちが 3かい でてくる ということです。あたらしい 字を おぼえるのでは なく、みわける れんしゅうです。"]},"examples":[{"kana":"か → が","romaji":"ka → ga","gloss":""},{"kana":"し → じ","romaji":"shi → ji","gloss":""},{"kana":"は → ば → ぱ","romaji":"ha → ba → pa","gloss":"only は-row takes ゜"}]},{"id":"youon","title":{"en":"Small ゃ ゅ ょ — still one beat","si":"කුඩා ゃ ゅ ょ — තවමත් බීට් එකයි","ja":"ようおん（小さい ゃ ゅ ょ）"},"body":{"en":["A small ゃ ゅ ょ attaches to the i-column kana before it, and the two together make a single beat.","Size is the whole difference, and it changes the word. びょういん (byouin) is a hospital. びよういん (biyouin), with a full-size よ, is a hair salon.","When you write by hand, make the small kana clearly smaller — about half height."],"si":["කුඩා ゃ ゅ ょ එකක් ඊට කලින් එන i තීරුවේ කනා අකුරට එකතු වෙනවා, දෙකම එකට බීට් එකක් හදනවා.","ප්‍රමාණය තමයි මුළු වෙනස, ඒක වචනයේ අර්ථය වෙනස් කරනවා. びょういん (byouin) කියන්නේ රෝහල. ලොකු よ එක්ක びよういん (biyouin) කියන්නේ කොණ්ඩා සැලූන් එකට.","අතින් ලියනකොට කුඩා අකුර පැහැදිලිවම කුඩාවට ලියන්න — උසෙන් බාගයක් පමණ."],"ja":["小さい「ゃ ゅ ょ」は、まえの い だんの かなに くっついて、2つで 1はくに なります。","ちがいは 大きさ だけですが、いみが かわります。「びょういん」は hospital、大きい「よ」の「びよういん」は hair salon です。","てで かく ときは、小さい かなを はっきり 小さく（たかさ 半分ぐらい）かいて ください。"]},"examples":[{"kana":"きゃ","romaji":"kya","gloss":"1 beat"},{"kana":"びょういん","romaji":"byouin","gloss":"hospital — 4 beats"},{"kana":"びよういん","romaji":"biyouin","gloss":"hair salon — 5 beats"}]},{"id":"sokuon","title":{"en":"Small っ — a beat of silence","si":"කුඩා っ — නිශ්ශබ්ද බීට් එකක්","ja":"そくおん（小さい っ）"},"body":{"en":["A small っ is a beat where you say nothing. You stop, hold the stop for the length of one beat, then release into the next sound.","In romaji it appears as a doubled consonant: きっぷ is kippu. But do not think of it as two p sounds — think of it as a pause.","Dropping it changes the word, and it is the mistake most learners keep making longest. きて (kite) is come. きって (kitte) is a stamp."],"si":["කුඩා っ කියන්නේ ඔබ කිසිවක් නොකියන බීට් එකක්. නවතිනවා, බීට් එකක කාලයට නැවතීම තියාගන්නවා, ඊට පස්සේ ඊළඟ ශබ්දයට යනවා.","රෝමජි වල එය දෙගුණ වූ ව්‍යඤ්ජනයක් ලෙස පෙනෙනවා: きっぷ කියන්නේ kippu. ඒත් p ශබ්ද දෙකක් කියලා හිතන්න එපා — නැවතීමක් කියලා හිතන්න.","එය අත්හැරියොත් වචනය වෙනස් වෙනවා, ඒක බොහෝ ශිෂ්‍යයන් වැඩිම කාලයක් කරන වැරැද්ද. きて (kite) කියන්නේ එන්න. きって (kitte) කියන්නේ මුද්දරය."],"ja":["小さい「っ」は、なにも いわない 1はくです。とめて、1はくぶん とめたまま にして、つぎの おとに いきます。","ローマ字では しいんが 2つに なります。「きっぷ」＝kippu。でも p が 2つ あるのでは なく、「まが ある」と かんがえて ください。","ぬかすと いみが かわります。がくしゅうしゃが いちばん ながく まちがえる ところです。「きて」＝come、「きって」＝stamp。"]},"examples":[{"kana":"き・っ・て","romaji":"kitte","gloss":"stamp — 3 beats"},{"kana":"き・て","romaji":"kite","gloss":"come — 2 beats"},{"kana":"が・っ・こ・う","romaji":"gakkou","gloss":"school — 4 beats"}]},{"id":"chouon","title":{"en":"Long vowels — and why katakana uses ー","si":"දිගු ස්වර — කටකනා ー භාවිතා කරන්නේ ඇයි","ja":"ちょうおん（ながい おと）"},"body":{"en":["A long vowel is two beats of the same vowel, not one loud one. Hold it.","Katakana writes it with a bar: コーヒー. Hiragana writes it with a vowel kana instead: おおきい, せんせい, とうきょう. Katakana never uses おお or えい for this, and hiragana never uses ー.","This is purely a spelling rule, so it is worth learning as a rule rather than by ear — the sound gives you no clue about which to write."],"si":["දිගු ස්වරයක් කියන්නේ එකම ස්වරයේ බීට් දෙකක්, එක ශබ්ද නඟන එකක් නෙවෙයි. දිග අදින්න.","කටකනා එය ලියන්නේ ඉරකින්: コーヒー. හිරගනා ඒ වෙනුවට ස්වර අකුරක් යොදනවා: おおきい, せんせい, とうきょう. කටකනා මේකට おお හෝ えい කවදාවත් යොදන්නේ නැහැ, හිරගනා ー කවදාවත් යොදන්නේ නැහැ.","මේක සම්පූර්ණයෙන්ම ලිවීමේ නීතියක්, ඒ නිසා කනට අහගෙන නෙවෙයි නීතියක් විදිහට ඉගෙන ගන්න — ශබ්දයෙන් කුමක් ලියන්නද කියලා දැනගන්න බැහැ."],"ja":["ながい おとは、おなじ ぼいんの 2はくです。大きく いうのでは なく、のばします。","カタカナは ぼうで かきます（コーヒー）。ひらがなは ぼいんの かなで かきます（おおきい・せんせい・とうきょう）。カタカナで「おお」「えい」は つかわず、ひらがなで「ー」は つかいません。","これは かきかたの ルールです。おとでは どちらか わからないので、ルールとして おぼえて ください。"]},"examples":[{"kana":"コーヒー","romaji":"koohii","gloss":"katakana → ー"},{"kana":"おおきい","romaji":"ookii","gloss":"hiragana → おお"},{"kana":"せんせい","romaji":"sensei","gloss":"hiragana → えい"}]},{"id":"romaji","title":{"en":"Why you see shi and si","si":"shi සහ si දෙකම පෙනෙන්නේ ඇයි","ja":"ローマ字が 2しゅるい ある りゆう"},"body":{"en":["There are two romaji systems in use. Hepburn writes shi, chi, tsu, fu, ji. Kunrei writes si, ti, tu, hu, zi. They describe the same kana.","Signs, stations and passports use Hepburn, so that is the one to read fluently. Japanese keyboards accept both, so type whichever is faster for you.","This drill accepts both spellings in the typing questions."],"si":["රෝමජි ක්‍රම දෙකක් භාවිතයේ තියෙනවා. හෙප්බර්න් ලියන්නේ shi, chi, tsu, fu, ji. කුන්රේ ලියන්නේ si, ti, tu, hu, zi. දෙකම විස්තර කරන්නේ එකම කනා අකුරු.","සලකුණු, දුම්රියපොළවල් සහ විදේශ ගමන් බලපත්‍ර භාවිතා කරන්නේ හෙප්බර්න්, ඒ නිසා නිතැතින් කියවන්න ඕනේ ඒක. ජපන් යතුරුපුවරු දෙකම පිළිගන්නවා, ඒ නිසා ඔබට ඉක්මන් එක ලියන්න.","මේ ඩ්‍රිල් එකේ ලිවීමේ ප්‍රශ්න වලදී දෙකම පිළිගන්නවා."],"ja":["ローマ字には 2つの しきが あります。ヘボンしきは shi・chi・tsu・fu・ji、くんれいしきは si・ti・tu・hu・zi。おなじ かなを あらわして います。","かんばん・えき・パスポートは ヘボンしきです。すらすら よめるように するのは こちらです。日本語の キーボードは どちらでも 入力できます。","この ドリルの 入力もんだいは、どちらでも せいかいに なります。"]},"examples":[{"kana":"し","romaji":"shi / si","gloss":""},{"kana":"つ","romaji":"tsu / tu","gloss":""},{"kana":"ふ","romaji":"fu / hu","gloss":""}]}]},"numbers":{"ones":["ゼロ","いち","に","さん","よん","ご","ろく","なな","はち","きゅう"],"onesAlt":{"0":"れい","4":"し","7":"しち","9":"く"},"tensPrefix":["","","に","さん","よん","ご","ろく","なな","はち","きゅう"],"hundreds":["","ひゃく","にひゃく","さんびゃく","よんひゃく","ごひゃく","ろっぴゃく","ななひゃく","はっぴゃく","きゅうひゃく"],"thousands":["","せん","にせん","さんぜん","よんせん","ごせん","ろくせん","ななせん","はっせん","きゅうせん"],"man":"まん","counters":{"tsu":{"jp":"〜つ","en":"things (general)","si":"දේවල් (සාමාන්‍ය)","max":10,"suffix":"つ","whole":{"1":"ひとつ","2":"ふたつ","3":"みっつ","4":"よっつ","5":"いつつ","6":"むっつ","7":"ななつ","8":"やっつ","9":"ここのつ","10":"とお"},"ja":"ものを かぞえる ことば"},"nin":{"jp":"〜人","en":"people","si":"මිනිසුන්","max":99,"suffix":"にん","whole":{"1":"ひとり","2":"ふたり"},"last":{"4":"よにん","7":"しちにん"},"ten":"じゅうにん","ja":"ひと"},"ko":{"jp":"〜個","en":"small objects","si":"කුඩා දේවල්","max":99,"suffix":"こ","last":{"1":"いっこ","6":"ろっこ","8":"はっこ"},"ten":"じゅっこ","ja":"小さい もの"},"hon":{"jp":"〜本","en":"long thin things","si":"දිග සිහින් දේවල්","max":99,"suffix":"ほん","last":{"1":"いっぽん","3":"さんぼん","6":"ろっぽん","8":"はっぽん"},"ten":"じゅっぽん","ja":"ながくて ほそい もの"},"mai":{"jp":"〜枚","en":"flat things","si":"පැතලි දේවල්","max":99,"suffix":"まい","ja":"うすくて たいらな もの"},"sai":{"jp":"〜歳","en":"years old","si":"වයස","max":99,"suffix":"さい","whole":{"20":"はたち"},"last":{"1":"いっさい","8":"はっさい"},"ten":"じゅっさい","ja":"とし"},"en":{"jp":"〜円","en":"yen","si":"යෙන්","max":99999,"suffix":"えん","last":{"4":"よえん"},"ja":"おかね"},"nichi":{"jp":"〜日","en":"days of the month","si":"මාසයේ දින","max":31,"suffix":"にち","whole":{"1":"ついたち","2":"ふつか","3":"みっか","4":"よっか","5":"いつか","6":"むいか","7":"なのか","8":"ようか","9":"ここのか","10":"とおか","14":"じゅうよっか","20":"はつか","24":"にじゅうよっか","17":"じゅうしちにち","19":"じゅうくにち","27":"にじゅうしちにち","29":"にじゅうくにち"},"ja":"月の 日"}},"hours":{"1":"いちじ","2":"にじ","3":"さんじ","4":"よじ","5":"ごじ","6":"ろくじ","7":"しちじ","8":"はちじ","9":"くじ","10":"じゅうじ","11":"じゅういちじ","12":"じゅうにじ"},"minutesLast":{"1":"いっぷん","2":"にふん","3":"さんぷん","4":"よんぷん","5":"ごふん","6":"ろっぷん","7":"ななふん","8":"はっぷん","9":"きゅうふん"},"minutesTen":"じゅっぷん","half":"はん","guide":[{"id":"n-basics","title":{"en":"0 to 10, and the numbers with two readings","si":"0 සිට 10, සහ කියවීම් දෙකක් ඇති අංක","ja":"0〜10 と、よみが 2つ ある すうじ"},"body":{"en":["Four numbers have two readings, and the one you use depends on what follows. 4 is よん or し, 7 is なな or しち, 9 is きゅう or く, and 0 is ゼロ or れい.","On its own, use よん, なな, きゅう, ゼロ. They are safer and clearer — し also means death, and く also means pain, so speakers avoid them where they can.","But the other reading survives in fixed places: 4時 is よじ, 7時 is しちじ, 9時 is くじ. Times are the main place you must know both."],"si":["අංක හතරකට කියවීම් දෙකක් තියෙනවා, කුමක් භාවිතා කරනවාද කියන එක ඊට පස්සේ එන දේ මතයි. 4 කියන්නේ よん හෝ し, 7 කියන්නේ なな හෝ しち, 9 කියන්නේ きゅう හෝ く, 0 කියන්නේ ゼロ හෝ れい.","තනිව කියනකොට よん, なな, きゅう, ゼロ පාවිච්චි කරන්න. ඒවා ආරක්ෂිතයි — し කියන්නේ මරණයටත්, く කියන්නේ වේදනාවටත් නිසා කතා කරන අය ඒවා මඟහරිනවා.","ඒත් අනෙක් කියවීම ස්ථිර තැන්වල ඉතිරි වෙනවා: 4時 කියන්නේ よじ, 7時 කියන්නේ しちじ, 9時 කියන්නේ くじ. වේලාව තමයි දෙකම දැනගත යුතු ප්‍රධාන තැන."],"ja":["4つの すうじには よみが 2つ あります。あとに くる ものが よみを きめます。4は よん か し、7は なな か しち、9は きゅう か く、0は ゼロ か れい です。","1つで いう ときは よん・なな・きゅう・ゼロ を つかいます。「し」は 死、「く」は 苦 と おなじ おとなので、さけられます。","でも きまった ばしょでは もう1つの よみが のこります。4時＝よじ、7時＝しちじ、9時＝くじ。時こくが いちばん だいじな ばしょです。"]},"examples":[{"num":"4","kana":"よん / し","gloss":"alone: よん"},{"num":"7","kana":"なな / しち","gloss":"alone: なな"},{"num":"9","kana":"きゅう / く","gloss":"alone: きゅう"}]},{"id":"n-build","title":{"en":"11 to 99 is simple addition","si":"11 සිට 99 දක්වා සරල එකතුවක්","ja":"11〜99 は たし算"},"body":{"en":["Japanese builds numbers exactly the way they are written. 23 is に + じゅう + さん — two tens and a three.","There is no separate word for eleven, twenty or thirty. Once you know 1 to 10 you know every number up to 99 with no extra learning.","Note that 10 on its own is じゅう, not いちじゅう."],"si":["ජපන් භාෂාවේ අංක හැදෙන්නේ ලියන ආකාරයටමයි. 23 කියන්නේ に + じゅう + さん — දහයවල් දෙකයි තුනයි.","එකොළහට හෝ විස්සට හෝ තිහට වෙනම වචනයක් නැහැ. 1 සිට 10 දක්වා දැනගත්තොත් 99 දක්වා හැම අංකයක්ම දන්නවා.","10 තනිව කියන්නේ じゅう, いちじゅう නෙවෙයි."],"ja":["日本語の すうじは かいた とおりに つくります。23は に＋じゅう＋さん です。","11や 20や 30の ための べつの ことばは ありません。1〜10を おぼえたら、99までは あたらしく おぼえる ものは ありません。","10 だけは じゅう です。いちじゅう とは いいません。"]},"examples":[{"num":"23","kana":"にじゅうさん","gloss":"2 tens + 3"},{"num":"10","kana":"じゅう","gloss":"not いちじゅう"},{"num":"99","kana":"きゅうじゅうきゅう","gloss":""}]},{"id":"n-big","title":{"en":"100, 1000, 10000 — where the sound changes","si":"100, 1000, 10000 — ශබ්දය වෙනස් වන තැන්","ja":"100・1000・10000 と 音の へんか"},"body":{"en":["Six numbers change sound when they meet ひゃく or せん. They are not exceptions to memorise one by one — they change because the sounds are hard to say together.","300 is さんびゃく, 600 is ろっぴゃく, 800 is はっぴゃく. 3000 is さんぜん and 8000 is はっせん. Everything else is regular.","10,000 is いちまん, never just まん. And Japanese counts in units of 10,000, so 100,000 is じゅうまん — ten man, not a new word."],"si":["අංක හයක් ひゃく හෝ せん සමඟ එනකොට ශබ්දය වෙනස් වෙනවා. ඒවා එකින් එක කටපාඩම් කරන්න ඕන ව්‍යතිරේක නෙවෙයි — ශබ්ද එකට කියන්න අමාරු නිසා වෙනස් වෙනවා.","300 කියන්නේ さんびゃく, 600 කියන්නේ ろっぴゃく, 800 කියන්නේ はっぴゃく. 3000 කියන්නේ さんぜん, 8000 කියන්නේ はっせん. අනිත් සියල්ල නීතිගතයි.","10,000 කියන්නේ いちまん, まん විතරක් නෙවෙයි. ජපන් භාෂාව 10,000 ඒකකවලින් ගණන් කරනවා, ඒ නිසා 100,000 කියන්නේ じゅうまん."],"ja":["6つの すうじだけ、ひゃく・せん と いっしょに なると 音が かわります。1つずつ おぼえる れいがいでは なく、いいにくいから かわります。","300は さんびゃく、600は ろっぴゃく、800は はっぴゃく。3000は さんぜん、8000は はっせん。ほかは ふつうです。","10,000は いちまん です。「まん」だけとは いいません。日本語は 1まん ずつ かぞえるので、100,000は じゅうまん です。"]},"examples":[{"num":"300","kana":"さんびゃく","gloss":"not さんひゃく"},{"num":"600","kana":"ろっぴゃく","gloss":""},{"num":"8000","kana":"はっせん","gloss":""}]},{"id":"n-counters","title":{"en":"Counters — why 1本 is いっぽん","si":"ගණන් කරන වචන — 1本 いっぽん වන්නේ ඇයි","ja":"かぞえかた — 1本が いっぽん に なる りゆう"},"body":{"en":["Japanese cannot count a thing with a bare number. It needs a counter word, chosen by the shape of the thing: 本 for long thin things, 枚 for flat things, 個 for small lumps, 人 for people.","The same three numbers keep changing: 1, 6 and 8 make the counter's first sound harder, and 3 sometimes makes it softer. 1本 いっぽん, 3本 さんぼん, 6本 ろっぽん, 8本 はっぽん.","Learn the pattern for 本 and the rest follows the same shape. Two counters are simply irregular and must be learned: ひとり and ふたり for one and two people."],"si":["ජපන් භාෂාවෙන් හිස් අංකයකින් දෙයක් ගණන් කරන්න බැහැ. දේවල හැඩය අනුව තෝරන ගණන් කරන වචනයක් ඕනේ: දිග සිහින් දේවලට 本, පැතලි දේවලට 枚, කුඩා ගුලිවලට 個, මිනිසුන්ට 人.","එකම අංක තුනක් නිතර වෙනස් වෙනවා: 1, 6, 8 ගණන් වචනයේ පළමු ශබ්දය තද කරනවා, 3 සමහර විට මෘදු කරනවා. 1本 いっぽん, 3本 さんぼん, 6本 ろっぽん, 8本 はっぽん.","本 සඳහා රටාව ඉගෙන ගත්තොත් අනිත් ඒවාත් එම හැඩයම. දෙකක් සරලව අක්‍රමවත්: එක් අයෙකුට ひとり, දෙදෙනෙකුට ふたり."],"ja":["日本語は すうじ だけでは ものを かぞえられません。ものの かたちで きまる ことばが ひつようです。ながくて ほそい ものは 本、たいらな ものは 枚、小さい ものは 個、人は 人。","かわるのは いつも おなじ 3つです。1・6・8は さいしょの 音を つよく し、3は やわらかく する ことが あります。1本 いっぽん、3本 さんぼん、6本 ろっぽん、8本 はっぽん。","本の パターンを おぼえれば、ほかも おなじ かたちです。人だけは とくべつで、1人 ひとり、2人 ふたり を おぼえて ください。"]},"examples":[{"num":"1本","kana":"いっぽん","gloss":""},{"num":"3本","kana":"さんぼん","gloss":""},{"num":"1人 / 2人","kana":"ひとり / ふたり","gloss":"irregular"}]},{"id":"n-time","title":{"en":"Telling the time","si":"වේලාව කීම","ja":"時こくの いいかた"},"body":{"en":["Hours are number + じ, with three you cannot guess: 4時 よじ, 7時 しちじ, 9時 くじ. The rest are regular.","Minutes are number + ふん, but after 1, 3, 4, 6, 8 and 10 it becomes ぷん. 1分 いっぷん, 3分 さんぷん, 6分 ろっぷん, 8分 はっぷん, 10分 じゅっぷん.","30 minutes past is usually 半 (はん), not さんじゅっぷん. Morning is 午前, afternoon is 午後, and both come before the time: 午後3時."],"si":["පැය කියන්නේ අංකය + じ, අනුමාන කරන්න බැරි තුනක් තියෙනවා: 4時 よじ, 7時 しちじ, 9時 くじ. ඉතිරිය නීතිගතයි.","විනාඩි කියන්නේ අංකය + ふん, ඒත් 1, 3, 4, 6, 8, 10 පස්සේ ぷん බවට හැරෙනවා. 1分 いっぷん, 3分 さんぷん, 6分 ろっぷん, 8分 はっぷん, 10分 じゅっぷん.","විනාඩි 30 සාමාන්‍යයෙන් කියන්නේ 半 (はん) කියලා, さんじゅっぷん නෙවෙයි. උදේ 午前, හවස 午後, දෙකම වේලාවට කලින් එනවා: 午後3時."],"ja":["「〜時」は すうじ＋じ ですが、あてられない ものが 3つ あります。4時 よじ、7時 しちじ、9時 くじ。ほかは ふつうです。","「〜分」は すうじ＋ふん ですが、1・3・4・6・8・10の あとは ぷん に なります。1分 いっぷん、3分 さんぷん、6分 ろっぷん、8分 はっぷん、10分 じゅっぷん。","30分は ふつう 「半」と いいます。さんじゅっぷん とは あまり いいません。ごぜんは 午前、ごごは 午後 で、時こくの まえに つきます（午後3時）。"]},"examples":[{"num":"4:00","kana":"よじ","gloss":"not よんじ"},{"num":"9:08","kana":"くじ はっぷん","gloss":""},{"num":"7:30","kana":"しちじ はん","gloss":""}]}],"alsoOk":{"nin":{"7":["ななにん"]},"en":{"4":["よんえん"],"7":["しちえん"]},"sai":{"20":["にじゅっさい","にじゅうさい"]},"nichi":{"17":["じゅうななにち"],"19":["じゅうきゅうにち"],"27":["にじゅうななにち"],"29":["にじゅうきゅうにち"]},"ko":{},"hon":{},"mai":{},"tsu":{}},"alsoOkTime":{"30":["さんじゅっぷん"]}},"tips":{"kana":[{"chars":["シ","ツ","ジ","ヅ"],"tip":{"ja":"シは 左から 右へ、ツは 上から 下へ 書きます。てんの ならびで 見わけます。シは たてに 2つ、ツは よこに 2つ。","en":"シ is written left to right, ツ from top to bottom. Look at the two dots: シ stacks them vertically, ツ lines them up across the top.","si":"シ ලියන්නේ වමේ සිට දකුණට, ツ ලියන්නේ උඩ සිට යටට. තිත් දෙක බලන්න: シ සිරස්ව, ツ තිරස්ව."}},{"chars":["ソ","ン","リ"],"tip":{"ja":"ソは 上から 下へ おろし、ンは 下から 上へ はねます。リは たて線が 2本で、右が ながい 形です。","en":"ソ comes down from the top, ン sweeps up from the bottom left, and リ is two uprights with the right one longer.","si":"ソ උඩ සිට පහළට, ン පහළ වමේ සිට උඩට, リ සිරස් ඉරි දෙකක් — දකුණ දිගයි."}},{"chars":["ク","ワ","ケ","タ","ヲ"],"tip":{"ja":"クは 2かく、ワは 2かくで 下が まるい、ケは 3かく、タは 3かくで 中に てんが あります。かくすうで 見わけます。","en":"Count the strokes: ク has two, ワ has two with a rounded base, ケ has three, タ has three plus a stroke inside.","si":"ඉරි ගණන බලන්න: ク දෙකයි, ワ දෙකයි පහළ වටයි, ケ තුනයි, タ තුනයි ඇතුළේ ඉරක් එක්ක."}},{"chars":["ノ","メ","ヌ","ス","ム"],"tip":{"ja":"ノは 1かく。メと ヌは ノに 1本 くわえた 形で、ヌだけ 上に よこ線が あります。スは 上が よこ線、ムは 中に てんが あります。","en":"ノ is one stroke. メ and ヌ add one stroke to it — only ヌ has a bar across the top. ス starts with a bar, ム has a dot inside.","si":"ノ එක ඉරයි. メ සහ ヌ ඊට එකක් එකතු කරනවා — ヌ වලට විතරයි උඩ තිරස් ඉරක්. ス උඩ ඉරකින් පටන් ගන්නවා, ム ඇතුළේ තිතක්."}},{"chars":["ハ","ヘ"],"tip":{"ja":"ハは 2本の 線が はなれて います。ヘは 1本 つながって います。","en":"ハ is two separate strokes. ヘ is a single connected line.","si":"ハ වෙන් වූ ඉරි දෙකක්. ヘ එකට සම්බන්ධ එක ඉරක්."}},{"chars":["コ","ユ","ヨ","ロ"],"tip":{"ja":"コは よこ線 1本、ヨは よこ線 3本、ロは しかくに とじます。ユは たて線が 下から 出ます。","en":"コ has one crossbar, ヨ has three, ロ closes into a box. ユ has an upright rising from the bottom line.","si":"コ තිරස් ඉරක්, ヨ තුනක්, ロ හතරැස්සක් ලෙස වැසෙනවා. ユ පහළ ඉරෙන් උඩට සිරස් ඉරක්."}},{"chars":["チ","テ","ナ","キ"],"tip":{"ja":"上の 線が 1本なら チと ナ、2本なら テと キ。下が はねたら チ・キ、まっすぐなら ナ・テ。","en":"One bar on top means チ or ナ; two bars mean テ or キ. A hooked tail means チ or キ; a straight one means ナ or テ.","si":"උඩ ඉරක් නම් チ හෝ ナ; දෙකක් නම් テ හෝ キ. පහළ කොක්කක් නම් チ හෝ キ; කෙළින් නම් ナ හෝ テ."}},{"chars":["サ","セ"],"tip":{"ja":"サは たて線が 下に つきぬけます。セは 下で とまり、右に まがります。","en":"サ has an upright that runs through and below. セ stops at the bottom line and turns right.","si":"サ වල සිරස් ඉර පහළට කැපෙනවා. セ පහළ ඉරේ නැවතී දකුණට හැරෙනවා."}},{"chars":["レ","ル","ヒ"],"tip":{"ja":"レは 1かく。ルは レに 左の 1本を たします。ヒは よこ線が 先に きます。","en":"レ is one stroke. ル is レ with one stroke added on the left. ヒ starts with a horizontal line.","si":"レ එක ඉරයි. ル කියන්නේ レ ට වමෙන් එකක් එකතු කළ එක. ヒ තිරස් ඉරකින් පටන් ගන්නවා."}},{"chars":["ウ","ワ","ラ"],"tip":{"ja":"上に てんが あれば ウ。てんが なくて 上が よこ線なら ラ。上が ひらいて いれば ワ。","en":"A dot on top means ウ. No dot but a bar on top means ラ. An open top means ワ.","si":"උඩ තිතක් නම් ウ. තිත නැතුව උඩ ඉරක් නම් ラ. උඩ විවෘත නම් ワ."}},{"chars":["ア","マ","ム","ヤ"],"tip":{"ja":"アは 上の よこ線から。マは 上が ひらいて います。ムは 中に てんが 1つ。ヤは 右上に てんが 出ます。","en":"ア starts from a bar on top. マ has an open top. ム has a dot inside. ヤ has a stroke rising to the upper right.","si":"ア උඩ ඉරකින්. マ උඩ විවෘතයි. ム ඇතුළේ තිතක්. ヤ උඩ දකුණට ඉරක්."}},{"chars":["ネ","ホ","オ"],"tip":{"ja":"ネは 上に てんが あります。ホと オは よこ線から。ホは 下に てんが 2つ、オは ありません。","en":"ネ has a dot on top. ホ and オ start from a bar; ホ has two dots at the bottom, オ has none.","si":"ネ උඩ තිතක්. ホ සහ オ ඉරකින් පටන් ගන්නවා; ホ පහළ තිත් දෙකක්, オ නැහැ."}},{"chars":["あ","お","む"],"tip":{"ja":"あは 中が むすばれて います。おは 右上に てんが あります。むは 下に てんが 1つ、右に つきます。","en":"あ has a loop in the middle. お has a dot at the upper right. む has a dot at the lower right.","si":"あ මැද වළල්ලක්. お උඩ දකුණේ තිතක්. む පහළ දකුණේ තිතක්."}},{"chars":["い","り","こ"],"tip":{"ja":"いは 2本が はなれ、左が ながい。りは 2本が ちかく、右が ながい。こは よこに 2本です。","en":"い has two separate strokes with the left one longer. り has two close strokes with the right one longer. こ is two horizontal strokes.","si":"い ඉරි දෙකක් වෙන් වී, වම දිගයි. り ඉරි දෙක ළඟින්, දකුණ දිගයි. こ තිරස් ඉරි දෙකක්."}},{"chars":["き","さ","ち","ら"],"tip":{"ja":"きは よこ線 2本、さは 1本。ちは さを 左右 ぎゃくに した 形です。らは 上に 小さい てんが あります。","en":"き has two crossbars, さ has one. ち is さ mirrored left to right. ら has a small stroke on top.","si":"き තිරස් ඉරි දෙකක්, さ එකක්. ち කියන්නේ さ පෙරළූ එක. ら උඩ කුඩා ඉරක්."}},{"chars":["け","は","ほ","ま","ば","ぱ"],"tip":{"ja":"けは よこ線 1本、はは 2本、ほは 3本です。まは たて線が 下に つきぬけます。","en":"け has one crossbar, は has two, ほ has three. ま is the one whose upright runs through to the bottom.","si":"け තිරස් ඉරක්, は දෙකක්, ほ තුනක්. ま වල සිරස් ඉර පහළට කැපෙනවා."}},{"chars":["ぬ","め","ね","れ","わ"],"tip":{"ja":"むすびが あるのは ぬと ね。ぬは 左が まるく、ねは たて線から はじまります。めと れと わは むすびが ありません。","en":"Only ぬ and ね end in a loop. ぬ starts with a curve, ね with an upright. め, れ and わ have no loop.","si":"වළල්ලක් තියෙන්නේ ぬ සහ ね වලට විතරයි. ぬ වක්‍රයකින්, ね සිරස් ඉරකින්. め, れ, わ වලට වළල්ලක් නැහැ."}},{"chars":["る","ろ","そ"],"tip":{"ja":"るは さいごに むすびます。ろは むすばずに とめます。そは 上に おれた 線が あります。","en":"る ends in a loop, ろ ends without one. そ has a zig-zag at the top.","si":"る අගට වළල්ලක්, ろ වළල්ලක් නැහැ. そ උඩ නැමුණු ඉරක්."}},{"chars":["し","つ","へ"],"tip":{"ja":"しは たてに ながく、下で 右に はねます。つは よこに ながい 形です。へは 山の 形です。","en":"し is tall and hooks to the right at the bottom. つ is wide and flat. へ is a shallow peak.","si":"し උසයි, පහළ දකුණට කොක්කක්. つ පළලයි. へ කන්දක් වගේ."}},{"chars":["た","な","に"],"tip":{"ja":"たの 左は 「十」の 形で、右下は とめます。なは 右下に むすびが あります。には 左が たて線 1本だけです。","en":"た has a cross shape on the left and stops at the lower right. な ends in a loop there. に has just one upright on the left.","si":"た වම පැත්තේ කුරුසයක්, පහළ දකුණේ නවතිනවා. な එතන වළල්ලකින් අවසන් වෙනවා. に වම පැත්තේ එක සිරස් ඉරක් විතරයි."}},{"chars":["う","つ","ふ"],"tip":{"ja":"うは 上に てんが あります。つは てんが ありません。ふは 上の てんの 下に 3つの ぶぶんが あります。","en":"う has a dot on top, つ has none, ふ has a dot plus three separate pieces below it.","si":"う උඩ තිතක්, つ තිතක් නැහැ, ふ තිතක් සහ පහළින් කොටස් තුනක්."}},{"chars":["ま","も","す"],"tip":{"ja":"まは よこ線 2本、もは 2本ですが たて線が 左から 出ます。すは よこ線 1本で 下に むすびます。","en":"ま has two crossbars. も has two as well, but the upright starts on the left. す has one crossbar and a loop below.","si":"ま තිරස් ඉරි දෙකක්. も දෙකක්, ඒත් සිරස් ඉර වමෙන්. す එකක් සහ පහළ වළල්ලක්."}},{"chars":["シ","ツ","ソ","ン","ジ","ズ"],"tip":{"ja":"この 6つは ぜんぶ 同じ 見わけかたです。左から 右に 書くのが シ・ン、上から 下に 書くのが ツ・ソ。てんが 2つなら シ・ツ、1つなら ソ・ン。てんてんが つくと ジ・ズです。","en":"All six use one rule. シ and ン are written left to right; ツ and ソ from the top down. Two dots means シ or ツ, one dot means ソ or ン. Add the two marks and you get ジ and ズ.","si":"මේ හය එකම නීතියක්. シ සහ ン වමේ සිට දකුණට; ツ සහ ソ උඩ සිට යටට. තිත් දෙකක් නම් シ හෝ ツ, එකක් නම් ソ හෝ ン. සලකුණු දෙක එකතු කළාම ジ සහ ズ."}},{"chars":["す","む","ま"],"tip":{"ja":"すは よこ線が 1本で 下に むすびます。むは よこ線 1本で 右下に てんが あります。まは よこ線が 2本です。","en":"す has one crossbar and a loop below. む has one crossbar and a dot at the lower right. ま has two crossbars.","si":"す තිරස් ඉරක් සහ පහළ වළල්ලක්. む තිරස් ඉරක් සහ පහළ දකුණේ තිතක්. ま තිරස් ඉරි දෙකක්."}},{"chars":["く","へ","て","ひ"],"tip":{"ja":"くは たてに おれます。へは よこに ひくい 山です。ては 上の よこ線から 左下へ。ひは 左が たてに ながく、右へ ながれます。","en":"く bends downward, へ is a low horizontal peak, て starts from a bar on top and sweeps to the lower left, ひ has a tall left side flowing to the right.","si":"く පහළට නැමෙනවා, へ පහත් තිරස් කන්දක්, て උඩ ඉරකින් පහළ වමට, ひ වම උසයි දකුණට ගලනවා."}},{"chars":["ふ","え"],"tip":{"ja":"ふは てんの 下に 3つの ぶぶんが あります。えは 上の てんから 下へ つづく 1本の 形です。","en":"ふ has three separate pieces under the dot. え runs as one connected shape from the dot downward.","si":"ふ තිත යට කොටස් තුනක්. え තිතේ සිට පහළට එකට සම්බන්ධයි."}},{"chars":["ゆ","わ","を"],"tip":{"ja":"をは 上に よこ線が 1本 あります。わ・ゆには ありません。ゆは 中に むすびが あり、わは たて線から はじまって むすびが ありません。","en":"を has a horizontal bar across the top; わ and ゆ do not. ゆ has a loop inside, わ starts from an upright and has no loop.","si":"を උඩින් තිරස් ඉරක් තියෙනවා; わ සහ ゆ වලට නැහැ. ゆ ඇතුළේ වළල්ලක්, わ සිරස් ඉරකින් පටන් ගන්නවා, වළල්ලක් නැහැ."}},{"chars":["よ","ま","も"],"tip":{"ja":"よは たて線 1本に むすび。まは よこ線 2本に むすび。もは たて線が 左から 出て よこ線 2本です。","en":"よ is one upright with a loop. ま adds two crossbars. も has two crossbars but its upright starts on the left.","si":"よ එක සිරස් ඉරක් සහ වළල්ලක්. ま තිරස් ඉරි දෙකක් එකතු වෙනවා. も තිරස් ඉරි දෙකයි, ඒත් සිරස් ඉර වමෙන්."}},{"chars":["せ","さ","き"],"tip":{"ja":"せは たて線が 下で 右に まがります。さは 2かくで 下が はなれます。きは よこ線が 2本です。","en":"せ has an upright that turns right at the bottom. さ is two strokes with the lower part detached. き has two crossbars.","si":"せ වල සිරස් ඉර පහළින් දකුණට හැරෙනවා. さ ඉරි දෙකක්, පහළ කොටස වෙන්. き තිරස් ඉරි දෙකක්."}},{"chars":["ん","そ"],"tip":{"ja":"んは 左下から 右へ 1本で ながれます。そは 上に おれた 線が あり、2つの ぶぶんに 見えます。","en":"ん flows as one stroke from the lower left to the right. そ has a zig-zag at the top and reads as two parts.","si":"ん පහළ වමේ සිට දකුණට එක ඉරක්. そ උඩ නැමීමක් තියෙනවා, කොටස් දෙකක් වගේ."}},{"chars":["こ","に","た"],"tip":{"ja":"こは よこ線 2本だけ。にの 左は たて線 1本。たの 左は 「十」の 形です。","en":"こ is just two horizontal strokes. に has a single upright on the left. た has a cross shape on the left.","si":"こ තිරස් ඉරි දෙකක් විතරයි. に වම පැත්තේ එක සිරස් ඉරක්. た වම පැත්තේ කුරුසයක්."}},{"chars":["み","さ","き","ち"],"tip":{"ja":"みは 下に むすびが あります。さ・き・ちは むすびが ありません。よこ線が 2本なら き、1本で 左むきなら さ、右むきなら ちです。","en":"み ends in a loop; さ, き and ち do not. Two crossbars means き; one crossbar facing left is さ, facing right is ち.","si":"み අගට වළල්ලක්; さ, き, ち වලට නැහැ. තිරස් ඉරි දෙකක් නම් き; එකක් වමට නම් さ, දකුණට නම් ち."}},{"chars":["や","か","が"],"tip":{"ja":"かは 「力」に てんを つけた 形です。やは よこ線が 中を つらぬいて、右上に のびます。がは かに てんてんが ついた 形です。","en":"か is the shape 力 with a dot added. や has a stroke running through the middle and out to the upper right. が is か with the two marks.","si":"か කියන්නේ 力 හැඩයට තිතක් එකතු කළ එක. や මැදින් කැපෙන ඉරක් උඩ දකුණට යනවා. が කියන්නේ か ට සලකුණු දෙක එක්කලා."}},{"chars":["と","て","ど"],"tip":{"ja":"とは たて線に 右下から 1本 つきます。ては 上の よこ線から はじまります。どは とに てんてんが ついた 形です。","en":"と is an upright with a stroke joining from the lower right. て starts from a bar on top. ど is と with the two marks.","si":"と සිරස් ඉරකට පහළ දකුණින් ඉරක්. て උඩ ඉරකින් පටන් ගන්නවා. ど කියන්නේ と ට සලකුණු දෙක එක්කලා."}},{"chars":["の","ぬ","め"],"tip":{"ja":"のは 1かくで むすびが ありません。ぬは むすびが あります。めは むすびが なく、2かくです。","en":"の is one stroke with no loop. ぬ ends in a loop. め has no loop and is written in two strokes.","si":"の එක ඉරයි, වළල්ලක් නැහැ. ぬ අගට වළල්ලක්. め වළල්ලක් නැහැ, ඉරි දෙකයි."}},{"chars":["サ","セ","ヤ"],"tip":{"ja":"サは たて線が 2本 下に 出ます。セは 1本で 下が 右に まがります。ヤは 右上に ながい 線が のびます。","en":"サ has two uprights running below the bar. セ has one that turns right. ヤ has a long stroke to the upper right.","si":"サ ඉරෙන් පහළට සිරස් ඉරි දෙකක්. セ එකක්, දකුණට හැරෙනවා. ヤ උඩ දකුණට දිග ඉරක්."}},{"chars":["ラ","フ","ヲ"],"tip":{"ja":"ラは 上に みじかい よこ線が あります。フは 1かく だけ。ヲは よこ線が 2本 あります。","en":"ラ has a short bar on top. フ is a single stroke. ヲ has two horizontal bars.","si":"ラ උඩ කෙටි ඉරක්. フ එක ඉරයි. ヲ තිරස් ඉරි දෙකක්."}},{"chars":["レ","ル","ノ"],"tip":{"ja":"ノは 左下へ おりるだけ。レは 下で 右上に あがります。ルは レの 左に もう1本 あります。","en":"ノ only falls to the lower left. レ turns up to the right at the bottom. ル is レ with one more stroke on its left.","si":"ノ පහළ වමට විතරයි. レ පහළින් දකුණට උඩට. ル කියන්නේ レ ට වමෙන් තව එකක්."}},{"chars":["ト","カ","エ"],"tip":{"ja":"トは たて線に みじかい てんが 1つ。カは 右下に はらいが あります。エは よこ線が 上下に 2本です。","en":"ト is an upright with one short stroke. カ sweeps down to the right. エ has bars at both the top and the bottom.","si":"ト සිරස් ඉරක් සහ කෙටි එකක්. カ පහළ දකුණට ගලනවා. エ උඩ සහ පහළ ඉරි දෙකක්."}},{"chars":["ニ","ミ"],"tip":{"ja":"ニは よこ線 2本、ミは ななめの 線 3本です。ミは 右上から 左下へ 3かい 書きます。","en":"ニ is two horizontal strokes; ミ is three slanted ones written from the upper right to the lower left.","si":"ニ තිරස් ඉරි දෙකක්; ミ ඇල ඉරි තුනක්, උඩ දකුණේ සිට පහළ වමට."}},{"chars":["リ","ハ","ソ"],"tip":{"ja":"リは 2本とも たてに ながく、右が ながい。ハは 2本が ひらいて います。ソは てんと ながい 線の 組みあわせです。","en":"リ has two tall strokes with the right one longer. ハ opens outward. ソ is a dot plus one long stroke.","si":"リ උස ඉරි දෙකක්, දකුණ දිගයි. ハ පිටතට විවෘතයි. ソ තිතක් සහ දිග ඉරක්."}},{"chars":["イ","ト","ノ"],"tip":{"ja":"イは 左に みじかい てん、右に ながい はらい。トは たて線が まっすぐ 下に のびます。","en":"イ has a short stroke on the left and a long sweep on the right. ト has a straight upright running down.","si":"イ වමේ කෙටි ඉරක්, දකුණේ දිග ගැලීමක්. ト කෙළින් සිරස් ඉරක්."}},{"chars":["モ","ヨ","キ"],"tip":{"ja":"モは よこ線 2本に たて線が 下へ ぬけます。ヨは よこ線 3本で 左に とじます。キは よこ線 2本で たてが 中央です。","en":"モ has two bars with an upright running through to the bottom. ヨ has three bars closed on the left. キ has two bars with a centred upright.","si":"モ ඉරි දෙකක් සහ පහළට කැපෙන සිරස් ඉරක්. ヨ ඉරි තුනක්, වමෙන් වැසෙනවා. キ ඉරි දෙකක්, මැදින් සිරස් ඉරක්."}},{"chars":["も","し","つ"],"tip":{"ja":"もは よこ線が 2本 ある たて長の 形。しは よこ線が なく、たてに ながい 1本です。つは よこに ひろい 形です。","en":"も is tall with two crossbars. し has no crossbars — one tall stroke hooking right. つ is wide and flat.","si":"も උසයි, තිරස් ඉරි දෙකක්. し තිරස් ඉරි නැහැ — උස එක ඉරක්. つ පළලයි."}}],"rules":{"hyaku":{"ja":"3・6・8の あとは 音が かわります。300 さんびゃく、600 ろっぴゃく、800 はっぴゃく。ほかは そのままです。","en":"After 3, 6 and 8 the sound changes: 300 さんびゃく, 600 ろっぴゃく, 800 はっぴゃく. The rest are regular.","si":"3, 6, 8 පස්සේ ශබ්දය වෙනස් වෙනවා: 300 さんびゃく, 600 ろっぴゃく, 800 はっぴゃく. අනිත් ඒවා නීතිගතයි."},"sen":{"ja":"1000は 「せん」です。「いっせん」とは いいません。3000は さんぜん、8000は はっせん に なります。","en":"1000 on its own is せん, never いっせん. 3000 becomes さんぜん and 8000 becomes はっせん.","si":"1000 කියන්නේ せん, いっせん නෙවෙයි. 3000 さんぜん, 8000 はっせん."},"man":{"ja":"10000は かならず 「いちまん」です。「まん」だけとは いいません。","en":"10,000 is always いちまん. Japanese never says まん on its own here.","si":"10,000 හැම විටම いちまん. まん විතරක් කියන්නේ නැහැ."},"counter":{"ja":"1・6・8の あとは つまる 音（いっ・ろっ・はっ）に なり、3の あとは にごる ことが あります。1本 いっぽん、3本 さんぼん、6本 ろっぽん、8本 はっぽん。","en":"After 1, 6 and 8 the counter takes a small っ (いっ, ろっ, はっ), and after 3 it often voices. 1本 いっぽん, 3本 さんぼん, 6本 ろっぽん, 8本 はっぽん.","si":"1, 6, 8 පස්සේ කුඩා っ එනවා (いっ, ろっ, はっ), 3 පස්සේ බොහෝ විට නාද වෙනවා. 1本 いっぽん, 3本 さんぼん, 6本 ろっぽん, 8本 はっぽん."},"counterIrregular":{"ja":"この かぞえかたは 形が かわります。1人 ひとり、2人 ふたり、20歳 はたち、1日 ついたち。おぼえる しか ありません。","en":"This counter simply changes shape and has to be memorised: 1人 ひとり, 2人 ふたり, 20歳 はたち, 1日 ついたち.","si":"මේ ගණන් වචනය හැඩය වෙනස් කරනවා, කටපාඩම් කරන්න ඕනේ: 1人 ひとり, 2人 ふたり, 20歳 はたち, 1日 ついたち."},"hour":{"ja":"時こくで あてられない よみは 3つだけです。4時 よじ、7時 しちじ、9時 くじ。ほかは すうじの まま＋じ です。","en":"Only three hours are unpredictable: 4時 よじ, 7時 しちじ, 9時 くじ. Every other hour is just the number plus じ.","si":"අනුමාන කරන්න බැරි පැය තුනයි: 4時 よじ, 7時 しちじ, 9時 くじ. අනිත් හැම එකක්ම අංකය + じ."},"minute":{"ja":"「〜分」は 1・3・4・6・8・10の あとで ぷん に なります。ほかは ふん です。","en":"Minutes become ぷん after 1, 3, 4, 6, 8 and 10. Everywhere else it is ふん.","si":"විනාඩි 1, 3, 4, 6, 8, 10 පස්සේ ぷん වෙනවා. අනිත් තැන්වල ふん."},"half":{"ja":"30分は ふつう 「半」と いいます。「さんじゅっぷん」も まちがいでは ありませんが、あまり つかいません。","en":"Thirty minutes past is normally said as 半. さんじゅっぷん is not wrong, but it is rarely used.","si":"විනාඩි 30 සාමාන්‍යයෙන් 半. さんじゅっぷん වැරදි නැහැ, ඒත් කලාතුරකින් පාවිච්චි වෙනවා."}}},"i18n":{"en":{"mastery":"Mastered","lblMode":"Question","lblScript":"Script","lblSet":"Range","lblLen":"Session","m_learn":"Learn","m_gojuon":"Fill the chart","m_k2r":"Read it","m_r2k":"Pick the kana","m_h2k":"Hiragana ⇄ Katakana","m_listen":"Listen","m_type":"Type it","m_spell":"Spell it","m_special":"っ ー ん","m_word":"Words","sc_h":"Hiragana","sc_k":"Katakana","sc_mix":"Both","st_sei":"Basic","st_daku":"Dakuten","st_han":"Handakuten","st_you":"Yoon","len20":"20 questions","len50":"50 questions","lenInf":"Endless","ask_k2r":"How do you read this kana?","ask_r2k":"Which kana is this sound?","ask_h2k_hk":"Which katakana matches this hiragana?","ask_h2k_kh":"Which hiragana matches this katakana?","ask_listen":"Listen, then choose the kana.","ask_type":"Type the reading in romaji.","ask_word":"How do you read this word?","ask_special":"Which spelling is correct?","ask_spell":"Tap the kana in order to spell this word.","ask_row":"Which kana is missing from this row?","ask_head":"Which kana is missing from the chart?","learnTitle":"Tap any kana to hear it","learnHint":"Then pick a question type above.","btnNext":"Next","btnReset":"Reset progress","btnPlay":"Play sound","btnCheck":"Check","btnAnswer":"Answer","btnClear":"Clear","btnAgain":"Go again","btnWeak":"Drill my weak kana","btnEnd":"End session","sAsked":"Answered","sRate":"Correct","sStreak":"Streak","sSpeed":"Avg sec","ok":"Correct","ng":"Not yet","answerIs":"Answer:","resTitle":"Session complete","resWeak":"These will come back more often:","resNone":"Nothing weak this round. Widen the range.","resSpeed":"Average time per question","mapTitle":"Your kana map","mapNote":"Gold fills in as you get a kana right. Red outline = it comes back more often.","footKeys":"Keyboard: 1-4 to answer, Enter for the next question. Progress is saved on this device.","footSinhala":"The Sinhala readings are a first draft. Sinhala has no /z/, so the za-row reuses the sa-row letter - have a native speaker check the table before class use.","noAudio":"No Japanese voice on this device. Try another question type.","kindT":"Small tsu doubles the next consonant.","kindC":"Long vowel - hold it for two beats.","kindN":"N is its own full beat.","loading":"Loading…","loadError":"Could not load the question data. If you opened this file directly from disk, use dist/kana-drill.html instead.","days":"Day streak","today":"days","siteName":"Kana Study","navHome":"Home","navGuide":"Rules","navDrill":"Practice","navChart":"Chart","homeLead":"Learn to read hiragana and katakana.","homeSub":"Start with the rules, then practise until you can read a kana without stopping to think. Your progress is kept on this device.","cGuideT":"Read the rules first","cGuideD":"What hiragana and katakana are, how beats work, and the four rules that trip everyone up: ゛゜, small ゃゅょ, small っ, and long vowels.","cDrillT":"Practise","cDrillD":"Ten kinds of question, from the chart to spelling whole words. Weak kana come back more often.","cChartT":"The kana chart","cChartD":"All 104 kana with readings in romaji and Sinhala. Made to be printed.","goto":"Open","guideLead":"Everything below is a rule, not a matter of taste. Learn them and the rest is practice.","chartLead":"Print this and keep it where you study.","printBtn":"Print","lookTitle":"Kana that look alike","lookNote":"These are the pairs learners actually confuse. The practice questions use them as wrong answers on purpose.","backToDrill":"Go and practise","example":"Examples","settings":"Settings","close":"Done","theme":"Colour","brightness":"Brightness","textSize":"Text size","th_enji":"Maroon","th_ai":"Indigo","th_matcha":"Green","th_sumi":"Ink","br_auto":"Auto","br_light":"Light","br_dark":"Dark","ts_m":"Normal","ts_l":"Large","ts_xl":"Largest","btnSkip":"I don't know","m_dictation":"Hear and spell","ask_dictation":"Listen, then tap the kana in order.","ask_seq":"Which kana comes next in the order?","lenTime":"60 seconds","timeUp":"Time","nowPlaying":"Now practising","change":"Settings","m_ime":"Type in kana","ask_ime":"Type this word in rōmaji. It turns into kana as you type.","imeHint":"Long vowels in katakana are typed with a hyphen: no-to → ノート","navNumbers":"Numbers","cNumT":"Numbers and time","cNumD":"How to read numbers, prices, counters and the clock — the part of Japanese you need on day one.","numLead":"Read the rules, then practise below.","nm_read":"Read the number","nm_pick":"Pick the number","nm_clock":"Read the clock","nm_settime":"Pick the time","nm_count":"Counters","nm_price":"Prices","nask_read":"How do you read this number?","nask_pick":"Which number is this?","nask_clock":"What time is it?","nask_settime":"Which clock time is this?","nask_count":"How do you count this?","nask_price":"How do you say this price?","labRule":"Rule","labCompare":"Telling them apart","labWatch":"Easy to mix up","howTo":"How to tell them apart","noVoiceTitle":"This device has no Japanese voice","noVoiceBody":"Listening questions need a Japanese text-to-speech voice, and this browser does not have one installed. Everything else works — pick another question type above.","goalToday":"Today","goalDone":"Goal reached","recapTitle":"What tripped you up","recapNone":"Nothing to review this round.","pdfBtn":"Download PDF","printHint":"Opens your browser's print dialog — choose \"Save as PDF\".","printFoot":"TAKANE-SHIKI KANA STUDY"},"si":{"mastery":"ප්‍රගුණයි","lblMode":"ප්‍රශ්නය","lblScript":"අකුරු","lblSet":"පරාසය","lblLen":"වාරය","m_learn":"ඉගෙනගන්න","m_gojuon":"හිස්තැන පුරවන්න","m_k2r":"කියවන්න","m_r2k":"අකුර තෝරන්න","m_h2k":"හිරගනා ⇄ කටකනා","m_listen":"අහන්න","m_type":"ලියන්න","m_spell":"වචනය හදන්න","m_special":"っ ー ん","m_word":"වචන","sc_h":"හිරගනා","sc_k":"කටකනා","sc_mix":"දෙකම","st_sei":"මූලික","st_daku":"දකුතෙන්","st_han":"හන්දකුතෙන්","st_you":"යෝඕන්","len20":"ප්‍රශ්න 20","len50":"ප්‍රශ්න 50","lenInf":"සීමාවක් නැහැ","ask_k2r":"මේ අකුර කියවන්නේ කොහොමද?","ask_r2k":"මේ ශබ්දයට අදාළ අකුර කුමක්ද?","ask_h2k_hk":"මේ හිරගනා අකුරට අදාළ කටකනා අකුර කුමක්ද?","ask_h2k_kh":"මේ කටකනා අකුරට අදාළ හිරගනා අකුර කුමක්ද?","ask_listen":"ශබ්දය අහලා අකුර තෝරන්න.","ask_type":"රෝමජි වලින් ලියන්න.","ask_word":"මේ වචනය කියවන්නේ කොහොමද?","ask_special":"නිවැරදි ලිවීම කුමක්ද?","ask_spell":"අකුරු පිළිවෙළට ඔබා වචනය හදන්න.","ask_row":"මේ පේළියෙන් නැති අකුර කුමක්ද?","ask_head":"වගුවෙන් නැති අකුර කුමක්ද?","learnTitle":"ශබ්දය අහන්න අකුරක් ඔබන්න","learnHint":"පස්සේ ඉහළින් ප්‍රශ්න වර්ගයක් තෝරන්න.","btnNext":"ඊළඟට","btnReset":"මුල සිට","btnPlay":"ශබ්දය","btnCheck":"පරීක්ෂා","btnAnswer":"පිළිතුර","btnClear":"මකන්න","btnAgain":"නැවත","btnWeak":"දුර්වල අකුරු පමණක්","btnEnd":"අවසන් කරන්න","sAsked":"උත්තර","sRate":"නිවැරදි","sStreak":"දිගටම","sSpeed":"තත්පර","ok":"නිවැරදියි","ng":"තව ටිකක්","answerIs":"පිළිතුර:","resTitle":"වාරය අවසන්","resWeak":"නැවත නැවත එන අකුරු:","resNone":"මේ වටයේ දුර්වලකම් නැහැ. පරාසය පුළුල් කරන්න.","resSpeed":"එක ප්‍රශ්නයකට සාමාන්‍ය කාලය","mapTitle":"ඔබේ අකුරු සිතියම","mapNote":"නිවැරදි වන විට රන්වන් පාට පිරෙනවා. රතු ඉරි = නැවත නැවත එයි.","footKeys":"යතුරුපුවරුව: 1-4 උත්තරයට, Enter ඊළඟට. ප්‍රගතිය මේ උපකරණයේ සුරැකෙනවා.","footSinhala":"සිංහල උච්චාරණ පළමු කෙටුම්පතක්. සිංහලේ /z/ නැති නිසා za පේළිය sa පේළියේ අකුරම භාවිතා කරනවා - පන්තියට පෙර පරීක්ෂා කරන්න.","noAudio":"මේ උපකරණයේ ජපන් හඬක් නැහැ. වෙනත් ප්‍රශ්නයක් තෝරන්න.","kindT":"කුඩා tsu ඊළඟ ව්‍යඤ්ජනය දෙගුණ කරනවා.","kindC":"දිගු ස්වරය - බීට් දෙකක්.","kindN":"n වෙනම බීට් එකක්.","loading":"පූරණය වෙමින්…","loadError":"ප්‍රශ්න දත්ත පූරණය කළ නොහැක. ගොනුව කෙලින්ම විවෘත කළා නම්, dist/kana-drill.html භාවිතා කරන්න.","days":"දින ගණන","today":"දින","siteName":"කනා අධ්‍යයනය","navHome":"මුල් පිටුව","navGuide":"නීති","navDrill":"පුහුණුව","navChart":"වගුව","homeLead":"හිරගනා සහ කටකනා කියවන්න ඉගෙන ගන්න.","homeSub":"මුලින්ම නීති, ඊට පස්සේ නොසිතා කියවන්න පුළුවන් වෙනකම් පුහුණුව. ඔබේ ප්‍රගතිය මේ උපකරණයේ සුරැකෙනවා.","cGuideT":"මුලින්ම නීති කියවන්න","cGuideD":"හිරගනා සහ කටකනා මොනවාද, බීට් වැඩ කරන හැටි, සහ හැමෝම වරදවන නීති හතර: ゛゜, කුඩා ゃゅょ, කුඩා っ, දිගු ස්වර.","cDrillT":"පුහුණු වන්න","cDrillD":"ප්‍රශ්න වර්ග දහයක් — වගුවේ සිට සම්පූර්ණ වචන ලිවීම දක්වා. දුර්වල අකුරු නැවත නැවත එනවා.","cChartT":"කනා වගුව","cChartD":"කනා අකුරු 104ම, රෝමජි සහ සිංහල උච්චාරණ සමඟ. මුද්‍රණය කරන්න හදලා තියෙන්නේ.","goto":"විවෘත කරන්න","guideLead":"පහත සියල්ල නීති, කැමැත්තේ කාරණා නෙවෙයි. ඒවා ඉගෙන ගත්තොත් ඉතිරිය පුහුණුව විතරයි.","chartLead":"මේක මුද්‍රණය කරලා ඉගෙන ගන්න තැන තියාගන්න.","printBtn":"මුද්‍රණය","lookTitle":"සමාන පෙනුමැති අකුරු","lookNote":"ශිෂ්‍යයන් ඇත්තටම පටලවන යුගල මේවා. පුහුණු ප්‍රශ්නවල වැරදි පිළිතුරු ලෙස හිතාමතාම යොදනවා.","backToDrill":"පුහුණු වන්න යන්න","example":"උදාහරණ","settings":"සැකසුම්","close":"හරි","theme":"වර්ණය","brightness":"දීප්තිය","textSize":"අකුරු ප්‍රමාණය","th_enji":"තද රතු","th_ai":"නිල්","th_matcha":"කොළ","th_sumi":"කළු","br_auto":"ස්වයංක්‍රීය","br_light":"එළිය","br_dark":"අඳුරු","ts_m":"සාමාන්‍ය","ts_l":"ලොකු","ts_xl":"ලොකුම","btnSkip":"මම දන්නේ නැහැ","m_dictation":"අහලා ලියන්න","ask_dictation":"අහලා, අකුරු පිළිවෙළට ඔබන්න.","ask_seq":"පිළිවෙළේ ඊළඟට එන අකුර කුමක්ද?","lenTime":"තත්පර 60","timeUp":"කාලය","nowPlaying":"දැන් පුහුණු වන්නේ","change":"සැකසුම්","m_ime":"කනා ලෙස ලියන්න","ask_ime":"මේ වචනය රෝමජි වලින් ලියන්න. ලියනකොටම කනා බවට හැරෙනවා.","imeHint":"කටකනා දිගු ස්වර ලියන්නේ ඉරකින්: no-to → ノート","navNumbers":"අංක","cNumT":"අංක සහ වේලාව","cNumD":"අංක, මිල, ගණන් කරන වචන සහ ඔරලෝසුව කියවන හැටි — පළමු දවසේ සිටම අවශ්‍ය දේ.","numLead":"නීති කියවලා, පහළින් පුහුණු වන්න.","nm_read":"අංකය කියවන්න","nm_pick":"අංකය තෝරන්න","nm_clock":"ඔරලෝසුව කියවන්න","nm_settime":"වේලාව තෝරන්න","nm_count":"ගණන් කිරීම","nm_price":"මිල","nask_read":"මේ අංකය කියවන්නේ කොහොමද?","nask_pick":"මේ කුමන අංකයද?","nask_clock":"වෙලාව කීයද?","nask_settime":"මේ කුමන වේලාවද?","nask_count":"මේක ගණන් කරන්නේ කොහොමද?","nask_price":"මේ මිල කියන්නේ කොහොමද?","labRule":"නීතිය","labCompare":"වෙන් කර හඳුනාගැනීම","labWatch":"පටලවන තැන","howTo":"වෙන් කර හඳුනාගන්නා හැටි","noVoiceTitle":"මේ උපකරණයේ ජපන් හඬක් නැහැ","noVoiceBody":"ශ්‍රවණ ප්‍රශ්නවලට ජපන් හඬක් ඕනේ, මේ බ්‍රවුසරයේ එය නැහැ. අනිත් සියල්ල වැඩ කරනවා — ඉහළින් වෙනත් ප්‍රශ්නයක් තෝරන්න.","goalToday":"අද","goalDone":"ඉලක්කය සම්පූර්ණයි","recapTitle":"පටලවපු තැන්","recapNone":"මේ වටයේ නැවත බලන්න දෙයක් නැහැ.","pdfBtn":"PDF බාගන්න","printHint":"බ්‍රවුසරයේ මුද්‍රණ කවුළුව විවෘත වෙනවා — \"Save as PDF\" තෝරන්න.","printFoot":"TAKANE-SHIKI KANA STUDY"},"ja":{"mastery":"しゅうとく","lblMode":"もんだい","lblScript":"もじ","lblSet":"はんい","lblLen":"かいすう","m_learn":"まなぶ","m_gojuon":"ひょうを うめる","m_k2r":"よみをえらぶ","m_r2k":"かなをえらぶ","m_h2k":"ひらがな⇄カタカナ","m_listen":"きく","m_type":"にゅうりょく","m_spell":"ことばを つくる","m_special":"っ ー ん","m_word":"ことば","sc_h":"ひらがな","sc_k":"カタカナ","sc_mix":"りょうほう","st_sei":"せいおん","st_daku":"だくおん","st_han":"はんだくおん","st_you":"ようおん","len20":"20もん","len50":"50もん","lenInf":"エンドレス","ask_k2r":"この かなの よみは？","ask_r2k":"この おとの かなは？","ask_h2k_hk":"この ひらがなに あう カタカナは？","ask_h2k_kh":"この カタカナに あう ひらがなは？","ask_listen":"おとを きいて、かなを えらんで ください。","ask_type":"よみを ローマじで にゅうりょくして ください。","ask_word":"この ことばの よみは？","ask_special":"ただしい かきかたは どれ？","ask_spell":"かなを じゅんばんに おして ことばを つくって ください。","ask_row":"この ぎょうで たりない かなは？","ask_head":"ひょうで たりない かなは？","learnTitle":"かなを タップすると おとが でます","learnHint":"なれたら うえで もんだいを えらんで ください。","btnNext":"つぎへ","btnReset":"きろくを けす","btnPlay":"おと","btnCheck":"かくにん","btnAnswer":"かいとう","btnClear":"けす","btnAgain":"もういちど","btnWeak":"にがてだけ","btnEnd":"おわる","sAsked":"かいとう","sRate":"せいとうりつ","sStreak":"れんぞく","sSpeed":"へいきん秒","ok":"せいかい","ng":"ざんねん","answerIs":"こたえ：","resTitle":"おつかれさま","resWeak":"よく 出る かな：","resNone":"にがては ありません。はんいを ひろげましょう。","resSpeed":"1もんあたりの じかん","mapTitle":"かなマップ","mapNote":"せいかいすると 金色が たまります。赤わく＝よく 出ます。","footKeys":"キーボード：1〜4で かいとう、Enterで つぎへ。きろくは この たんまつに ほぞんされます。","footSinhala":"シンハラ語の よみは 初稿です。シンハラ語に /z/ が ないため ざ行は さ行と 同じ字を つかっています。授業の まえに ネイティブチェックを おすすめします。","noAudio":"この たんまつには 日本語の音声が ありません。ほかの もんだいを えらんで ください。","kindT":"小さい「っ」は つぎの子音を 2つに します。","kindC":"長音は 2はく のばします。","kindN":"「ん」は それだけで 1はく です。","loading":"よみこみちゅう…","loadError":"もんだいデータを よみこめませんでした。ファイルを ちょくせつ ひらいた ばあいは dist/kana-drill.html を つかって ください。","days":"れんぞく日","today":"日","siteName":"かな学習","navHome":"ホーム","navGuide":"ルール","navDrill":"れんしゅう","navChart":"かな表","homeLead":"ひらがなと カタカナを よめるように なる サイトです。","homeSub":"まず ルールを よんで、かんがえずに よめるまで れんしゅうします。きろくは この たんまつに のこります。","cGuideT":"まず ルールを よむ","cGuideD":"ひらがなと カタカナの ちがい、はくの かんがえかた、そして みんなが つまずく 4つの ルール（゛゜・小さい ゃゅょ・小さい っ・ながい おと）。","cDrillT":"れんしゅうする","cDrillD":"10しゅるいの もんだい。かな表の あなうめから、ことばを つくる ところまで。にがてな かなは よく 出ます。","cChartT":"かな表","cChartD":"104字ぜんぶ。ローマ字と シンハラ語の よみつき。いんさつ できます。","goto":"ひらく","guideLead":"ここに あるのは ぜんぶ ルールです。おぼえたら、あとは れんしゅうだけです。","chartLead":"いんさつして、べんきょうする ばしょに はって ください。","printBtn":"いんさつ","lookTitle":"にている かな","lookNote":"がくしゅうしゃが じっさいに まちがえる くみあわせです。れんしゅうもんだいでは、わざと これを ダミーに つかって います。","backToDrill":"れんしゅうへ","example":"れい","settings":"せってい","close":"とじる","theme":"いろ","brightness":"あかるさ","textSize":"もじの 大きさ","th_enji":"えんじ","th_ai":"あい","th_matcha":"みどり","th_sumi":"すみ","br_auto":"じどう","br_light":"あかるい","br_dark":"くらい","ts_m":"ふつう","ts_l":"大きい","ts_xl":"もっと大きい","btnSkip":"わからない","m_dictation":"きいて つくる","ask_dictation":"おとを きいて、かなを じゅんばんに おして ください。","ask_seq":"じゅんばんで つぎに くる かなは？","lenTime":"60びょう","timeUp":"のこり","nowPlaying":"いま れんしゅうちゅう","change":"へんこう","m_ime":"ローマ字で うつ","ask_ime":"この ことばを ローマ字で うって ください。うつと かなに かわります。","imeHint":"カタカナの ながい おとは「-」で うちます。no-to → ノート","navNumbers":"すうじ","cNumT":"すうじと 時こく","cNumD":"すうじ・ねだん・かぞえかた・時計の よみかた。日本に きた 日から つかう ところです。","numLead":"ルールを よんでから、下で れんしゅうします。","nm_read":"すうじを よむ","nm_pick":"すうじを えらぶ","nm_clock":"時計を よむ","nm_settime":"時こくを えらぶ","nm_count":"かぞえかた","nm_price":"ねだん","nask_read":"この すうじの よみは？","nask_pick":"この よみの すうじは？","nask_clock":"いま なんじ ですか？","nask_settime":"この よみの 時こくは？","nask_count":"これは どう かぞえますか？","nask_price":"この ねだんは どう いいますか？","labRule":"ルール","labCompare":"くらべる","labWatch":"まちがえやすい","howTo":"見わけかた","noVoiceTitle":"この たんまつには 日本語の 音声が ありません","noVoiceBody":"きく もんだいには 日本語の 音声が ひつようですが、この ブラウザには 入って いません。ほかは ぜんぶ つかえます。うえで べつの もんだいを えらんで ください。","goalToday":"きょう","goalDone":"もくひょう たっせい","recapTitle":"まちがえた ところ","recapNone":"この かいは ふくしゅうする ものが ありません。","pdfBtn":"PDFで ダウンロード","printHint":"ブラウザの いんさつ画面が ひらきます。「PDFに ほぞん」を えらんで ください。","printFoot":"TAKANE-SHIKI KANA STUDY"}}};</script>
+<script>
+/* ==========================================================================
+   Shared site layer — used by every page.
+   Owns: data loading, language state, nav, storage, the mastery strip.
+   Page scripts (app.js, guide.js) call TK.init() and get told when to repaint.
+   ========================================================================== */
+(function(){
+"use strict";
+
+var LEGACY="takane-kana-v3";          /* the drill's old single-purpose key */
+var P_KEY="takane:profile";           /* shared across every course */
+var K_KEY="takane:kana:stat";         /* this course's per-kana record */
+
+function jget(k){try{var v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return null;}}
+function jset(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+
+/* One-time move off the old key so nobody loses their gold. */
+function migrate(){
+  var old=jget(LEGACY);
+  if(!old)return;
+  if(!jget(K_KEY))jset(K_KEY,old.stat||{});
+  if(!jget(P_KEY))jset(P_KEY,{lang:old.lang||"en",days:old.days||0,lastDay:old.lastDay||""});
+  try{localStorage.removeItem(LEGACY);}catch(e){}
+}
+
+var TK={
+  lang:"en",
+  T:null,
+  data:{},
+  profile:{lang:"en",days:0,lastDay:"",theme:"enji",scheme:"auto",size:"m",today:0},
+  stat:{},
+  _paint:null,
+
+  t:function(k){return (TK.T[TK.lang]&&TK.T[TK.lang][k])||TK.T.en[k]||"";},
+  si:function(){return TK.lang==="si"?"si":"";},
+
+  saveProfile:function(){TK.profile.lang=TK.lang;jset(P_KEY,TK.profile);},
+
+  /* Colour family, brightness and text size are three attributes on <html>;
+     every rule in the stylesheet reads from them, so nothing else changes. */
+  applyLook:function(){
+    var h=document.documentElement;
+    h.setAttribute("data-theme",TK.profile.theme||"enji");
+    h.setAttribute("data-scheme",TK.profile.scheme||"auto");
+    h.setAttribute("data-size",TK.profile.size||"m");
+  },
+  saveStat:function(){jset(K_KEY,TK.stat);},
+  resetStat:function(){TK.stat={};TK.saveStat();},
+
+  /* A day streak costs one string and one compare, and it brings people back. */
+  GOAL:20,
+  bumpDays:function(){
+    var d=new Date(),today=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+    if(TK.profile.lastDay!==today){
+      var y=new Date(Date.now()-864e5);
+      var yk=y.getFullYear()+"-"+(y.getMonth()+1)+"-"+y.getDate();
+      TK.profile.days=(TK.profile.lastDay===yk)?TK.profile.days+1:1;
+      TK.profile.lastDay=today;TK.profile.today=0;
+    }
+    TK.profile.today=(TK.profile.today||0)+1;
+    TK.saveProfile();TK.drawMastery();
+  },
+
+  /* [hiragana, katakana, romaji, sinhala, row, rare?] -> objects + lookups */
+  buildKana:function(K){
+    function mk(rows,set){return rows.map(function(r){
+      return {h:r[0],k:r[1],r:r[2],s:r[3],row:r[4],set:set,rare:!!r[5],id:r[0]};});}
+    var all=mk(K.sei,"sei").concat(mk(K.daku,"daku"),mk(K.han,"han"),mk(K.you,"you"));
+    var by={h:{},k:{}};all.forEach(function(x){by.h[x.h]=x;by.k[x.k]=x;});
+    var look={h:{},k:{}};
+    K.look_h.forEach(function(g){g.forEach(function(c){
+      if(by.h[c])look.h[c]=(look.h[c]||[]).concat(g.filter(function(x){return x!==c&&by.h[x];}));});});
+    K.look_k.forEach(function(g){g.forEach(function(c){
+      if(by.k[c])look.k[c]=(look.k[c]||[]).concat(g.filter(function(x){return x!==c&&by.k[x];}));});});
+    var snd={};
+    K.sound.forEach(function(g){g.forEach(function(r){
+      snd[r]=(snd[r]||[]).concat(g.filter(function(x){return x!==r;}));});});
+    return {all:all,by:by,look:look,snd:snd,quizable:all.filter(function(x){return !x.rare;}),
+      alt:K.alt,conflict:K.conflict,grid:K.grid,heads:K.heads,small:K.small,
+      look_h:K.look_h,look_k:K.look_k};
+  },
+
+  statOf:function(id){return TK.stat[id]||(TK.stat[id]={c:0,w:0});},
+
+  drawMastery:function(){
+    var el=document.getElementById("mCount");if(!el||!TK.kana)return;
+    var q=TK.kana.quizable;
+    var done=q.filter(function(x){var s=TK.statOf(x.id);return s.c>=3&&s.c>s.w;}).length;
+    el.textContent=done+" / "+q.length;
+    document.getElementById("mFill").style.width=(done/q.length*100).toFixed(1)+"%";
+    var d=document.getElementById("mDays");
+    if(d)d.textContent=TK.profile.days>0?(TK.profile.days+" "+TK.t("today")):"";
+    /* a small daily target does more for coming back than a total ever does */
+    var g=document.getElementById("goal");
+    if(g){
+      var n=Math.min(TK.profile.today||0,TK.GOAL),pctG=n/TK.GOAL*100;
+      var done=n>=TK.GOAL;
+      g.querySelector(".ring").className="ring"+(done?" done":"");
+      g.querySelector(".ring").style.background=
+        "conic-gradient(var(--gold) 0% "+pctG+"%,rgba(255,255,255,.22) "+pctG+"% 100%)";
+      g.querySelector(".txt").textContent=done
+        ? TK.t("goalDone")
+        : TK.t("goalToday")+" "+(TK.profile.today||0)+" / "+TK.GOAL;
+    }
+  },
+
+  /* every element carrying data-t gets its text, in the current language */
+  paintText:function(root){
+    var sc=(root||document).querySelectorAll("[data-t]");
+    [].forEach.call(sc,function(el){el.textContent=TK.t(el.dataset.t);});
+    [].forEach.call(document.querySelectorAll("#langs button"),function(b){
+      b.setAttribute("aria-pressed",b.dataset.lang===TK.lang);});
+    document.documentElement.lang=TK.lang==="ja"?"ja":(TK.lang==="si"?"si":"en");
+    TK.drawMastery();
+  },
+
+  /* The settings sheet is shared. Pages drop their own groups into #sheetSlot. */
+  buildSheet:function(){
+    if(document.getElementById("sheet"))return;
+    var bar=document.querySelector(".hbar"),langs=document.getElementById("langs");
+    if(bar&&langs){
+      /* language buttons and the gear travel together, so the gear can never
+         wrap onto a line by itself on a narrow phone */
+      var tools=document.createElement("div");
+      tools.className="tools";
+      langs.parentNode.insertBefore(tools,langs);
+      tools.appendChild(langs);
+      var b=document.createElement("button");
+      b.type="button";b.className="iconbtn";b.id="openSheet";
+      b.setAttribute("aria-haspopup","dialog");
+      b.setAttribute("aria-label","Settings");
+      b.textContent="\u2699";
+      tools.appendChild(b);
+      b.onclick=function(){TK.openSheet(true);};
+    }
+    var THEMES=[["enji","#7A1B2E"],["ai","#1F3B63"],["matcha","#2F5D46"],["sumi","#2A2A2C"]];
+    var d=document.createElement("div");
+    d.className="sheet";d.id="sheet";d.setAttribute("role","dialog");d.setAttribute("aria-modal","true");
+    d.innerHTML='<div class="veil" data-close></div><div class="panel">'+
+      '<h2><span data-t="settings" class="si-swap"></span>'+
+      '<button class="ghost" data-close data-t="close"></button></h2>'+
+      '<div id="sheetSlot"></div>'+
+      '<div class="sgroup"><span class="flabel si-swap" data-t="theme"></span>'+
+      '<div class="swrap" id="themeChips">'+THEMES.map(function(x){
+        return '<button class="swatch" type="button" data-theme-pick="'+x[0]+'" '+
+          'aria-label="'+x[0]+'"><i style="background:'+x[1]+'"></i></button>';}).join("")+'</div></div>'+
+      '<div class="sgroup"><span class="flabel si-swap" data-t="brightness"></span>'+
+      '<div class="swrap" id="schemeChips">'+["auto","light","dark"].map(function(v){
+        return '<button class="chip" type="button" data-scheme-pick="'+v+'" data-k="br_'+v+'"></button>';
+      }).join("")+'</div></div>'+
+      '<div class="sgroup"><span class="flabel si-swap" data-t="textSize"></span>'+
+      '<div class="swrap" id="sizeChips">'+["m","l","xl"].map(function(v){
+        return '<button class="chip" type="button" data-size-pick="'+v+'" data-k="ts_'+v+'"></button>';
+      }).join("")+'</div></div></div>';
+    document.body.appendChild(d);
+    d.addEventListener("click",function(e){
+      if(e.target.closest("[data-close]")){TK.openSheet(false);return;}
+      var t1=e.target.closest("[data-theme-pick]");
+      if(t1){TK.profile.theme=t1.dataset.themePick;TK.saveProfile();TK.applyLook();TK.paintLook();return;}
+      var t2=e.target.closest("[data-scheme-pick]");
+      if(t2){TK.profile.scheme=t2.dataset.schemePick;TK.saveProfile();TK.applyLook();TK.paintLook();return;}
+      var t3=e.target.closest("[data-size-pick]");
+      if(t3){TK.profile.size=t3.dataset.sizePick;TK.saveProfile();TK.applyLook();TK.paintLook();return;}
+    });
+    document.addEventListener("keydown",function(e){
+      if(e.key==="Escape")TK.openSheet(false);});
+  },
+  openSheet:function(on){
+    var d=document.getElementById("sheet");if(!d)return;
+    if(on)d.setAttribute("open","");else d.removeAttribute("open");
+    document.body.style.overflow=on?"hidden":"";
+  },
+  paintLook:function(){
+    [].forEach.call(document.querySelectorAll("[data-theme-pick]"),function(b){
+      b.setAttribute("aria-pressed",b.dataset.themePick===(TK.profile.theme||"enji"));});
+    [].forEach.call(document.querySelectorAll("[data-scheme-pick]"),function(b){
+      b.setAttribute("aria-pressed",b.dataset.schemePick===(TK.profile.scheme||"auto"));});
+    [].forEach.call(document.querySelectorAll("[data-size-pick]"),function(b){
+      b.setAttribute("aria-pressed",b.dataset.sizePick===(TK.profile.size||"m"));});
+    [].forEach.call(document.querySelectorAll("#sheet .chip[data-k]"),function(b){
+      b.textContent=TK.t(b.dataset.k);b.classList.toggle("si",TK.lang==="si");});
+  },
+
+  load:function(names){
+    return Promise.all(names.map(function(n){
+      if(window.KANA_DATA&&window.KANA_DATA[n])return Promise.resolve(window.KANA_DATA[n]);
+      return fetch("data-"+n+".json").then(function(r){
+        if(!r.ok)throw new Error(n+" "+r.status);return r.json();});
+    })).then(function(list){
+      names.forEach(function(n,i){TK.data[n]=list[i];});
+      return TK.data;
+    });
+  },
+
+  /* Page scripts register with TK.page(); site.js then runs one init for the
+     document. That keeps script order from mattering, and lets several page
+     scripts share one document (which is how the offline build works). */
+  _pages:[],
+  page:function(opts){
+    TK._pages.push(opts||{});
+    if(TK._queued)return;
+    TK._queued=true;
+    var go=function(){
+      var data=[],paints=[],starts=[],relangs=[];
+      TK._pages.forEach(function(o){
+        (o.data||[]).forEach(function(n){if(data.indexOf(n)<0)data.push(n);});
+        if(o.paint)paints.push(o.paint);
+        if(o.start)starts.push(o.start);
+        if(o.relang)relangs.push(o.relang);
+      });
+      TK.init({
+        data:data,
+        paint:function(){paints.forEach(function(f){f();});},
+        relang:function(){relangs.forEach(function(f){f();});}
+      }).then(function(){
+        starts.forEach(function(f){f();});
+      }).catch(function(err){
+        var lang=(navigator.language||"en").slice(0,2);
+        var msg=(window.__i18nFallback&&window.__i18nFallback[lang])||window.__i18nFallback.en;
+        ["card","guideBody","chartBody"].forEach(function(id){
+          var el=document.getElementById(id);
+          if(el)el.innerHTML='<p style="padding:20px 4px">'+msg+"</p>";});
+        if(window.console)console.error(err);
+      });
+    };
+    if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);
+    else setTimeout(go,0);
+  },
+
+  /* opts: {data:[names], paint:fn, relang:fn} */
+  init:function(opts){
+    migrate();
+    var prof=jget(P_KEY);
+    if(prof){TK.profile=prof;TK.lang=prof.lang||"en";}
+    TK.stat=jget(K_KEY)||{};
+    TK.applyLook();
+    var need=["i18n","kana"].concat(opts.data||[]);
+    return TK.load(need).then(function(){
+      TK.T=TK.data.i18n;
+      TK.kana=TK.buildKana(TK.data.kana);
+      TK._paint=opts.paint||function(){};
+      var langs=document.getElementById("langs");
+      if(langs)langs.onclick=function(e){
+        var b=e.target.closest("[data-lang]");if(!b)return;
+        TK.lang=b.dataset.lang;TK.saveProfile();
+        TK.paintText();TK.paintLook();TK._paint();
+        if(opts.relang)opts.relang();
+      };
+      var here=(location.pathname.split("/").pop()||"index.html").replace(/^$/,"index.html");
+      [].forEach.call(document.querySelectorAll("[data-nav][href]"),function(a){
+        a.setAttribute("aria-current",a.getAttribute("href")===here?"page":"false");});
+      TK.buildSheet();
+      TK.paintText();TK.paintLook();TK._paint();
+      return TK;
+    });
+  }
+};
+
+window.TK=TK;
+})();
+
+</script>
+<script>
+/* ==========================================================================
+   Rules page + printable chart. Both are rendered from data:
+   the prose from guide.json, the tables from kana.json — so the look-alike
+   list on the page can never drift from the one the drill actually uses.
+   ========================================================================== */
+(function(){
+"use strict";
+
+function esc(s){return String(s).replace(/[&<>]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+
+/* ------------------------------------------------------------ rules page */
+function renderGuide(){
+  var host=document.getElementById("guideBody");
+  if(!host)return;
+  var secs=TK.data.guide.sections,si=TK.si();
+
+  host.innerHTML=
+    '<nav class="toc" aria-label="contents">'+secs.map(function(s,i){
+      return '<a href="#'+s.id+'"><b>'+(i+1)+'</b> '+esc(s.title[TK.lang]||s.title.en)+'</a>';
+    }).join("")+'<a href="#lookalike"><b>'+(secs.length+1)+'</b> '+TK.t("lookTitle")+'</a></nav>'+
+    secs.map(function(s,i){
+      var body=(s.body[TK.lang]||s.body.en).map(function(p){
+        return '<p class="'+si+'">'+esc(p)+'</p>';}).join("");
+      var ex=(s.examples&&s.examples.length)?
+        '<div class="exbox"><div class="exlabel '+si+'">'+TK.t("example")+'</div>'+
+        s.examples.map(function(e){
+          return '<div class="exrow"><span class="exk">'+esc(e.kana)+'</span>'+
+            '<span class="exr">'+esc(e.romaji)+'</span>'+
+            '<span class="exg">'+esc(e.gloss||"")+'</span></div>';}).join("")+'</div>':"";
+      return '<section class="gsec" id="'+s.id+'"><h2><b>'+(i+1)+'</b>'+
+        esc(s.title[TK.lang]||s.title.en)+'</h2>'+body+ex+'</section>';
+    }).join("")+
+    '<section class="gsec" id="lookalike"><h2><b>'+(secs.length+1)+'</b>'+
+      TK.t("lookTitle")+'</h2><p class="'+si+'">'+TK.t("lookNote")+'</p>'+
+      lookTable()+'</section>'+
+    '<p class="gcta"><a class="ghost" href="#" data-goto="drill">'+TK.t("backToDrill")+'</a></p>';
+}
+
+/* Built from the same groups the question generator uses, with the same tip
+   the drill shows when a learner picks the wrong one of a pair. */
+function tipText(chars){
+  var T2=TK.data.tips;
+  if(!T2)return "";
+  for(var i=0;i<T2.kana.length;i++){
+    var c=T2.kana[i].chars,hit=0;
+    for(var j=0;j<chars.length;j++)if(c.indexOf(chars[j])>=0)hit++;
+    if(hit>=2)return T2.kana[i].tip[TK.lang]||T2.kana[i].tip.en;
+  }
+  return "";
+}
+function lookTable(){
+  var K=TK.data.kana;
+  function block(groups,label){
+    return '<div class="lookcol"><h3>'+label+'</h3>'+
+      groups.map(function(g){
+        var tip=tipText(g);
+        return '<div class="lookrow">'+g.map(function(c){
+          return '<span class="lk">'+c+'</span>';}).join('<i>/</i>')+'</div>'+
+          (tip?'<p class="looktip">'+esc(tip)+'</p>':"");
+      }).join("")+'</div>';
+  }
+  return '<div class="lookwrap">'+block(K.look_h,"ひらがな")+block(K.look_k,"カタカナ")+'</div>';
+}
+
+/* -------------------------------------------------------- printable chart */
+function renderChart(){
+  var host=document.getElementById("chartBody");
+  if(!host)return;
+  var K=TK.kana,by=K.by;
+
+  function cell(ch){
+    if(!ch)return '<div class="ccell hole"></div>';
+    var x=by.h[ch];
+    if(!x)return '<div class="ccell hole"></div>';
+    return '<div class="ccell'+(x.rare?" rare":"")+'">'+
+      '<div class="ckana">'+x.h+'<em>'+x.k+'</em></div>'+
+      '<div class="crom">'+x.r+'</div>'+
+      '<div class="csi si">'+x.s+'</div></div>';
+  }
+  function section(title,rows,cols){
+    return '<section class="csec"><h2>'+title+'</h2>'+
+      '<div class="cgrid c'+cols+'">'+rows.join("")+'</div></section>';
+  }
+
+  var sei=K.grid.map(function(r){return r.map(cell).join("");});
+  sei.push(cell("ん")+'<div class="ccell hole"></div><div class="ccell hole"></div>'+
+    '<div class="ccell hole"></div><div class="ccell hole"></div>');
+
+  function plain(set){
+    return [K.all.filter(function(x){return x.set===set;})
+      .map(function(x){return cell(x.h);}).join("")];
+  }
+
+  host.innerHTML=
+    section(TK.t("st_sei"),sei,5)+
+    section(TK.t("st_daku"),plain("daku"),5)+
+    section(TK.t("st_han"),plain("han"),5)+
+    section(TK.t("st_you"),plain("you"),3);
+}
+
+function paint(){renderGuide();renderChart();}
+
+TK.page({data:document.getElementById("guideBody")?["guide","tips"]:[],paint:paint,start:function(){
+  var pb=document.getElementById("printBtn");
+  if(pb)pb.onclick=function(){window.print();};
+}});
+})();
+
+</script>
+<script>
+/* ==========================================================================
+   Numbers and time — rules page + practice, on one page.
+   Readings are generated from the rules in data-numbers.json, not stored as a
+   giant list, so the only thing to correct is an exception table.
+   ========================================================================== */
+(function(){
+"use strict";
+
+var D=null,TIPS=null;           /* data-numbers.json, data-tips.json */
+var S={missed:[],mode:"read",len:20,asked:0,right:0,streak:0,ms:0,q:null,locked:false,
+       phase:"quiz",t0:0,counter:"tsu"};
+
+function $(s){return document.querySelector(s);}
+function t(k){return TK.t(k);}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function rnd(n){return Math.floor(Math.random()*n);}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=rnd(i+1),x=a[i];a[i]=a[j];a[j]=x;}return a;}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+function siC(){return TK.si();}
+
+/* ---------------------------------------------------------------- reading */
+/* 0-99 */
+function under100(n){
+  if(n<10)return D.ones[n];
+  var tens=Math.floor(n/10),d=n%10;
+  return D.tensPrefix[tens]+"じゅう"+(d?D.ones[d]:"");
+}
+/* 0-9999 */
+function under10000(n){
+  var out="";
+  var th=Math.floor(n/1000),hu=Math.floor(n%1000/100),rest=n%100;
+  if(th)out+=D.thousands[th];
+  if(hu)out+=D.hundreds[hu];
+  if(rest)out+=under100(rest);
+  return out;
+}
+/* the whole range the site teaches */
+function numberReading(n){
+  if(n===0)return D.ones[0];
+  if(n<10000)return under10000(n);
+  var man=Math.floor(n/10000),rest=n%10000;
+  var head=(man===1)?"いち"+D.man:under10000(man)+D.man;
+  return head+(rest?under10000(rest):"");
+}
+
+/* counters: rule + exception table, the same shape the verb material uses */
+function counterReading(n,key){
+  var c=D.counters[key];
+  if(c.whole&&c.whole[n])return c.whole[n];
+  /* above 99 the last two digits carry the sound change, the rest is plain */
+  if(n>=100){
+    var lastTwo=n%100;
+    return numberReading(n-lastTwo)+(lastTwo?counterReading(lastTwo,key):c.suffix);
+  }
+  if(n<10)return (c.last&&c.last[n])?c.last[n]:D.ones[n]+c.suffix;
+  var d=n%10,tens=Math.floor(n/10);
+  if(d===0)return D.tensPrefix[tens]+(c.ten||("じゅう"+c.suffix));
+  return D.tensPrefix[tens]+"じゅう"+((c.last&&c.last[d])?c.last[d]:D.ones[d]+c.suffix);
+}
+function minuteReading(m){
+  if(m===0)return "";
+  if(m<10)return D.minutesLast[m];
+  var d=m%10,tens=Math.floor(m/10);
+  if(d===0)return D.tensPrefix[tens]+D.minutesTen;
+  return D.tensPrefix[tens]+"じゅう"+D.minutesLast[d];
+}
+function timeReading(h,m,useHalf){
+  var out=D.hours[h];
+  if(m===0)return out;
+  if(m===30&&useHalf)return out+" "+D.half;
+  return out+" "+minuteReading(m);
+}
+function pad(n){return (n<10?"0":"")+n;}
+/* Some values have a second reading that is also correct (4円 よえん / よんえん,
+   7人 しちにん / ななにん, 30分 はん / さんじゅっぷん). None of them may appear
+   as a wrong answer. */
+function alsoOk(n,key){
+  var m=D.alsoOk&&D.alsoOk[key];
+  return (m&&m[n])?m[n]:[];
+}
+function banned(n,key){
+  return [counterReading(n,key)].concat(alsoOk(n,key));
+}
+
+/* --------------------------------------------------------------- the page */
+function renderGuide(){
+  var host=$("#numGuide");if(!host||!D)return;
+  host.innerHTML=D.guide.map(function(s,i){
+    var body=(s.body[TK.lang]||s.body.en).map(function(p){
+      return '<p>'+esc(p)+'</p>';}).join("");
+    var ex=(s.examples||[]).map(function(e){
+      return '<div class="exrow"><span class="exr" style="min-width:5em">'+esc(e.num)+'</span>'+
+        '<span class="exk" style="min-width:9em">'+esc(e.kana)+'</span>'+
+        '<span class="exg">'+esc(e.gloss||"")+'</span></div>';}).join("");
+    return '<section class="gsec" id="'+s.id+'"><h2><b>'+(i+1)+'</b>'+
+      esc(s.title[TK.lang]||s.title.en)+'</h2>'+body+
+      (ex?'<div class="exbox">'+ex+'</div>':"")+'</section>';
+  }).join("");
+}
+
+/* an SVG clock face — the one thing paper cannot do */
+function clockSVG(h,m){
+  var hAng=(h%12)*30+m*0.5, mAng=m*6;
+  function hand(ang,len,w,col){
+    var r=(ang-90)*Math.PI/180;
+    return '<line x1="60" y1="60" x2="'+(60+len*Math.cos(r)).toFixed(1)+'" y2="'+
+      (60+len*Math.sin(r)).toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+
+      '" stroke-linecap="round"/>';
+  }
+  var ticks="";
+  for(var i=0;i<12;i++){
+    var a=(i*30-90)*Math.PI/180, big=(i%3===0);
+    ticks+='<line x1="'+(60+(big?46:48)*Math.cos(a)).toFixed(1)+'" y1="'+
+      (60+(big?46:48)*Math.sin(a)).toFixed(1)+'" x2="'+(60+52*Math.cos(a)).toFixed(1)+
+      '" y2="'+(60+52*Math.sin(a)).toFixed(1)+'" stroke="currentColor" stroke-width="'+
+      (big?3:1.5)+'" opacity="'+(big?".85":".4")+'"/>';
+  }
+  return '<svg viewBox="0 0 120 120" class="clock" role="img" aria-label="clock">'+
+    '<circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="2" opacity=".25"/>'+
+    ticks+hand(hAng,30,5,"currentColor")+hand(mAng,44,3,"currentColor")+
+    '<circle cx="60" cy="60" r="3.5" fill="currentColor"/></svg>';
+}
+
+/* ------------------------------------------------------------- questions */
+var MODES=[["read","nm_read"],["pick","nm_pick"],["clock","nm_clock"],
+           ["settime","nm_settime"],["count","nm_count"],["price","nm_price"]];
+var LENS=[[20,"len20"],[50,"len50"],[0,"lenInf"]];
+
+function buildChips(){
+  $("#numModes").innerHTML=MODES.map(function(m){
+    return '<button class="chip" data-nmode="'+m[0]+'" data-k="'+m[1]+'"></button>';}).join("");
+  $("#numModes").onclick=function(e){
+    var b=e.target.closest("[data-nmode]");if(!b)return;
+    S.mode=b.dataset.nmode;start();
+    try{if(b.scrollIntoView)b.scrollIntoView({block:"nearest",inline:"nearest"});}catch(err){}
+  };
+  $("#sheetSlot").innerHTML=
+    '<div class="sgroup"><span class="flabel" data-t="lblLen"></span>'+
+    '<div class="swrap lane" id="numLens">'+LENS.map(function(m){
+      return '<button class="chip" data-nlen="'+m[0]+'" data-k="'+m[1]+'"></button>';}).join("")+
+    '</div></div>';
+  $("#numLens").onclick=function(e){
+    var b=e.target.closest("[data-nlen]");if(!b)return;
+    S.len=parseInt(b.dataset.nlen,10);start();};
+  $("#numSettings").onclick=function(){TK.openSheet(true);};
+  var pb=$("#printBtn");if(pb)pb.onclick=function(){window.print();};
+}
+function paint(){
+  /* paint runs once before start(), and again on every language switch */
+  D=D||(TK.data&&TK.data.numbers);
+  if(!D||!document.getElementById("numGuide"))return;
+  [].forEach.call(document.querySelectorAll("#numModes .chip,#numLens .chip"),function(b){
+    b.textContent=t(b.dataset.k);});
+  [].forEach.call(document.querySelectorAll("[data-nmode]"),function(b){
+    b.setAttribute("aria-pressed",b.dataset.nmode===S.mode);});
+  [].forEach.call(document.querySelectorAll("[data-nlen]"),function(b){
+    b.setAttribute("aria-pressed",parseInt(b.dataset.nlen,10)===S.len);});
+  var m=MODES.filter(function(x){return x[0]===S.mode;})[0];
+  var bits=["<b>"+t(m[1])+"</b>",t(LENS.filter(function(x){return x[0]===S.len;})[0][1])];
+  if($("#numNow"))$("#numNow").innerHTML=bits.join(" &middot; ");
+  renderGuide();
+}
+
+function start(){
+  S.asked=0;S.right=0;S.streak=0;S.ms=0;S.missed=[];S.phase="quiz";
+  paint();updateScore();newQ();
+}
+
+function shell(inner){
+  var pct=S.len?Math.min(100,S.asked/S.len*100):0;
+  $("#numCard").innerHTML=
+    '<div class="corner">'+(S.len?(S.asked+1)+" / "+S.len:"Q"+(S.asked+1))+'</div>'+
+    (S.len?'<div class="bar"><i style="width:'+pct+'%"></i></div>':"")+
+    '<p class="ask" id="nAsk"></p><div class="stage" id="nStage"></div>'+inner+
+    '<div class="verdict" id="nVerdict" role="status" aria-live="polite"></div>'+
+    '<div id="nExpl"></div>'+
+    '<div class="rowbtns">'+
+    '<button class="ghost" id="nNext" disabled>'+t("btnNext")+'</button>'+
+    '<button class="ghost alt" id="nSkip">'+t("btnSkip")+'</button>'+
+    (S.len?'<button class="ghost alt" id="nStop">'+t("btnEnd")+'</button>':"")+'</div>';
+  $("#nNext").onclick=newQ;
+  $("#nSkip").onclick=doSkip;
+  var st=$("#nStop");if(st)st.onclick=result;
+}
+
+/* which rule a question turns on, so the explanation can name it */
+function ruleForNumber(n){
+  if(n>=10000)return "man";
+  var hu=Math.floor(n%1000/100),th=Math.floor(n/1000);
+  if(hu===3||hu===6||hu===8)return "hyaku";
+  if(th===1||th===3||th===8)return "sen";
+  if(hu)return "hyaku";
+  if(th)return "sen";
+  return null;
+}
+function ruleForTime(h,m){
+  if(m===30)return "half";
+  if(h===4||h===7||h===9)return "hour";
+  if(m)return "minute";
+  return "hour";
+}
+
+/* wrong answers are built from the mistake the rule predicts, not from noise */
+function naiveNumber(n){
+  var s=under10000(n);
+  return s.replace("さんびゃく","さんひゃく").replace("ろっぴゃく","ろくひゃく")
+          .replace("はっぴゃく","はちひゃく").replace("さんぜん","さんせん")
+          .replace("はっせん","はちせん");
+}
+function options(correct,makers,n){
+  var out=[correct],guard=0;
+  while(out.length<4&&guard++<80){
+    var c=pick(makers)();
+    if(c&&out.indexOf(c)<0)out.push(c);
+  }
+  return shuffle(out);
+}
+
+function newQ(){
+  if(S.len&&S.asked>=S.len){result();return;}
+  S.locked=false;
+  shell('<div class="opts" id="nOpts"></div>');
+  $("#nOpts").onclick=function(e){
+    var b=e.target.closest(".opt");if(b&&!S.locked)answer(parseInt(b.dataset.i,10));};
+  var ask=$("#nAsk"),stage=$("#nStage");
+
+  if(S.mode==="read"||S.mode==="pick"||S.mode==="price"){
+    var big=(S.mode==="price")||Math.random()<.45;
+    var n=big?(10+rnd(9990)):(1+rnd(99));
+    if(S.mode==="price")n=pick([1,2,3,5,8])*pick([10,100,1000])+rnd(10)*pick([1,10]);
+    if(n<1)n=1;
+    var correct=(S.mode==="price")?counterReading(n,"en"):numberReading(n);
+    var shown=(S.mode==="price")?("¥"+n.toLocaleString("en-US")):n.toLocaleString("en-US");
+    var ban=(S.mode==="price")?banned(n%100,"en").concat([correct]):[correct];
+    var makers=[
+      function(){var v=(S.mode==="price")?naiveNumber(n)+"えん":naiveNumber(n);
+                 if(v===correct)return null;
+                 /* よんえん is a real way to say 4円, so it cannot be wrong */
+                 for(var i=0;i<ban.length;i++)if(v.slice(-ban[i].length)===ban[i])return null;
+                 return v;},
+      function(){var m=n+pick([-3,-2,-1,1,2,3,10,-10,100,-100]);
+                 if(m<1)return null;
+                 return (S.mode==="price")?counterReading(m,"en"):numberReading(m);},
+      function(){var m=n+pick([1,-1,2,-2,20,-20,1000,-1000]);
+                 if(m<1)return null;
+                 return (S.mode==="price")?counterReading(m,"en"):numberReading(m);}
+    ];
+    if(S.mode==="pick"){
+      ask.textContent=t("nask_pick");
+      stage.innerHTML='<div class="reading">'+correct+'</div>';
+      var nums=[shown],g=0;
+      while(nums.length<4&&g++<60){
+        var m2=n+pick([-3,-2,-1,1,2,3,10,-10,100,-100,1000,-1000]);
+        if(m2<1)continue;
+        var v2=(S.mode==="price"?"¥":"")+m2.toLocaleString("en-US");
+        if(nums.indexOf(v2)<0)nums.push(v2);
+      }
+      S.q={answer:shown,teach:numberReading(n)+" = "+shown,rule:ruleForNumber(n)};
+      render(shuffle(nums),"num");
+    }else{
+      ask.textContent=t(S.mode==="price"?"nask_price":"nask_read");
+      stage.innerHTML='<div class="numbig">'+shown+'</div>';
+      S.q={answer:correct,teach:shown+" = "+correct,rule:ruleForNumber(n)};
+      render(options(correct,makers,n),"kana");
+    }
+    S.t0=Date.now();return;
+  }
+
+  if(S.mode==="clock"||S.mode==="settime"){
+    var FIVE=[0,5,10,15,20,25,30,35,40,45,50,55];
+    var h=1+rnd(12);
+    var mm=(S.mode==="clock")?pick(FIVE)
+      :pick(FIVE.concat([1,3,4,6,7,8,9,12,17,23,38,47,58]));
+    var reading=timeReading(h,mm,true);
+    var digital=h+":"+pad(mm);
+    if(S.mode==="clock"){
+      ask.textContent=t("nask_clock");
+      stage.innerHTML=clockSVG(h,mm);
+      var alts=[reading],g2=0;
+      while(alts.length<4&&g2++<80){
+        var h2=h,m2b=mm;
+        if(Math.random()<.5)h2=1+rnd(12);else m2b=pick(FIVE);
+        /* the same clock time must never appear twice — 5:30 can be said as
+           both ごじはん and ごじさんじゅっぷん, and both would be right */
+        if(h2===h&&m2b===mm)continue;
+        var v=timeReading(h2,m2b,Math.random()<.7);
+        var other=timeReading(h,mm,!( mm===30));
+        if(v===other)continue;
+        if(alts.indexOf(v)<0)alts.push(v);
+      }
+      S.q={answer:reading,teach:digital+" = "+reading,rule:ruleForTime(h,mm)};
+      render(shuffle(alts),"kana");
+    }else{
+      ask.textContent=t("nask_settime");
+      stage.innerHTML='<div class="reading">'+reading+'</div>';
+      var ds=[digital],g3=0;
+      while(ds.length<4&&g3++<80){
+        var hh=1+rnd(12),m3=pick(FIVE.concat([1,3,4,6,8]));
+        if(hh===h&&m3===mm)continue;
+        var v3=hh+":"+pad(m3);
+        if(ds.indexOf(v3)<0)ds.push(v3);
+      }
+      S.q={answer:digital,teach:reading+" = "+digital,rule:ruleForTime(h,mm)};
+      render(shuffle(ds),"num");
+    }
+    S.t0=Date.now();return;
+  }
+
+  /* counters */
+  var keys=Object.keys(D.counters).filter(function(k){return k!=="en";});
+  var key=pick(keys),c=D.counters[key];
+  var max=Math.min(c.max,(key==="tsu")?10:((key==="nichi")?31:30));
+  var cn=1+rnd(max);
+  var cr=counterReading(cn,key);
+  ask.textContent=t("nask_count");
+  stage.innerHTML='<div class="numbig">'+cn+'<span class="cunit">'+c.jp.replace("〜","")+'</span></div>'+
+    '<div class="sub">'+esc(c[TK.lang]||c.en)+'</div>';
+  var ban=banned(cn,key);
+  var copts=[cr],g4=0;
+  while(copts.length<4&&g4++<120){
+    var alt=null,r=Math.random();
+    if(r<.45)alt=D.ones[cn%10||1]+c.suffix;                 /* the regular guess */
+    else if(r<.8)alt=counterReading(1+rnd(max),key);
+    else alt=counterReading(cn,pick(keys));
+    if(alt&&copts.indexOf(alt)<0&&ban.indexOf(alt)<0)copts.push(alt);
+  }
+  S.q={answer:cr,teach:cn+c.jp.replace("〜","")+" = "+cr,
+       rule:(c.whole&&c.whole[cn])?"counterIrregular":"counter"};
+  render(shuffle(copts),"kana");
+  S.t0=Date.now();
+}
+
+function render(list,cls){
+  /* a long reading in a half-width card has to come down a size or it wraps
+     in the middle of a word */
+  var longest=list.reduce(function(n,o){return Math.max(n,o.length);},0);
+  var base=(cls==="kana")?"kana":"numopt";
+  var size=(longest>9)?" xlong":(longest>6?" long":"");
+  $("#nOpts").innerHTML=list.map(function(o,i){
+    return '<button class="opt" data-i="'+i+'"><span class="num">'+(i+1)+'</span>'+
+      '<span class="main '+base+size+'">'+esc(o)+'</span></button>';}).join("");
+  S.q.list=list;
+}
+function answer(i){
+  if(S.locked||!S.q)return;
+  S.q.chosen=S.q.list[i];
+  var ok=S.q.list[i]===S.q.answer;
+  [].forEach.call(document.querySelectorAll("#nOpts .opt"),function(el,idx){
+    el.disabled=true;
+    if(S.q.list[idx]===S.q.answer)el.dataset.state="ok";
+    else if(idx===i)el.dataset.state="ng";});
+  finish(ok);
+}
+function doSkip(){
+  if(S.locked||!S.q)return;
+  S.q.chosen=null;
+  [].forEach.call(document.querySelectorAll("#nOpts .opt"),function(el,idx){
+    el.disabled=true;
+    if(S.q.list[idx]===S.q.answer)el.dataset.state="ok";});
+  finish(false);
+}
+function finish(ok){
+  S.locked=true;TK.bumpDays();
+  S.ms+=Math.min(Date.now()-S.t0,60000);S.asked++;
+  if(ok){S.right++;S.streak++;}else S.streak=0;
+  var v=$("#nVerdict");
+  v.className="verdict "+(ok?"ok":"ng");
+  v.innerHTML='<span class="tag">'+(ok?t("ok"):t("ng"))+"</span><b>"+esc(S.q.teach)+"</b>";
+  var nb=$("#nNext");if(nb)nb.disabled=false;
+  numExpl(ok);
+  updateScore();
+  if(ok)setTimeout(function(){if(S.locked&&S.phase==="quiz")newQ();},800);
+}
+/* Name the rule the question turns on. On a miss it is the whole point of the
+   question; on a hit it still reinforces why the answer looked odd. */
+function numExpl(ok){
+  var host=$("#nExpl");if(!host)return;
+  var key=S.q.rule;
+  if(ok||!key||!TIPS||!TIPS.rules[key]){host.innerHTML="";return;}
+  var r=TIPS.rules[key];
+  if(S.missed.indexOf(key)<0)S.missed.push(key);
+  host.innerHTML='<div class="expl"><span class="lab">'+t("labRule")+'</span>'+
+    '<p class="nt">'+esc(r[TK.lang]||r.en)+'</p></div>';
+}
+
+function updateScore(){
+  $("#nAsked").textContent=S.asked;
+  $("#nRate").textContent=S.asked?Math.round(S.right/S.asked*100)+"%":"-";
+  var st=$("#nStreak");st.textContent=S.streak;st.classList.toggle("hot",S.streak>=5);
+  $("#nSpeed").textContent=S.asked?(S.ms/S.asked/1000).toFixed(1):"-";
+}
+/* the rules this session actually broke */
+function numRecap(){
+  if(!S.missed.length||!TIPS)return "";
+  return '<div class="recap"><h3>'+t("recapTitle")+'</h3>'+
+    S.missed.slice(0,5).map(function(k){
+      var r=TIPS.rules[k];
+      return '<div class="item"><p style="margin:0">'+esc(r[TK.lang]||r.en)+'</p></div>';
+    }).join("")+'</div>';
+}
+function result(){
+  S.phase="result";
+  var rate=S.asked?Math.round(S.right/S.asked*100):0,deg=Math.round(rate*3.6);
+  var avg=S.asked?(S.ms/S.asked/1000).toFixed(1):"-";
+  $("#numCard").innerHTML=
+    '<div class="result"><div class="corner">RESULT</div><h2>'+t("resTitle")+'</h2>'+
+    '<div class="gauge" style="background:conic-gradient(var(--gold) 0deg '+deg+
+    'deg,var(--rule) '+deg+'deg 360deg)"><span>'+rate+'<i>%</i></span></div>'+
+    '<p style="margin:12px 0 0;font-size:.85rem;color:var(--ink-soft)">'+S.right+' / '+S.asked+
+    ' &nbsp;&middot;&nbsp; '+t("resSpeed")+': '+avg+'s</p>'+
+    numRecap()+
+    '<div class="rowbtns" style="margin-top:20px;justify-content:center">'+
+    '<button class="ghost" id="nAgain">'+t("btnAgain")+'</button></div></div>';
+  $("#nAgain").onclick=start;
+}
+
+TK.page({data:["numbers","tips"],paint:paint,relang:function(){
+  if(!document.getElementById("numCard"))return;
+  if(S.phase==="result")result();else newQ();
+},start:function(){
+  if(!document.getElementById("numCard"))return;
+  D=TK.data.numbers;TIPS=TK.data.tips;
+  buildChips();paint();updateScore();start();
+}});
+})();
+
+</script>
+<script>
+/* ==========================================================================
+   Kana drill — question logic for drill.html.
+   Content lives in data/*.json; shared plumbing lives in site.js.
+   This file contains no Japanese content.
+   ========================================================================== */
+(function(){
+"use strict";
+
+var KANA,BY,QUIZABLE,LOOK,SND,ALT,CONFLICT,GRID,HEADS,SMALL,W,WORDS,SPECIAL,TIPS;
+
+var S={confused:[],mode:"k2r",script:"h",sets:{sei:true,daku:false,han:false,you:false},
+  len:20,asked:0,right:0,streak:0,ms:0,q:null,locked:false,phase:"quiz",
+  weakOnly:false,t0:0,placed:[]};
+
+function $(s){return document.querySelector(s);}
+function t(k){return TK.t(k);}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));
+  var x=a[i];a[i]=a[j];a[j]=x;}return a;}
+function stat(id){return TK.statOf(id);}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+function persist(){TK.saveStat();}
+function siC(){return TK.si();}
+
+/* ==========================================================================
+   ROMAJI -> KANA
+   The same rules a Japanese IME uses, built from the kana table itself so it
+   can never disagree with the rest of the site. It handles the three things
+   learners actually have to be taught: a doubled consonant makes っ, n before
+   a consonant makes ん, and a katakana long vowel is typed as a hyphen.
+   ========================================================================== */
+var IME=null,IME_REV=null;
+var IME_EXTRA={
+  "n":"ん","nn":"ん","n'":"ん","wo":"を",
+  "di":"ぢ","du":"づ","dzu":"づ",
+  "xa":"ぁ","la":"ぁ","xi":"ぃ","li":"ぃ","xu":"ぅ","lu":"ぅ",
+  "xe":"ぇ","le":"ぇ","xo":"ぉ","lo":"ぉ",
+  "xtu":"っ","ltu":"っ","xtsu":"っ","ltsu":"っ",
+  "xya":"ゃ","lya":"ゃ","xyu":"ゅ","lyu":"ゅ","xyo":"ょ","lyo":"ょ",
+  "she":"しぇ","che":"ちぇ","je":"じぇ",
+  "fa":"ふぁ","fi":"ふぃ","fe":"ふぇ","fo":"ふぉ",
+  "wi":"うぃ","we":"うぇ"
+};
+function buildIME(){
+  if(IME)return;
+  IME={};
+  /* plain table first; rare kana are skipped so ぢ/づ can't steal ji/zu */
+  KANA.forEach(function(x){if(!x.rare)IME[x.r]=x.h;});
+  KANA.forEach(function(x){if(!x.rare)(ALT[x.r]||[]).forEach(function(a){
+    if(!IME[a])IME[a]=x.h;});});
+  Object.keys(IME_EXTRA).forEach(function(k){IME[k]=IME_EXTRA[k];});
+  /* shortest spelling per kana, for showing what should have been typed */
+  IME_REV={};
+  Object.keys(IME).forEach(function(k){
+    var v=IME[k];
+    if(k==="n"||k==="n'")return;
+    if(!IME_REV[v]||k.length<IME_REV[v].length)IME_REV[v]=k;});
+  IME_REV["ん"]="nn";IME_REV["っ"]="xtu";IME_REV["ー"]="-";
+}
+function isKata(ch){return ch>="\u30A1"&&ch<="\u30F6";}
+function toKata(s){
+  return s.replace(/[\u3041-\u3096]/g,function(c){
+    return String.fromCharCode(c.charCodeAt(0)+0x60);});
+}
+var VOWEL="aiueo";
+function toKana(src,kata){
+  buildIME();
+  var s=String(src).toLowerCase().replace(/\s+/g,""),out="",i=0;
+  while(i<s.length){
+    var c=s[i];
+    if(c==="-"){out+="ー";i++;continue;}
+    if(c==="n"){
+      var nx=s[i+1],nx2=s[i+2];
+      if(nx==="'"){out+="ん";i+=2;continue;}
+      if(nx==="n"){
+        /* "nn" before a vowel is ん + a な-row kana ("konnichiwa" -> こんにちわ);
+           anywhere else the pair is just ん ("honn" -> ほん). */
+        if(nx2&&(VOWEL.indexOf(nx2)>=0||nx2==="y")){out+="ん";i++;continue;}
+        out+="ん";i+=2;continue;
+      }
+      if(!nx||(VOWEL.indexOf(nx)<0&&nx!=="y")){out+="ん";i++;continue;}
+    }
+    if(s[i+1]===c&&VOWEL.indexOf(c)<0&&c!=="n"&&/[a-z]/.test(c)){out+="っ";i++;continue;}
+    var hit=false;
+    for(var len=3;len>=1;len--){
+      var chunk=s.substr(i,len);
+      if(chunk.length===len&&IME[chunk]){out+=IME[chunk];i+=len;hit=true;break;}
+    }
+    if(!hit){out+=c;i++;}   /* leave it visible so the learner sees the problem */
+  }
+  return kata?toKata(out):out;
+}
+/* what the learner would have to type to produce this word */
+function toTyping(word){
+  buildIME();
+  var c=Array.from(word),out="",i=0;
+  function base(ch){return isKata(ch)?String.fromCharCode(ch.charCodeAt(0)-0x60):ch;}
+  while(i<c.length){
+    var a=base(c[i]),b=c[i+1]?base(c[i+1]):"";
+    if(c[i]==="ー"){out+="-";i++;continue;}
+    if(a==="っ"){
+      var nx=c[i+1]?base(c[i+1]):"";
+      var nx2=c[i+2]?base(c[i+2]):"";
+      var pair=("ゃゅょ".indexOf(nx2)>=0)?nx+nx2:nx;
+      var r=IME_REV[pair]||IME_REV[nx]||"";
+      out+=r?r.charAt(0):"";i++;continue;
+    }
+    if("ゃゅょ".indexOf(b)>=0&&IME_REV[a+b]){out+=IME_REV[a+b];i+=2;continue;}
+    out+=IME_REV[a]||a;i++;
+  }
+  return out;
+}
+
+/* ------------------------------------------------------------- controls */
+var MODES=[["learn","m_learn"],["gojuon","m_gojuon"],["k2r","m_k2r"],["r2k","m_r2k"],["h2k","m_h2k"],
+  ["listen","m_listen"],["type","m_type"],["ime","m_ime"],["spell","m_spell"],["dictation","m_dictation"],
+  ["special","m_special"],["word","m_word"]];
+var SCRIPTS=[["h","sc_h"],["k","sc_k"],["mix","sc_mix"]];
+var SETS=[["sei","st_sei"],["daku","st_daku"],["han","st_han"],["you","st_you"]];
+var LENS=[[20,"len20"],[50,"len50"],[-60,"lenTime"],[0,"lenInf"]];
+var RANGE_MODES=["learn","k2r","r2k","h2k","listen","type"];
+var SCRIPT_MODES=["learn","gojuon","k2r","r2k","listen","type"];
+var SPELL_MODES=["spell","dictation"];
+
+function buildChips(){
+  /* Only the mode lane stays on the page. Script / range / session live in the
+     settings sheet, with the current choice summarised in one line above. */
+  $("#sheetSlot").innerHTML=
+    '<div class="sgroup"><span class="flabel si-swap" data-t="lblScript"></span>'+
+    '<div class="swrap lane" id="scriptChips"></div></div>'+
+    '<div class="sgroup"><span class="flabel si-swap" data-t="lblSet"></span>'+
+    '<div class="swrap lane" id="setChips"></div></div>'+
+    '<div class="sgroup"><span class="flabel si-swap" data-t="lblLen"></span>'+
+    '<div class="swrap lane" id="lenChips"></div></div>';
+  $("#modeChips").innerHTML=MODES.map(function(m){
+    return '<button class="chip '+(m[0]==="learn"?"learn":"")+'" data-mode="'+m[0]+'" data-k="'+m[1]+'"></button>';}).join("");
+  $("#scriptChips").innerHTML=SCRIPTS.map(function(m){
+    return '<button class="chip" data-script="'+m[0]+'" data-k="'+m[1]+'"></button>';}).join("");
+  $("#setChips").innerHTML=SETS.map(function(m){
+    return '<button class="chip" data-set="'+m[0]+'" data-k="'+m[1]+'"></button>';}).join("");
+  $("#lenChips").innerHTML=LENS.map(function(m){
+    return '<button class="chip" data-len="'+m[0]+'" data-k="'+m[1]+'"></button>';}).join("");
+
+  $("#modeChips").onclick=function(e){var b=e.target.closest("[data-mode]");if(!b)return;
+    S.mode=b.dataset.mode;S.weakOnly=false;startSession();
+    /* keep the tapped chip in view on a phone; older browsers may not have it */
+    try{if(b.scrollIntoView)b.scrollIntoView({block:"nearest",inline:"nearest"});}catch(err){}};
+  $("#scriptChips").onclick=function(e){var b=e.target.closest("[data-script]");if(!b||b.disabled)return;
+    S.script=b.dataset.script;startSession();};
+  $("#setChips").onclick=function(e){var b=e.target.closest("[data-set]");if(!b||b.disabled)return;
+    S.sets[b.dataset.set]=!S.sets[b.dataset.set];
+    if(!Object.keys(S.sets).some(function(k){return S.sets[k];}))S.sets.sei=true;
+    startSession();};
+  $("#lenChips").onclick=function(e){var b=e.target.closest("[data-len]");if(!b||b.disabled)return;
+    S.len=parseInt(b.dataset.len,10);startSession();};
+  $("#openSettings").onclick=function(){TK.openSheet(true);};
+}
+
+/* the summary line — so the learner can see the setup without opening anything */
+function drawNowBar(){
+  var mode=MODES.filter(function(m){return m[0]===S.mode;})[0];
+  var bits=["<b>"+t(mode[1])+"</b>"];
+  if(SCRIPT_MODES.indexOf(S.mode)>=0)
+    bits.push(t(SCRIPTS.filter(function(x){return x[0]===S.script;})[0][1]));
+  if(RANGE_MODES.indexOf(S.mode)>=0)
+    bits.push(SETS.filter(function(g){return S.sets[g[0]];}).map(function(g){return t(g[1]);}).join("・"));
+  if(S.mode!=="learn")
+    bits.push(t(LENS.filter(function(x){return x[0]===S.len;})[0][1]));
+  $("#nowVal").innerHTML=bits.join(" &middot; ");
+}
+
+function paint(){
+  [].forEach.call(document.querySelectorAll(".chip"),function(b){
+    b.textContent=t(b.dataset.k);b.classList.toggle("si",TK.lang==="si");});
+  [].forEach.call(document.querySelectorAll("[data-mode]"),function(b){
+    b.setAttribute("aria-pressed",b.dataset.mode===S.mode);});
+  [].forEach.call(document.querySelectorAll("[data-script]"),function(b){
+    b.setAttribute("aria-pressed",b.dataset.script===S.script);
+    b.disabled=SCRIPT_MODES.indexOf(S.mode)<0;});
+  [].forEach.call(document.querySelectorAll("[data-set]"),function(b){
+    b.setAttribute("aria-pressed",!!S.sets[b.dataset.set]);
+    b.disabled=RANGE_MODES.indexOf(S.mode)<0;});
+  [].forEach.call(document.querySelectorAll("[data-len]"),function(b){
+    b.setAttribute("aria-pressed",parseInt(b.dataset.len,10)===S.len);b.disabled=(S.mode==="learn");});
+  $("#scoreBox").style.display=(S.mode==="learn")?"none":"";
+  drawNowBar();drawMastery();
+}
+function drawMastery(){TK.drawMastery();}
+
+/* -------------------------------------------------- pool + distractors */
+function poolKana(){
+  var p=KANA.filter(function(x){return S.sets[x.set]&&!x.rare;});
+  if(!p.length)p=KANA.filter(function(x){return x.set==="sei"&&!x.rare;});
+  if(S.weakOnly){var w=p.filter(function(x){return stat(x.id).w>0;});if(w.length>=4)return w;}
+  return p;
+}
+function weight(k){var s=stat(k.id);return Math.max(0.5,1+s.w*2.5-Math.min(s.c,4)*0.18);}
+function weighted(pool){
+  var tot=pool.reduce(function(n,k){return n+weight(k);},0),r=Math.random()*tot;
+  for(var i=0;i<pool.length;i++){r-=weight(pool[i]);if(r<=0)return pool[i];}
+  return pool[pool.length-1];
+}
+function scriptFor(){return S.script==="mix"?(Math.random()<.5?"h":"k"):S.script;}
+/* を reads "o" in modern Japanese, so を and お must never be options for each other. */
+function clashes(ans,c){var g=CONFLICT[ans.id];return !!g&&g.indexOf(c.id)>=0;}
+
+function glyphOptions(pool,ans,ansSc,n){
+  var mix=S.script==="mix";
+  var out=[],used={},seen={};
+  used[ans.id]=1;seen[ans[ansSc]]=1;
+  function push(c){
+    if(!c||out.length>=n||used[c.id]||clashes(ans,c))return;
+    var sc=mix?(Math.random()<.5?"h":"k"):ansSc;
+    if(seen[c[sc]])return;
+    used[c.id]=1;seen[c[sc]]=1;out.push({glyph:c[sc],kana:c});
+  }
+  shuffle((LOOK[ansSc][ans[ansSc]]||[]).map(function(ch){return BY[ansSc][ch];})
+    .filter(function(x){return x&&pool.indexOf(x)>=0;})).forEach(push);
+  shuffle((SND[ans.r]||[]).map(function(r){
+    return pool.filter(function(x){return x.r===r;})[0];}).filter(Boolean)).forEach(push);
+  shuffle(pool.slice()).forEach(push);
+  return shuffle([{glyph:ans[ansSc],kana:ans}].concat(out));
+}
+function romajiOptions(pool,ans,ansSc,n){
+  var out=[],seen={};seen[ans.r]=1;
+  function push(c){if(!c||out.length>=n||seen[c.r]||clashes(ans,c))return;seen[c.r]=1;out.push(c);}
+  shuffle((LOOK[ansSc][ans[ansSc]]||[]).map(function(ch){return BY[ansSc][ch];})
+    .filter(function(x){return x&&pool.indexOf(x)>=0;})).forEach(push);
+  shuffle((SND[ans.r]||[]).map(function(r){
+    return pool.filter(function(x){return x.r===r;})[0];}).filter(Boolean)).forEach(push);
+  shuffle(pool.slice()).forEach(push);
+  return shuffle([ans].concat(out));
+}
+
+/* ------------------------------------------------------------- session */
+var tick=null;
+function stopTimer(){if(tick){clearInterval(tick);tick=null;}}
+function startTimer(){
+  stopTimer();
+  S.until=Date.now()+(-S.len)*1000;
+  tick=setInterval(function(){
+    if(S.phase!=="quiz"){stopTimer();return;}
+    var left=Math.max(0,Math.ceil((S.until-Date.now())/1000));
+    var el=$("#timer");
+    if(el){el.textContent=t("timeUp")+" "+left;el.classList.toggle("low",left<=10);}
+    var bar=$("#timeBar");
+    if(bar)bar.style.width=(left/(-S.len)*100)+"%";
+    if(left<=0){stopTimer();endSession();}
+  },250);
+}
+function startSession(){
+  stopTimer();
+  S.asked=0;S.right=0;S.streak=0;S.ms=0;S.confused=[];S.phase="quiz";
+  paint();updateScore();drawMap();
+  if(S.mode==="learn"){renderLearn();return;}
+  newQ();
+  if(S.len<0)startTimer();
+}
+function endSession(){
+  stopTimer();S.phase="result";persist();
+  var weak=Object.keys(TK.stat).filter(function(id){var v=TK.stat[id];return v.w>0&&v.w>=v.c&&BY.h[id];})
+    .sort(function(a,b){return TK.stat[b].w-TK.stat[a].w;}).slice(0,12);
+  var rate=S.asked?Math.round(S.right/S.asked*100):0;
+  var avg=S.asked?(S.ms/S.asked/1000).toFixed(1):"-";
+  var deg=Math.round(rate*3.6);
+  $("#card").innerHTML=
+    '<div class="result"><div class="corner">RESULT</div>'+
+    '<h2 class="'+siC()+'">'+t("resTitle")+'</h2>'+
+    '<div class="gauge" style="background:conic-gradient(var(--gold) 0deg '+deg+'deg,var(--rule) '+deg+'deg 360deg)">'+
+    '<span>'+rate+'<i>%</i></span></div>'+
+    '<p style="margin:12px 0 0;font-size:.85rem;color:var(--ink-soft)" class="'+siC()+'">'+
+    S.right+' / '+S.asked+' &nbsp;&middot;&nbsp; '+t("resSpeed")+': '+avg+'s</p>'+
+    '<p style="margin:18px 0 0;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)" class="'+siC()+'">'+
+    (weak.length?t("resWeak"):t("resNone"))+'</p>'+
+    '<div class="weaklist" id="weaklist">'+weak.map(function(id){var x=BY.h[id];
+      return '<button class="tile act" data-say="'+x.h+'" title="'+x.r+'"><span>'+x.h+'</span></button>';}).join("")+'</div>'+
+    recapHTML()+
+    '<div class="rowbtns" style="margin-top:20px;justify-content:center">'+
+    '<button class="ghost" id="again">'+t("btnAgain")+'</button>'+
+    (weak.length>=4?'<button class="ghost alt" id="weak">'+t("btnWeak")+'</button>':"")+
+    '<button class="ghost alt" id="reset">'+t("btnReset")+'</button></div></div>';
+  $("#again").onclick=function(){S.weakOnly=false;startSession();};
+  var wb=$("#weak");if(wb)wb.onclick=function(){S.weakOnly=true;startSession();};
+  $("#reset").onclick=doReset;
+  $("#weaklist").onclick=function(e){var b=e.target.closest("[data-say]");if(b)speak(b.dataset.say);};
+  drawMap();drawMastery();
+}
+/* the pairs this session actually mixed up, with the same tip shown in the
+   moment — a short, personal review list rather than a generic one */
+function recapHTML(){
+  if(!S.confused.length)return "";
+  return '<div class="recap"><h3>'+t("recapTitle")+'</h3>'+
+    S.confused.slice(0,6).map(function(c){
+      return '<div class="item"><div class="pair">'+
+        c.pairs.slice(0,4).map(function(x){return esc(x);}).join('<em>&middot;</em>')+
+        '</div><p>'+esc(c.tip[TK.lang]||c.tip.en)+'</p></div>';}).join("")+'</div>';
+}
+function doReset(){TK.resetStat();S.weakOnly=false;startSession();}
+
+/* ----------------------------------------------------------- questions */
+function shell(inner,extraBtns){
+  var timed=S.len<0;
+  var pct=(S.len>0)?Math.min(100,S.asked/S.len*100):100;
+  var corner=timed?'<span class="timer" id="timer"></span>'
+    :(S.len?(S.asked+1)+" / "+S.len:"Q"+(S.asked+1));
+  $("#card").innerHTML=
+    '<div class="corner">'+corner+'</div>'+
+    (timed?'<div class="bar"><i id="timeBar" style="width:100%"></i></div>'
+      :(S.len?'<div class="bar"><i style="width:'+pct+'%"></i></div>':""))+
+    '<p class="ask '+siC()+'" id="ask"></p>'+
+    '<div class="stage" id="stage"></div>'+inner+
+    '<div class="verdict" id="verdict" role="status" aria-live="polite"></div>'+
+    '<div id="explSlot"></div>'+
+    '<div class="rowbtns">'+(extraBtns||"")+
+    '<button class="ghost" id="next" disabled>'+t("btnNext")+'</button>'+
+    '<button class="ghost alt" id="skip">'+t("btnSkip")+'</button>'+
+    (S.len?'<button class="ghost alt" id="stop">'+t("btnEnd")+'</button>':"")+'</div>';
+  $("#next").onclick=function(){newQ();};
+  $("#skip").onclick=doSkip;
+  var st=$("#stop");if(st)st.onclick=endSession;
+}
+
+/* "I don't know" reveals the answer and counts it wrong, so the kana comes
+   back sooner. Better than a coin-flip guess that gets scored as knowledge. */
+function doSkip(){
+  if(S.locked||!S.q)return;
+  if(S.q.list){
+    var keyFn=S.q.keyFn,a=S.q.answer;
+    [].forEach.call($("#opts").querySelectorAll(".opt"),function(el,idx){
+      el.disabled=true;
+      if(keyFn(S.q.list[idx])===keyFn(a))el.dataset.state="ok";});
+  }
+  if(S.q.spell){
+    var q=S.q;
+    [].forEach.call(document.querySelectorAll("#slots .slot"),function(el,i){
+      el.classList.remove("on");el.classList.add("ng");el.removeAttribute("data-p");
+      el.textContent=q.target[i];});
+    var sb=$("#submit");if(sb)sb.disabled=true;
+  }
+  if(S.q.ime){
+    var ie=$("#typed");ie.value=toTyping(S.q.target);ie.disabled=true;
+    paintIme(S.q.target);
+    finish(false,S.q.answer);showExpl(S.q.answer);
+    return;
+  }
+  var inp=$("#typed");if(inp){inp.value=S.q.answer.r;inp.dataset.state="ng";inp.disabled=true;}
+  S.q.chosen=null;
+  finish(false,S.q.answer);
+  if(S.q.spell)showExpl(S.q.answer);
+}
+
+function newQ(){
+  if(S.len>0&&S.asked>=S.len){endSession();return;}
+  if(S.len<0&&S.until&&Date.now()>=S.until){endSession();return;}
+  S.locked=false;S.placed=[];
+
+  if(S.mode==="ime"){
+    shell('<div id="typeBox"><input id="typed" autocomplete="off" autocapitalize="off" '+
+      'spellcheck="false" inputmode="latin" aria-label="romaji"></div>'+
+      '<div class="imeout" id="imeOut"></div>'+
+      '<p class="hint '+siC()+'">'+t("imeHint")+'</p>');
+  }else if(S.mode==="type"){
+    shell('<div id="typeBox"><input id="typed" autocomplete="off" autocapitalize="off" '+
+      'spellcheck="false" inputmode="latin" aria-label="romaji"><button class="ghost" id="check">'+t("btnCheck")+'</button></div>');
+  }else if(SPELL_MODES.indexOf(S.mode)>=0){
+    shell('<div class="slots" id="slots"></div><div class="bank" id="bank"></div>'+
+      '<p class="hint '+siC()+'" id="spellHint"></p>',
+      '<button class="ghost" id="submit" disabled>'+t("btnAnswer")+'</button>'+
+      '<button class="ghost alt" id="clear">'+t("btnClear")+'</button>');
+  }else{
+    shell('<div class="opts" id="opts"></div>');
+    $("#opts").onclick=function(e){var b=e.target.closest(".opt");
+      if(b&&!S.locked)answer(parseInt(b.dataset.i,10));};
+  }
+  var askEl=$("#ask"),stage=$("#stage");
+
+  if(SPELL_MODES.indexOf(S.mode)>=0){buildSpell(askEl,stage);S.t0=Date.now();return;}
+  if(S.mode==="ime"){buildIme(askEl,stage);S.t0=Date.now();return;}
+  if(S.mode==="gojuon"){buildGojuon(askEl,stage);S.t0=Date.now();return;}
+
+  if(S.mode==="word"){
+    var a=pick(WORDS);
+    /* same beat-count first: otherwise the answer can be found by counting */
+    var beats=Array.from(a.w).length;
+    var same=shuffle(WORDS.filter(function(x){
+      return x.r!==a.r&&Array.from(x.w).length===beats;}));
+    var rest=shuffle(WORDS.filter(function(x){
+      return x.r!==a.r&&Array.from(x.w).length!==beats;}));
+    var o=same.concat(rest).slice(0,3);
+    askEl.textContent=t("ask_word");
+    stage.innerHTML='<div class="glyph small">'+a.w+'</div>';
+    S.q={answer:a,kanaId:null,word:a};
+    renderOpts(shuffle([a].concat(o)),function(x){return x.r;},"",function(){return "";});
+  }
+  else if(S.mode==="special"){
+    var sp=pick(SPECIAL);
+    askEl.textContent=t("ask_special");
+    stage.innerHTML='<div class="romacue">'+sp.r+'</div><div class="sub">'+sp.en+
+      ' &middot; <span class="si">'+sp.si+'</span></div>';
+    var opts=shuffle([{w:sp.w,ok:1}].concat(sp.bad.map(function(b){return {w:b,ok:0};})));
+    S.q={answer:opts.filter(function(x){return x.ok;})[0],kanaId:null,special:sp};
+    renderOpts(opts,function(x){return x.w;},"word",function(){return "";});
+  }
+  else{
+    var pool=poolKana(),k=weighted(pool),sc=scriptFor();
+    if(S.mode==="k2r"){
+      askEl.textContent=t("ask_k2r");
+      stage.innerHTML='<div class="glyph">'+k[sc]+'</div>';
+      S.q={answer:k,kanaId:k.id};
+      renderOpts(romajiOptions(pool,k,sc,3),function(x){return x.r;},"",function(x){return x.s;});
+    }else if(S.mode==="r2k"){
+      askEl.textContent=t("ask_r2k");
+      stage.innerHTML='<div class="reading">'+k.r+'</div><div class="sub si">'+k.s+'</div>';
+      var list=glyphOptions(pool,k,sc,3);
+      S.q={answer:list.filter(function(o){return o.kana.id===k.id;})[0],kanaId:k.id};
+      renderOpts(list,function(x){return x.glyph;},"kana",function(){return "";});
+    }else if(S.mode==="h2k"){
+      var fromH=Math.random()<.5,key=fromH?"k":"h",srcK=fromH?"h":"k";
+      askEl.textContent=t(fromH?"ask_h2k_hk":"ask_h2k_kh");
+      stage.innerHTML='<div class="glyph">'+k[srcK]+'</div>';
+      var out=[],seen={};seen[k[key]]=1;
+      var push=function(c){if(!c||out.length>=3||seen[c[key]])return;seen[c[key]]=1;out.push(c);};
+      shuffle((LOOK[key][k[key]]||[]).map(function(ch){return BY[key][ch];})
+        .filter(function(x){return x&&pool.indexOf(x)>=0;})).forEach(push);
+      shuffle(pool.slice()).forEach(push);
+      S.q={answer:k,kanaId:k.id};
+      renderOpts(shuffle([k].concat(out)),function(x){return x[key];},"kana",function(){return "";});
+    }else if(S.mode==="listen"){
+      if(!hasVoice()){
+        $("#card").innerHTML='<div class="notice"><h3>'+t("noVoiceTitle")+'</h3>'+
+          '<p>'+t("noVoiceBody")+'</p></div>';
+        return;
+      }
+      askEl.textContent=t("ask_listen");
+      stage.innerHTML='<button class="ghost" id="play">'+t("btnPlay")+'</button>';
+      $("#play").onclick=function(){speak(k.h);};
+      var l2=glyphOptions(pool,k,sc,3);
+      S.q={answer:l2.filter(function(o){return o.kana.id===k.id;})[0],kanaId:k.id};
+      /* no romaji under the options here — that would answer the question for them */
+      renderOpts(l2,function(x){return x.glyph;},"kana",function(){return "";});
+      speak(k.h);
+    }else if(S.mode==="type"){
+      askEl.textContent=t("ask_type");
+      stage.innerHTML='<div class="glyph">'+k[sc]+'</div>';
+      S.q={answer:k,kanaId:k.id,typing:true};
+      var inp=$("#typed");inp.value="";inp.removeAttribute("data-state");inp.disabled=false;inp.focus();
+      $("#check").onclick=checkTyped;
+      inp.onkeydown=function(e){if(e.key==="Enter"){e.preventDefault();
+        if(S.locked)newQ();else checkTyped();}};
+    }
+  }
+  S.t0=Date.now();
+}
+
+function renderOpts(list,keyFn,cls,subFn){
+  $("#opts").innerHTML=list.map(function(o,i){
+    return '<button class="opt" data-i="'+i+'"><span class="num">'+(i+1)+'</span>'+
+      '<span class="main '+cls+'">'+esc(keyFn(o))+'</span>'+
+      '<span class="si">'+esc(subFn(o)||"")+'</span></button>';}).join("");
+  S.q.list=list;S.q.keyFn=keyFn;
+}
+
+/* ---- type romaji, watch it become kana ---- */
+function buildIme(askEl,stage){
+  var a=pick(W),kata=isKata(Array.from(a.w)[0]);
+  askEl.textContent=t("ask_ime");
+  stage.innerHTML='<div class="glyph small">'+a.w+'</div>'+
+    '<div class="sub">'+a.en+' &middot; <span class="si">'+a.si+'</span></div>';
+  S.q={answer:a,kanaId:null,ime:true,target:a.w,kata:kata};
+  var inp=$("#typed"),outEl=$("#imeOut");
+  inp.value="";inp.disabled=false;inp.focus();
+  paintIme("");
+  inp.oninput=function(){
+    if(S.locked)return;
+    var kana=toKana(inp.value,kata);
+    paintIme(kana);
+    /* finishing the word is the answer — no extra button to press */
+    if(kana===a.w)finishIme(true,kana);
+  };
+  inp.onkeydown=function(e){
+    if(e.key!=="Enter")return;
+    e.preventDefault();
+    if(S.locked){newQ();return;}
+    finishIme(toKana(inp.value,kata)===a.w,toKana(inp.value,kata));
+  };
+}
+function paintIme(kana){
+  var t2=Array.from(S.q.target),got=Array.from(kana),html="";
+  for(var i=0;i<Math.max(t2.length,got.length);i++){
+    if(i>=got.length){html+='<span class="ic todo">_</span>';continue;}
+    var cls=(got[i]===t2[i])?"ok":"ng";
+    html+='<span class="ic '+cls+'">'+got[i]+'</span>';
+  }
+  $("#imeOut").innerHTML=html;
+}
+function finishIme(ok,kana){
+  if(S.locked)return;
+  var inp=$("#typed");inp.disabled=true;
+  if(!ok)paintIme(kana);
+  /* credit every kana in the word, the same way spelling does */
+  finish(ok,S.q.answer);
+  showExpl(S.q.answer);
+}
+
+/* ---- gojuon: fill the missing kana ---- */
+/* the whole chart in reading order — あいうえお かきくけこ … わをん */
+function flatOrder(){
+  var out=[];
+  GRID.forEach(function(r){r.forEach(function(c){if(c)out.push(c);});});
+  out.push("ん");
+  return out;
+}
+function buildGojuon(askEl,stage){
+  var sc=scriptFor(),cells,ansChar,roll=Math.random();
+  if(roll<0.45){
+    /* a window that crosses row boundaries: あいうえ▢かきく
+       This asks for the order of the whole chart, not just one row. */
+    var flat=flatOrder(),n=8;
+    var st=Math.floor(Math.random()*(flat.length-n+1));
+    var win=flat.slice(st,st+n);
+    var bi=1+Math.floor(Math.random()*(n-2));   /* never the first or last cell */
+    ansChar=win[bi];
+    cells=win.map(function(c,i){return {ch:c,blank:i===bi};});
+    askEl.textContent=t("ask_seq");
+  }else if(roll<0.8){
+    var row=pick(GRID.filter(function(r){return r.filter(Boolean).length>=4;}));
+    var idxs=row.map(function(c,i){return c?i:-1;}).filter(function(i){return i>=0;});
+    var bj=pick(idxs);ansChar=row[bj];
+    cells=row.map(function(c,i){return {ch:c,blank:i===bj};});
+    askEl.textContent=t("ask_row");
+  }else{
+    var bk=Math.floor(Math.random()*HEADS.length);ansChar=HEADS[bk];
+    cells=HEADS.map(function(c,i){return {ch:c,blank:i===bk};});
+    askEl.textContent=t("ask_head");
+  }
+  var ans=BY.h[ansChar];
+  stage.innerHTML='<div class="seq">'+cells.map(function(c){
+    return c.blank?'<div class="cell blank">?</div>'
+      :(c.ch?'<div class="cell">'+BY.h[c.ch][sc]+'</div>':'<div class="cell gap"></div>');}).join("")+'</div>';
+  var pool=KANA.filter(function(x){return x.set==="sei"&&!x.rare;});
+  /* anything already on screen is not a real option — the learner can see it */
+  var shown={};cells.forEach(function(c){if(c.ch&&c.ch!==ansChar)shown[c.ch]=1;});
+  var out=[],seen={};seen[ans[sc]]=1;
+  var push=function(c){
+    if(!c||out.length>=3||seen[c[sc]]||shown[c.h]||clashes(ans,c))return;
+    seen[c[sc]]=1;out.push(c);};
+  shuffle((LOOK[sc][ans[sc]]||[]).map(function(ch){return BY[sc][ch];})
+    .filter(function(x){return x&&pool.indexOf(x)>=0;})).forEach(push);
+  shuffle(pool.slice()).forEach(push);
+  S.q={answer:ans,kanaId:ans.id,gojuon:sc};
+  renderOpts(shuffle([ans].concat(out)),function(x){return x[sc];},"kana",function(){return "";});
+}
+
+/* ---- spell: build the word from a tile bank ---- */
+function buildSpell(askEl,stage){
+  var a=pick(W),target=Array.from(a.w);
+  var heard=(S.mode==="dictation");
+  askEl.textContent=t(heard?"ask_dictation":"ask_spell");
+  /* dictation hides the spelling cue: the word has to come from the ear */
+  stage.innerHTML=heard
+    ? '<button class="ghost" id="play">'+t("btnPlay")+'</button>'
+    : '<div class="romacue">'+a.r+'</div><div class="sub">'+a.en+
+      ' &middot; <span class="si">'+a.si+'</span></div>';
+  if(heard){$("#play").onclick=function(){speak(a.w);};speak(a.w);}
+  var tset={};target.forEach(function(c){tset[c]=1;});
+  var dummies=[],guard=0;
+  while(dummies.length<4&&guard++<200){
+    var base=pick(target),cand=null,bk=BY.h[base]||BY.k[base];
+    if(bk){
+      var sc=Math.random()<.5?"h":"k",g=LOOK[sc][bk[sc]];
+      if(g&&g.length)cand=pick(g);
+      if(!cand)cand=pick(QUIZABLE)[sc];
+      if(Math.random()<.35)cand=bk[bk.h===base?"k":"h"];
+    }else{cand=pick(Array.from(SMALL));}
+    if(cand&&!tset[cand]&&dummies.indexOf(cand)<0)dummies.push(cand);
+  }
+  var bank=shuffle(target.concat(dummies).map(function(ch,i){return {ch:ch,i:i};}));
+  S.q={answer:a,kanaId:null,spell:true,target:target,bank:bank};
+  $("#spellHint").textContent="";
+  drawSpell();
+  $("#bank").onclick=function(e){var b=e.target.closest(".btile");if(!b||S.locked)return;
+    S.placed.push(parseInt(b.dataset.i,10));drawSpell();};
+  $("#slots").onclick=function(e){var b=e.target.closest("[data-p]");if(!b||S.locked)return;
+    S.placed.splice(parseInt(b.dataset.p,10),1);drawSpell();};
+  $("#clear").onclick=function(){if(S.locked)return;S.placed=[];drawSpell();};
+  $("#submit").onclick=checkSpell;
+}
+function drawSpell(){
+  var q=S.q,n=q.target.length,slots="";
+  for(var i=0;i<n;i++){
+    var bi=S.placed[i];
+    slots+=(bi===undefined)?'<div class="slot"></div>'
+      :'<div class="slot on" data-p="'+i+'">'+q.bank.filter(function(b){return b.i===bi;})[0].ch+'</div>';
+  }
+  $("#slots").innerHTML=slots;
+  $("#bank").innerHTML=q.bank.map(function(b){
+    return '<button class="btile" data-i="'+b.i+'" data-used="'+
+      (S.placed.indexOf(b.i)>=0?1:0)+'">'+b.ch+'</button>';}).join("");
+  $("#submit").disabled=S.placed.length!==n;
+}
+function checkSpell(){
+  if(S.locked)return;
+  var q=S.q;
+  var built=S.placed.map(function(i){return q.bank.filter(function(b){return b.i===i;})[0].ch;});
+  var ok=built.join("")===q.answer.w;
+  [].forEach.call(document.querySelectorAll("#slots .slot"),function(el,i){
+    el.classList.remove("on");
+    el.classList.add(built[i]===q.target[i]?"ok":"ng");
+    el.removeAttribute("data-p");
+    if(!ok)el.textContent=q.target[i];});
+  $("#submit").disabled=true;
+  finish(ok,q.answer);
+  showExpl(q.answer);
+}
+/* When the learner picks a look-alike, say how to tell the two apart. That is
+   the thing they actually needed to know, and it is why the distractor exists. */
+function tipFor(x,y){
+  if(!TIPS||!x||!y)return null;
+  var g=[x.h,x.k],h=[y.h,y.k];
+  for(var i=0;i<TIPS.kana.length;i++){
+    var c=TIPS.kana[i].chars,hasX=false,hasY=false;
+    for(var j=0;j<c.length;j++){
+      if(g.indexOf(c[j])>=0)hasX=true;
+      if(h.indexOf(c[j])>=0)hasY=true;
+    }
+    if(hasX&&hasY)return TIPS.kana[i].tip;
+  }
+  return null;
+}
+function kanaExpl(ok){
+  var host=$("#explSlot");if(!host)return;
+  var ans=optKana(S.q.answer),chose=optKana(S.q.chosen);
+  var sc=S.q.gojuon||"h";
+  if(!ans){host.innerHTML="";return;}
+  var tip=(!ok&&chose&&chose.id!==ans.id)?tipFor(ans,chose):null;
+  if(tip){
+    var key=tip.en,pair=ans[sc]+"\u2194"+chose[sc];
+    var hit=null;
+    for(var q=0;q<S.confused.length;q++)if(S.confused[q].key===key)hit=S.confused[q];
+    if(!hit){hit={key:key,pairs:[],tip:tip};S.confused.push(hit);}
+    if(hit.pairs.indexOf(pair)<0)hit.pairs.push(pair);
+  }
+  if(!tip&&ok){host.innerHTML="";return;}   /* nothing useful to add on a hit */
+  var pair="";
+  if(tip&&chose){
+    pair='<div class="pairrow">'+
+      '<span class="ans"><b>'+ans[sc]+'</b><i>'+ans.r+'</i></span>'+
+      '<span class="you"><b>'+chose[sc]+'</b><i>'+chose.r+'</i></span></div>';
+  }
+  var body=tip?(tip[TK.lang]||tip.en)
+    :(ans.h+" / "+ans.k+" — "+ans.r);
+  host.innerHTML='<div class="expl'+(tip?" compare":"")+'">'+
+    '<span class="lab">'+t(tip?"labCompare":"labRule")+'</span>'+pair+
+    '<p class="nt">'+esc(body)+'</p></div>';
+}
+
+function showExpl(a){
+  $("#explSlot").innerHTML='<div class="expl"><div class="hw">'+a.w+'</div>'+
+    '<div class="rm">'+a.r+'</div>'+
+    '<div class="mn">'+a.en+' &middot; <span class="si">'+a.si+'</span></div>'+
+    '<p class="nt '+siC()+'">'+(a.note[TK.lang]||a.note.en)+'</p>'+
+    '<div class="rowbtns"><button class="ghost alt" id="sayw">'+t("btnPlay")+'</button></div></div>';
+  $("#sayw").onclick=function(){speak(a.w);};
+}
+
+/* ----------------------------------------------------------- answering */
+function accepted(a){var r=a.r.toLowerCase();return [r].concat(ALT[r]||[]);}
+function checkTyped(){
+  if(S.locked)return;
+  var inp=$("#typed"),val=inp.value.trim().toLowerCase().replace(/\s+/g,"");
+  if(!val)return;
+  var a=S.q.answer,ok=accepted(a).indexOf(val)>=0;
+  inp.dataset.state=ok?"ok":"ng";inp.disabled=true;finish(ok,a);
+}
+/* the kana object behind an option, whatever shape the mode stores it in */
+function optKana(o){
+  if(!o)return null;
+  if(o.kana)return o.kana;
+  if(o.h&&o.k)return o;
+  return null;
+}
+function answer(i){
+  if(S.locked||!S.q||!S.q.list)return;
+  var list=S.q.list,keyFn=S.q.keyFn,a=S.q.answer;
+  if(!list[i])return;
+  var ok=keyFn(list[i])===keyFn(a);
+  S.q.chosen=list[i];
+  [].forEach.call($("#opts").querySelectorAll(".opt"),function(el,idx){
+    el.disabled=true;
+    if(keyFn(list[idx])===keyFn(a))el.dataset.state="ok";
+    else if(idx===i)el.dataset.state="ng";});
+  finish(ok,a);
+}
+function finish(ok,a){
+  S.locked=true;TK.bumpDays();
+  S.ms+=Math.min(Date.now()-S.t0,60000);
+  S.asked++;
+  if(ok){S.right++;S.streak++;}else S.streak=0;
+  if(S.q.kanaId){var s=stat(S.q.kanaId);if(ok)s.c++;else s.w++;}
+  if(S.q.spell||S.q.ime){Array.from(S.q.target).forEach(function(ch){
+    var kk=BY.h[ch]||BY.k[ch];
+    if(kk&&!kk.rare){var st2=stat(kk.id);if(ok)st2.c++;else st2.w++;}});}
+  persist();
+
+  var v=$("#verdict"),detail="",hint="";
+  v.className="verdict "+(ok?"ok":"ng");
+  if(S.q.spell||S.q.ime){detail="<b>"+a.w+"</b>";}
+  else if(S.q.word){detail="<b>"+a.w+"</b> &mdash; "+a.r+" &middot; "+a.en+
+    ' &middot; <span class="si">'+a.si+"</span>";}
+  else if(S.q.special){var sp=S.q.special;
+    detail="<b>"+sp.w+"</b> &mdash; "+sp.r+" &middot; "+sp.en;}
+  else{var kk2=a.kana||a;
+    detail="<b>"+kk2.h+" / "+kk2.k+"</b> &mdash; "+kk2.r+' &middot; <span class="si">'+kk2.s+"</span>";}
+  v.innerHTML='<span class="tag">'+(ok?t("ok"):t("ng"))+"</span>"+
+    (ok?"":t("answerIs")+" ")+detail+hint;
+
+  var nb=$("#next");if(nb)nb.disabled=false;
+  if(S.q.special){
+    var sp2=S.q.special;
+    $("#explSlot").innerHTML='<div class="expl"><span class="lab">'+t("labRule")+'</span>'+
+      '<p class="nt">'+esc(t(sp2.kind==="t"?"kindT":sp2.kind==="c"?"kindC":"kindN"))+'</p></div>';
+  }else if(S.q.kanaId&&!S.q.spell&&!S.q.ime)kanaExpl(ok);
+  updateScore();drawMap();drawMastery();
+  if(ok&&!S.q.spell&&!S.q.ime&&S.phase==="quiz")setTimeout(function(){
+    if(S.locked&&S.phase==="quiz")newQ();},S.mode==="special"?1100:750);
+}
+function updateScore(){
+  $("#sAsked").textContent=S.asked;
+  $("#sRate").textContent=S.asked?Math.round(S.right/S.asked*100)+"%":"-";
+  var st=$("#sStreak");st.textContent=S.streak;st.classList.toggle("hot",S.streak>=5);
+  $("#sSpeed").textContent=S.asked?(S.ms/S.asked/1000).toFixed(1):"-";
+}
+
+/* --------------------------------------------------------------- learn */
+function renderLearn(){
+  var sc=S.script==="k"?"k":"h";
+  $("#card").innerHTML=
+    '<div class="corner">LEARN</div><p class="ask '+siC()+'">'+t("learnTitle")+'</p>'+
+    '<div class="stage" style="min-height:150px"><div class="glyph" id="lg">'+(sc==="k"?"ア":"あ")+'</div>'+
+    '<div class="sub" id="ls">a &middot; <span class="si">'+BY.h["あ"].s+'</span></div></div>'+
+    SETS.filter(function(g){return S.sets[g[0]];}).map(function(g){
+      return '<div class="mapset"><h3 class="'+siC()+'">'+t(g[1])+'</h3>'+
+        chartHTML(g[0],sc,true)+'</div>';}).join("")+
+    '<p class="hint '+siC()+'" style="text-align:left">'+t("learnHint")+'</p>';
+  $("#card").onclick=function(e){
+    var b=e.target.closest("[data-id]");if(!b)return;
+    var x=BY.h[b.dataset.id];
+    $("#lg").textContent=x[sc];
+    $("#ls").innerHTML=x.r+' &middot; <span class="si">'+x.s+'</span>';
+    speak(x.h);};
+}
+
+/* --------------------------------------------------------------- audio */
+var jaVoice=null;
+function loadVoices(){try{var vs=speechSynthesis.getVoices();
+  jaVoice=vs.filter(function(v){return v.lang&&v.lang.toLowerCase().indexOf("ja")===0;})[0]||null;}catch(e){}}
+if("speechSynthesis" in window){loadVoices();speechSynthesis.onvoiceschanged=loadVoices;}
+function hasVoice(){
+  if(!("speechSynthesis" in window))return false;
+  loadVoices();
+  /* some browsers report an empty list until the first call; treat unknown as
+     available so we do not block a device that would have worked */
+  try{return !!jaVoice||speechSynthesis.getVoices().length===0;}catch(e){return false;}
+}
+function speak(text){
+  if(!("speechSynthesis" in window)){
+    var v=$("#verdict");if(v){v.className="verdict";v.textContent=t("noAudio");}return;}
+  loadVoices();
+  try{var u=new SpeechSynthesisUtterance(text);
+    u.lang="ja-JP";if(jaVoice)u.voice=jaVoice;u.rate=.8;
+    speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}
+}
+
+/* ----------------------------------------------------------- kana map */
+/* Laid out as the actual gojuon chart: one 行 per line, gaps preserved,
+   so the shape on screen matches the chart on the classroom wall. */
+function chartHTML(set,sc,interactive){
+  var cls=interactive?"tile act":"tile";
+  function cell(ch){
+    if(!ch)return '<div class="tile hole"></div>';
+    var x=BY.h[ch];if(!x)return '<div class="tile hole"></div>';
+    var s=stat(x.id),fill=Math.min(s.c,4)/4,weak=(s.w>0&&s.w>=s.c)?1:0;
+    return '<'+(interactive?"button":"div")+' class="'+cls+'" data-weak="'+weak+'" '+
+      'data-rare="'+(x.rare?1:0)+'" data-id="'+x.h+'" title="'+x.h+" "+x.k+" "+x.r+'">'+
+      (fill?'<i style="opacity:'+(fill*.9).toFixed(2)+'"></i>':"")+
+      '<span>'+x[sc]+'</span></'+(interactive?"button":"div")+'>';
+  }
+  if(set==="sei"){
+    var rows=GRID.map(function(r){return r.map(cell).join("");});
+    rows.push(cell("ん")+'<div class="tile hole"></div><div class="tile hole"></div>'+
+      '<div class="tile hole"></div><div class="tile hole"></div>');
+    return '<div class="chart c5'+(interactive?" big":"")+'">'+rows.join("")+'</div>';
+  }
+  var list=KANA.filter(function(x){return x.set===set;});
+  var cols=(set==="you")?3:5;
+  return '<div class="chart c'+cols+(interactive?" big":"")+'">'+
+    list.map(function(x){return cell(x.h);}).join("")+'</div>';
+}
+function drawMap(){
+  $("#mapBody").innerHTML=SETS.filter(function(g){return S.sets[g[0]];}).map(function(g){
+    return '<div class="mapset"><h3 class="'+siC()+'">'+t(g[1])+'</h3>'+
+      chartHTML(g[0],"h",false)+'</div>';}).join("");
+}
+
+/* -------------------------------------------------------------- wiring */
+function relang(){
+  if(S.phase==="result")endSession();
+  else if(S.mode==="learn")renderLearn();
+  else newQ();
+  drawMap();
+}
+
+TK.page({data:["words","tips"],relang:relang,start:function(){
+  if(!document.getElementById("card"))return;
+  var K=TK.kana;
+  KANA=K.all;BY=K.by;QUIZABLE=K.quizable;LOOK=K.look;SND=K.snd;
+  ALT=K.alt;CONFLICT=K.conflict;GRID=K.grid;HEADS=K.heads;SMALL=K.small;
+  W=TK.data.words.spell;WORDS=TK.data.words.quick;SPECIAL=TK.data.words.special;
+  TIPS=TK.data.tips;
+  document.addEventListener("keydown",function(e){
+    if(S.mode==="learn"||S.mode==="ime"||SPELL_MODES.indexOf(S.mode)>=0||S.phase==="result")return;
+    if(document.activeElement&&document.activeElement.id==="typed")return;
+    if(e.key>="1"&&e.key<="4")answer(parseInt(e.key,10)-1);
+    else if(e.key==="Enter"){e.preventDefault();newQ();}});
+  buildChips();paint();updateScore();drawMap();startSession();
+}});
+})();
+
+</script>
+<script>
+/* in-page router for the offline build: show one section, hide the rest */
+(function(){
+  function show(name){
+    [].forEach.call(document.querySelectorAll(".page"),function(p){
+      p.hidden=(p.dataset.page!==name);});
+    [].forEach.call(document.querySelectorAll("[data-goto][data-nav]"),function(a){
+      a.setAttribute("aria-current",a.dataset.goto===name?"page":"false");});
+    try{window.scrollTo(0,0);}catch(e){}
+  }
+  document.addEventListener("click",function(e){
+    var a=e.target.closest("[data-goto]");
+    if(!a)return;
+    e.preventDefault();
+    show(a.dataset.goto);
+  });
+  show("index");
+})();
+</script>
+
+</body>
+</html>
