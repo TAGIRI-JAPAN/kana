@@ -23,8 +23,8 @@
   --glow:rgba(199,162,71,.16);
   --shadow:0 1px 2px rgba(20,10,14,.05),0 6px 18px rgba(20,10,14,.06);
 
-  --jp-disp:"Zen Kaku Gothic New","BIZ UDPGothic","Hiragino Sans",sans-serif;
-  --ui:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI",system-ui,-apple-system,sans-serif;
+  --jp-disp:"Zen Kaku Gothic New","BIZ UDPGothic","Hiragino Sans","Noto Sans Symbols 2","Segoe UI Symbol","Apple Symbols",sans-serif;
+  --ui:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI",system-ui,-apple-system,"Noto Sans Symbols 2","Segoe UI Symbol","Apple Symbols",sans-serif;
   --si:"Noto Sans Sinhala","Iskoola Pota",sans-serif;
 
   --s1:6px; --s2:10px; --s3:16px; --s4:22px; --s5:30px;
@@ -89,7 +89,7 @@ button{font:inherit;color:inherit}
 .si{font-family:var(--si);font-size:1.04em;line-height:1.7}
 /* Whole page in Sinhala: set it once at the root so no element can be missed.
    Kana keeps its own font because every kana rule names --jp-disp explicitly. */
-html[lang="si"]{--ui:"Noto Sans Sinhala","Iskoola Pota","BIZ UDPGothic","Hiragino Sans",system-ui,sans-serif}
+html[lang="si"]{--ui:"Noto Sans Sinhala","Iskoola Pota","BIZ UDPGothic","Hiragino Sans",system-ui,"Noto Sans Symbols 2","Segoe UI Symbol","Apple Symbols",sans-serif}
 html[lang="si"] body{line-height:1.8}
 html[lang="si"] .flabel,html[lang="si"] .l,html[lang="si"] .mrow,
 html[lang="si"] .csec h2,html[lang="si"] .mapset h3{letter-spacing:.04em}
@@ -163,7 +163,10 @@ header{background:linear-gradient(168deg,var(--accent) 0%,var(--accent-deep) 100
   color:var(--maroon-ink);letter-spacing:.02em}
 .glyph.small{font-size:calc(clamp(2.4rem,10vw,3.2rem)*var(--gs))}
 .reading{font-family:var(--jp-disp);font-size:calc(clamp(1.9rem,8vw,2.6rem)*var(--gs));color:var(--maroon-ink);letter-spacing:.04em}
-.romacue{font-size:calc(clamp(1.6rem,7vw,2.2rem)*var(--gs));color:var(--maroon-ink);letter-spacing:.22em;font-weight:700}
+.romacue{font-size:calc(clamp(1.5rem,6.4vw,2.2rem)*var(--gs));color:var(--maroon-ink);
+  letter-spacing:.16em;font-weight:700;overflow-wrap:anywhere}
+/* OTSUKARESAMA and friends do not fit a 360px screen at full size */
+.romacue.long{font-size:calc(clamp(1.05rem,4.6vw,1.6rem)*var(--gs));letter-spacing:.1em}
 .sub{margin-top:8px;font-size:1rem;color:var(--ink-soft)}
 
 .opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2)}
@@ -373,6 +376,127 @@ a.mark{color:inherit;text-decoration:none}
 .ckana em{font-style:normal;font-size:1.05rem;color:var(--ink-soft);margin-left:5px}
 .crom{font-size:.7rem;color:var(--gold-dp);font-weight:700;letter-spacing:.04em}
 .csi{font-size:.78rem;color:var(--ink-soft);line-height:1.4}
+
+
+/* ==========================================================================
+   Settings sheet, compact "now practising" bar, skip button, timer
+   ========================================================================== */
+
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:30px;
+  background:transparent;border:1px solid rgba(233,217,169,.4);color:var(--gold-lt);
+  border-radius:999px;padding:5px 10px;font-size:.78rem;cursor:pointer;white-space:nowrap}
+.iconbtn:active{transform:translateY(1px)}
+.iconbtn svg{display:block}
+
+/* the one line that replaces four rows of chips */
+.nowbar{display:flex;align-items:center;gap:var(--s2);background:var(--card);
+  border:1px solid var(--rule);border-radius:14px;padding:10px var(--s3);margin-top:18px;
+  box-shadow:var(--shadow)}
+.nowbar .lbl{font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+  font-weight:700;display:block}
+.nowbar .val{font-size:.9rem;color:var(--ink);margin-top:1px}
+.nowbar .val b{color:var(--maroon-ink)}
+.nowbar .grow{flex:1;min-width:0}
+.nowbar .ghost{padding:8px 15px}
+
+/* mode lane stays visible — it is the drill's real navigation */
+.modebar{margin-top:var(--s2);position:relative}
+.modebar .lane{padding:2px 0}
+.modebar::after{content:"";position:absolute;top:0;right:0;bottom:0;width:26px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--paper))}
+
+.sheet{position:fixed;inset:0;z-index:50;display:none}
+.sheet[open]{display:block}
+.sheet .veil{position:absolute;inset:0;background:rgba(10,6,8,.45)}
+.sheet .panel{position:absolute;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;
+  background:var(--paper);border-radius:18px 18px 0 0;padding:var(--s3) var(--s3) var(--s5);
+  box-shadow:0 -8px 40px rgba(0,0,0,.25)}
+@media (min-width:640px){
+  .sheet .panel{left:50%;top:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);
+    width:min(560px,92vw);border-radius:18px;max-height:86vh}
+}
+.sheet h2{font-family:var(--jp-disp);font-size:1.05rem;margin:0 0 var(--s3);color:var(--maroon-ink);
+  display:flex;align-items:center}
+.sheet h2 .ghost{margin-left:auto;padding:8px 16px}
+.sgroup{padding:var(--s2) 0}
+.sgroup + .sgroup{border-top:1px dashed var(--rule)}
+.sgroup .flabel{display:block;margin-bottom:7px;min-width:0}
+.swrap{display:flex;flex-wrap:wrap;gap:var(--s1)}
+.swatch{width:34px;height:34px;border-radius:50%;border:2px solid var(--rule);cursor:pointer;padding:0;
+  position:relative}
+.swatch[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 3px var(--rule-2)}
+.swatch i{position:absolute;inset:3px;border-radius:50%}
+
+.timer{font-variant-numeric:tabular-nums;font-weight:700;color:var(--maroon-ink)}
+.timer.low{color:var(--ng)}
+
+@media (prefers-reduced-motion:no-preference){
+  .sheet[open] .panel{animation:up .2s ease-out}
+  @keyframes up{from{transform:translateY(14px);opacity:0}to{transform:none;opacity:1}}
+  @media (min-width:640px){.sheet[open] .panel{animation:none}}
+}
+
+/* romaji -> kana readout */
+.imeout{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:var(--s3);min-height:52px}
+.ic{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:48px;
+  border-radius:10px;border:1px solid var(--rule);background:var(--field);
+  font-family:var(--jp-disp);font-size:calc(1.6rem*var(--gs));color:var(--maroon-ink)}
+.ic.ok{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+.ic.ng{border-color:var(--ng);background:var(--ng-bg);color:var(--ng)}
+.ic.todo{border-style:dashed;color:var(--ink-soft);opacity:.5}
+
+/* numbers and time */
+.numbig{font-family:var(--jp-disp);font-weight:700;line-height:1;
+  font-size:calc(clamp(3rem,15vw,4.6rem)*var(--gs));color:var(--maroon-ink);
+  font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.numbig .cunit{font-size:.42em;font-weight:500;margin-left:.12em;color:var(--ink-soft)}
+.opt .main.numopt{font-family:var(--jp-disp);font-size:calc(1.6rem*var(--gs));
+  font-variant-numeric:tabular-nums}
+.clock{width:clamp(150px,46vw,190px);height:auto;color:var(--maroon-ink);display:block;margin:0 auto}
+.numsec > h2{font-family:var(--jp-disp);font-size:1.15rem;color:var(--maroon-ink);
+  margin:0 0 var(--s2);padding-bottom:8px;border-bottom:2px solid var(--gold)}
+
+/* labelled explanation — same three labels the printed material uses */
+.expl .lab{display:inline-block;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:8px;
+  background:var(--gold-lt);color:var(--accent-deep)}
+html[data-scheme="dark"] .expl .lab{background:var(--gold-dp);color:#fff}
+.expl.compare{border-left-color:var(--maroon)}
+.expl.compare .lab{background:var(--ng-tag);color:var(--ng)}
+.expl .pairrow{display:flex;gap:10px;flex-wrap:wrap;margin:2px 0 10px}
+.expl .pairrow span{display:inline-flex;flex-direction:column;align-items:center;
+  min-width:56px;padding:6px 8px;border:1px solid var(--rule);border-radius:10px;background:var(--field)}
+.expl .pairrow b{font-family:var(--jp-disp);font-size:1.8rem;line-height:1.1;color:var(--maroon-ink);font-weight:500}
+.expl .pairrow i{font-style:normal;font-size:.7rem;color:var(--gold-dp);font-weight:700;margin-top:2px}
+.expl .pairrow span.you{border-color:var(--ng);background:var(--ng-bg)}
+.expl .pairrow span.ans{border-color:var(--ok);background:var(--ok-bg)}
+
+/* daily goal ring in the header */
+.goal{display:flex;align-items:center;gap:7px;margin-left:12px;flex:none}
+.goal .ring{width:26px;height:26px;border-radius:50%;position:relative;flex:none}
+.goal .ring::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--accent-deep)}
+.goal .ring.done::after{background:var(--gold)}
+.goal .txt{font-size:.68rem;color:#fff;opacity:.85;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* no-voice notice */
+.notice{text-align:center;padding:8px 4px 4px}
+.notice h3{font-family:var(--jp-disp);font-size:1.05rem;color:var(--maroon-ink);margin:0 0 8px}
+.notice p{font-size:.88rem;color:var(--ink-soft);margin:0 auto;max-width:34ch}
+
+/* result: the pairs you actually confused, with the same tip */
+.recap{margin-top:var(--s4);text-align:left}
+.recap h3{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+  font-weight:700;margin:0 0 10px}
+.recap .item{border:1px solid var(--rule);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+  background:var(--field);padding:10px 14px;margin-bottom:8px}
+.recap .item .pair{font-family:var(--jp-disp);font-size:1.5rem;color:var(--maroon-ink);line-height:1.2}
+.recap .item .pair em{font-style:normal;color:var(--ink-soft);font-size:1rem;margin:0 6px}
+.recap .item p{font-size:.82rem;color:var(--ink-soft);margin:4px 0 0}
+
+/* option text must break at the space between words, never inside one */
+.opt .main{word-break:keep-all;overflow-wrap:anywhere}
+.opt .main.long{font-size:calc(1.3rem*var(--gs));line-height:1.35}
+.opt .main.xlong{font-size:calc(1.08rem*var(--gs));line-height:1.4}
 
 .printhint{font-size:.75rem;color:var(--ink-soft);align-self:center}
 .printonly{display:none}

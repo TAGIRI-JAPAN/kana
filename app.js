@@ -396,7 +396,8 @@ function newQ(){
   else if(S.mode==="special"){
     var sp=pick(SPECIAL);
     askEl.textContent=t("ask_special");
-    stage.innerHTML='<div class="romacue">'+sp.r+'</div><div class="sub">'+sp.en+
+    stage.innerHTML='<div class="romacue'+(sp.r.length>8?" long":"")+'">'+sp.r+
+      '</div><div class="sub">'+sp.en+
       ' &middot; <span class="si">'+sp.si+'</span></div>';
     var opts=shuffle([{w:sp.w,ok:1}].concat(sp.bad.map(function(b){return {w:b,ok:0};})));
     S.q={answer:opts.filter(function(x){return x.ok;})[0],kanaId:null,special:sp};
@@ -560,7 +561,8 @@ function buildSpell(askEl,stage){
   /* dictation hides the spelling cue: the word has to come from the ear */
   stage.innerHTML=heard
     ? '<button class="ghost" id="play">'+t("btnPlay")+'</button>'
-    : '<div class="romacue">'+a.r+'</div><div class="sub">'+a.en+
+    : '<div class="romacue'+(a.r.length>8?" long":"")+'">'+a.r+
+      '</div><div class="sub">'+a.en+
       ' &middot; <span class="si">'+a.si+'</span></div>';
   if(heard){$("#play").onclick=function(){speak(a.w);};speak(a.w);}
   var tset={};target.forEach(function(c){tset[c]=1;});

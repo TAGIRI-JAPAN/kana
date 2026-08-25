@@ -128,7 +128,18 @@ var TK={
       b.type="button";b.className="iconbtn";b.id="openSheet";
       b.setAttribute("aria-haspopup","dialog");
       b.setAttribute("aria-label","Settings");
-      b.textContent="\u2699";
+      b.innerHTML='<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" '+
+        'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '+
+        'stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/>'+
+        '<path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06'+
+        'A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09'+
+        'A1.7 1.7 0 0 0 8.9 19.3a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83'+
+        'l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09'+
+        'A1.7 1.7 0 0 0 4.7 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83'+
+        'l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09'+
+        'a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83'+
+        'l-.06.06A1.7 1.7 0 0 0 19.4 9v0a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09'+
+        'a1.7 1.7 0 0 0-1.55 1z"/></svg>';
       tools.appendChild(b);
       b.onclick=function(){TK.openSheet(true);};
     }
